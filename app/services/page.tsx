@@ -9,8 +9,10 @@ import { services } from "@/lib/data";
 import { motion } from "framer-motion";
 import { Check, Clock, Award, Users, Wrench } from "lucide-react";
 import CTA from "@/components/CTA";
+import Image from "next/image";
 import ServicesGrid from "@/components/ServicesGrid";
 import HeroBackground from "@/public/Hero-Shutters.jpg";
+import OurServiceGuarantee from "@/public/Woodlore-Shutters.webp";
 
 export default function ServicesPage() {
   const processSteps = [
@@ -183,19 +185,17 @@ export default function ServicesPage() {
                 ))}
               </div>
             </motion.div>
-
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className="bg-gray-300 rounded-lg h-96 flex items-center justify-center"
             >
-              <div className="text-center text-gray-600">
-                <div className="text-6xl mb-4">🛠️</div>
-                <div className="text-lg font-medium">Professional Service</div>
-                <div className="text-sm text-gray-500 mt-2">Service Image</div>
-              </div>
+              <Image
+                src={OurServiceGuarantee}
+                alt="Our Service Guarantee"
+                className="w-full h-full object-cover rounded-lg"
+              />
             </motion.div>
           </div>
         </div>
@@ -203,7 +203,7 @@ export default function ServicesPage() {
 
       {/* Emergency Services */}
       <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto px-4 sm:px-0">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

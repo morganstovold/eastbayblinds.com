@@ -114,7 +114,7 @@ export default function ShuttersPage() {
         title="Our Shutter Collection"
         subtitle="Explore our range of shutters crafted to fit any size, shape, color, lifestyle or budget"
         products={shutterProducts}
-        backgroundColor="bg-white"
+        backgroundColor="bg-gray-50"
       />
 
       <TaxCreditSection backgroundColor="bg-white" />
