@@ -8,8 +8,7 @@ import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { products } from '@/lib/data';
 import { motion } from 'framer-motion';
-import Link from 'next/link';
-import { Filter, Grid, List } from 'lucide-react';
+import { Grid, List } from 'lucide-react';
 import CTA from '@/components/CTA';
 
 export default function ProductsPage() {

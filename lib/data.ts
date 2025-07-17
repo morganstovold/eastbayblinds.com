@@ -2,7 +2,6 @@ import {
   BusinessInfo,
   Product,
   Service,
-  Testimonial,
   NavigationItem,
   YelpBusinessResponse,
 } from "./types";

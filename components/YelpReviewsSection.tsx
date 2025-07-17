@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { YelpReviewCard } from '@/components/TestimonialCard';
-import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { YelpPageData } from '@/lib/yelp-service';
 import { motion } from 'framer-motion';
 import { Star, ExternalLink } from 'lucide-react';

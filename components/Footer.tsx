@@ -3,7 +3,6 @@
 import React from "react";
 import Link from "next/link";
 import { businessInfo } from "@/lib/data";
-import { motion } from "framer-motion";
 import {
   Phone,
   MapPin,

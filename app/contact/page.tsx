@@ -8,7 +8,7 @@ import Footer from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { businessInfo } from "@/lib/data";
 import { motion } from "framer-motion";
-import { Phone, MapPin, Home, Car, Shield, User } from "lucide-react";
+import { Phone, MapPin, Car, Shield, User } from "lucide-react";
 import HeroContactImage from "@/public/Hero-Contact.jpg";
 import CTA from "@/components/CTA";
 

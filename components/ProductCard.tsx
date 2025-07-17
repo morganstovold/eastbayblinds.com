@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Product } from "@/lib/types";
 import { motion } from "framer-motion";
 import { ArrowRight, Check } from "lucide-react";
+import Image from "next/image";
 
 interface ProductCardProps {
   product: Product;
@@ -38,10 +39,11 @@ export default function ProductCard({
         <div
           className={`relative overflow-hidden ${isCompact ? "h-48" : "h-64"}`}
         >
-          <img
+          <Image
             src={product.imageUrl}
             alt={product.name}
-            className="w-full h-full object-cover"
+            fill
+            className="object-cover"
           />
 
           {/* Category Badge */}

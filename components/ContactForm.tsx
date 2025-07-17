@@ -46,7 +46,6 @@ export default function ContactForm({
     watch,
   } = useForm<ContactFormData>();
 
-  const serviceType = watch("serviceType");
   const email = watch("email");
   const phone = watch("phone");
 
