@@ -6,19 +6,19 @@ import {
   YelpBusinessResponse,
 } from "./types";
 
-import BrightwoodShutters from "@/public/brightwood-shutters.webp";
-import NormandyShutters from "@/public/normandy-shutters.webp";
-import WoodlorePlusShutters from "@/public/woodlore-plus-shutters.webp";
-import WoodloreShutters from "@/public/woodlore-shutters.webp";
-import UltimateFauxWoodBlinds from "@/public/ultimate-faux-wood-blinds.webp";
-import SynchronyVerticalBlinds from "@/public/synchrony-vertical-blinds.webp";
+import BrightwoodShutters from "@/public/Brightwood-Shutters.webp";
+import NormandyShutters from "@/public/Normandy-Shutters.webp";
+import WoodlorePlusShutters from "@/public/Woodlore-Plus-Shutters.webp";
+import WoodloreShutters from "@/public/Woodlore-Shutters.webp";
+import UltimateFauxWoodBlinds from "@/public/Ultimate-Faux-Wood-Blinds.webp";
+import SynchronyVerticalBlinds from "@/public/Synchrony-Vertical-Blinds.webp";
 import UltimateNormandyWoodBlinds from "@/public/Ultimate-Normandy-Wood-Blinds.webp";
-import CityLightsAluminumBlinds from "@/public/citylights-aluminum-blinds.webp";
+import CityLightsAluminumBlinds from "@/public/CityLights-Aluminum-Blinds.webp";
 import SmartDrapeShades from "@/public/Smart-Drape-Shades.webp";
-import SolunaRollerShades from "@/public/soluna-roller-shades.webp";
+import SolunaRollerShades from "@/public/Soluna-Roller-Shades.webp";
 import BlackoutShades from "@/public/blackout-shades.webp";
-import CenterpieceRomanShades from "@/public/centerpiece-roman-shades.webp";
-import PerfectSheerShades from "@/public/perfectsheer-shades.webp";
+import CenterpieceRomanShades from "@/public/Centerpiece-Roman-Shades.webp";
+import PerfectSheerShades from "@/public/PerfectSheer-Shades.webp";
 import PortraitHoneycombShades from "@/public/Portrait-Honecomb-Shades.webp";
 
 export const businessInfo: BusinessInfo = {

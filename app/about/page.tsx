@@ -20,6 +20,7 @@ import Image from "next/image";
 import CTA from "@/components/CTA";
 import HeroImage from "@/public/Hero-About.jpg";
 import AboutImage from "@/public/Ultimate-Normandy-Wood-Blinds.webp";
+import LarryCollins from "@/public/Larry-Collins.webp";
 
 export default function AboutPage() {
   const companyValues = [
@@ -59,7 +60,7 @@ export default function AboutPage() {
         "In-Home Consultation",
         "Certified Installation",
       ],
-      image: "/Larry-Collins.webp",
+      image: LarryCollins,
       bio: "Larry Collins has had the pleasure of being self employed for over 20 years. With a background in art and advertising, he really enjoys meeting clients in their homes and guiding them through the vast array of window treatments. Larry is a certified installer who handles both sales and installation personally.",
     },
   ];
