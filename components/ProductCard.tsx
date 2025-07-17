@@ -40,7 +40,7 @@ export default function ProductCard({
           className={`relative overflow-hidden ${isCompact ? "h-48" : "h-64"}`}
         >
           <Image
-            src={product.imageUrl}
+            src={product.image}
             alt={product.name}
             fill
             className="object-cover"

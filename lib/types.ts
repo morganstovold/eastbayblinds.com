@@ -1,10 +1,12 @@
+import { StaticImageData } from "next/image";
+
 export interface Product {
   id: string;
   name: string;
   category: "shutters" | "blinds" | "shades";
   description: string;
   features: string[];
-  imageUrl: string;
+  image: StaticImageData;
   price?: string;
   brand?: string;
 }

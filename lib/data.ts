@@ -6,6 +6,21 @@ import {
   YelpBusinessResponse,
 } from "./types";
 
+import BrightwoodShutters from "@/public/brightwood-shutters.webp";
+import NormandyShutters from "@/public/normandy-shutters.webp";
+import WoodlorePlusShutters from "@/public/woodlore-plus-shutters.webp";
+import WoodloreShutters from "@/public/woodlore-shutters.webp";
+import UltimateFauxWoodBlinds from "@/public/ultimate-faux-wood-blinds.webp";
+import SynchronyVerticalBlinds from "@/public/synchrony-vertical-blinds.webp";
+import UltimateNormandyWoodBlinds from "@/public/Ultimate-Normandy-Wood-Blinds.webp";
+import CityLightsAluminumBlinds from "@/public/citylights-aluminum-blinds.webp";
+import SmartDrapeShades from "@/public/Smart-Drape-Shades.webp";
+import SolunaRollerShades from "@/public/soluna-roller-shades.webp";
+import BlackoutShades from "@/public/blackout-shades.webp";
+import CenterpieceRomanShades from "@/public/centerpiece-roman-shades.webp";
+import PerfectSheerShades from "@/public/perfectsheer-shades.webp";
+import PortraitHoneycombShades from "@/public/Portrait-Honecomb-Shades.webp";
+
 export const businessInfo: BusinessInfo = {
   name: "East Bay Blinds",
   tagline: "Norman Window Treatments from East Bay Blinds",
@@ -269,7 +284,7 @@ export const products: Product[] = [
       "Multiple paint finishes",
       "Professional installation",
     ],
-    imageUrl: "/brightwood-shutters.webp",
+    image: BrightwoodShutters,
     brand: "Norman",
   },
   {
@@ -286,7 +301,7 @@ export const products: Product[] = [
       "Mortise and tenon joinery",
       "Lifetime warranty",
     ],
-    imageUrl: "/normandy-shutters.webp",
+    image: NormandyShutters,
     brand: "Norman",
   },
   {
@@ -302,7 +317,7 @@ export const products: Product[] = [
       "Moisture resistant",
       "Durable construction",
     ],
-    imageUrl: "/woodlore-plus-shutters.webp",
+    image: WoodlorePlusShutters,
     brand: "Norman",
   },
   {
@@ -318,7 +333,7 @@ export const products: Product[] = [
       "Superior strength",
       "Durable and robust",
     ],
-    imageUrl: "/woodlore-shutters.webp",
+    image: WoodloreShutters,
     brand: "Norman",
   },
 
@@ -337,7 +352,7 @@ export const products: Product[] = [
       "Smoothest functionality",
       "Moisture resistant",
     ],
-    imageUrl: "/ultimate-faux-wood-blinds.webp",
+    image: UltimateFauxWoodBlinds,
     brand: "Norman",
   },
   {
@@ -354,7 +369,7 @@ export const products: Product[] = [
       "Perfect for large windows",
       "Sliding door compatibility",
     ],
-    imageUrl: "/synchrony-vertical-blinds.webp",
+    image: SynchronyVerticalBlinds,
     brand: "Norman",
   },
   {
@@ -371,7 +386,7 @@ export const products: Product[] = [
       "Premium hardwood",
       "Sustainable materials",
     ],
-    imageUrl: "/Ultimate-Normandy-Wood-Blinds.webp",
+    image: UltimateNormandyWoodBlinds,
     brand: "Norman",
   },
   {
@@ -388,7 +403,7 @@ export const products: Product[] = [
       "Durable construction",
       "Modern styling",
     ],
-    imageUrl: "/citylights-aluminum-blinds.webp",
+    image: CityLightsAluminumBlinds,
     brand: "Norman",
   },
 
@@ -406,7 +421,7 @@ export const products: Product[] = [
       "Innovative technology",
       "Large opening coverage",
     ],
-    imageUrl: "/Smart-Drape-Shades.webp",
+    image: SmartDrapeShades,
     brand: "Norman",
   },
   {
@@ -423,7 +438,7 @@ export const products: Product[] = [
       "Motorization options",
       "Cordless operation",
     ],
-    imageUrl: "/soluna-roller-shades.webp",
+    image: SolunaRollerShades,
     brand: "Norman",
   },
   {
@@ -440,7 +455,7 @@ export const products: Product[] = [
       "Custom sizing",
       "Enhanced privacy",
     ],
-    imageUrl: "/blackout-shades.webp",
+    image: BlackoutShades,
     brand: "Norman",
   },
   {
@@ -457,7 +472,7 @@ export const products: Product[] = [
       "Custom options",
       "Premium materials",
     ],
-    imageUrl: "/centerpiece-roman-shades.webp",
+    image: CenterpieceRomanShades,
     brand: "Norman",
   },
   {
@@ -474,7 +489,7 @@ export const products: Product[] = [
       "Beautiful aesthetics",
       "Innovative design",
     ],
-    imageUrl: "/perfectsheer-shades.webp",
+    image: PerfectSheerShades,
     brand: "Norman",
   },
   {
@@ -491,7 +506,7 @@ export const products: Product[] = [
       "Streamlined appearance",
       "Universal compatibility",
     ],
-    imageUrl: "/Portrait-Honecomb-Shades.webp",
+    image: PortraitHoneycombShades,
     brand: "Norman",
   },
 ];
