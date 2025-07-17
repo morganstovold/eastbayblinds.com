@@ -66,7 +66,7 @@ export default function ShuttersPage() {
         ctaText="Free Consultation"
         ctaHref="/contact"
         height="xl"
-        backgroundImage={HeroBackground.src}
+        backgroundImage={HeroBackground}
       />
 
       <ProductOverview

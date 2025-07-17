@@ -6,56 +6,13 @@ import Hero from "@/components/Hero";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { businessInfo } from "@/lib/data";
 import { motion } from "framer-motion";
-import {
-  Phone,
-  MapPin,
-  Clock,
-  Car,
-  Shield,
-  User,
-  Calendar,
-} from "lucide-react";
+import { Phone, MapPin, Home, Car, Shield, User } from "lucide-react";
+import HeroContactImage from "@/public/Hero-Contact.jpg";
+import CTA from "@/components/CTA";
 
 export default function ContactPage() {
-  const contactMethods = [
-    {
-      icon: Phone,
-      title: "Call Us",
-      description: "Speak with our experts directly",
-      value: businessInfo.phone,
-      action: `tel:${businessInfo.phone}`,
-      buttonText: "Call Now",
-    },
-    {
-      icon: MapPin,
-      title: "Visit Us",
-      description: "Come to our showroom",
-      value: businessInfo.address,
-      action: `https://maps.google.com/?q=${encodeURIComponent(
-        businessInfo.address
-      )}`,
-      buttonText: "Get Directions",
-    },
-  ];
-
-  const serviceAreas = [
-    "Oakland",
-    "Berkeley",
-    "Alameda",
-    "Richmond",
-    "Albany",
-    "Emeryville",
-    "Piedmont",
-    "San Leandro",
-    "Hayward",
-    "Fremont",
-    "Union City",
-    "Newark",
-  ];
-
   const whyChooseUs = [
     {
       icon: User,
@@ -72,11 +29,6 @@ export default function ContactPage() {
       title: "Lifetime Warranty",
       description: "All products backed by comprehensive warranty",
     },
-    {
-      icon: Calendar,
-      title: "Flexible Scheduling",
-      description: "Appointments available evenings and weekends",
-    },
   ];
 
   return (
@@ -85,16 +37,17 @@ export default function ContactPage() {
 
       <Hero
         title="Contact Us"
-        subtitle="Get Your Free Consultation"
-        description="Ready to transform your windows? Contact our expert team today for personalized service and professional installation."
-        ctaText="Call Now"
-        ctaHref={`tel:${businessInfo.phone}`}
+        subtitle="Get Your Free In-Home Consultation"
+        description="Ready to transform your windows? We bring the showroom to you with our convenient in-home consultation service."
+        ctaText="Schedule Consultation"
+        ctaHref="#contact-form"
         height="lg"
+        backgroundImage={HeroContactImage}
       />
 
-      {/* Contact Methods */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Contact Information & Form */}
+      <section id="contact-form" className="py-20 bg-gray-50">
+        <div className="container mx-auto px-4 sm:px-0">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -106,119 +59,95 @@ export default function ContactPage() {
               Get In Touch
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Multiple ways to reach us for your convenience
+              We provide convenient in-home consultations throughout the East Bay area
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {contactMethods.map((method, index) => (
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            {/* Left Side - Contact Information */}
+            <div className="space-y-8">
+              {/* Phone Contact */}
               <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
               >
-                <Card className="h-full text-center hover:shadow-lg transition-shadow duration-300">
+                <Card className="text-center">
                   <CardHeader>
-                    <div className="mx-auto mb-4 p-3 bg-gray-50 rounded-full w-fit">
-                      <method.icon className="h-8 w-8 text-primary" />
+                    <div className="mx-auto mb-4 p-3 bg-primary/10 rounded-full w-fit">
+                      <Phone className="h-8 w-8 text-primary" />
                     </div>
-                    <CardTitle className="text-xl">{method.title}</CardTitle>
-                    <p className="text-gray-600">{method.description}</p>
+                    <CardTitle className="text-xl">Call Us</CardTitle>
+                    <p className="text-gray-600">Speak with our experts directly</p>
                   </CardHeader>
-                  <CardContent className="space-y-4">
-                    <p className="font-medium text-gray-900">{method.value}</p>
-                    <Button asChild className="w-full">
-                      <a
-                        href={method.action}
-                        target={
-                          method.action.startsWith("http")
-                            ? "_blank"
-                            : undefined
-                        }
-                      >
-                        {method.buttonText}
-                      </a>
-                    </Button>
+                  <CardContent>
+                    <a
+                      href={`tel:${businessInfo.phone}`}
+                      className="text-2xl font-bold text-primary hover:text-primary/80 transition-colors"
+                    >
+                      {businessInfo.phone}
+                    </a>
+                    <p className="text-sm text-gray-600 mt-2">
+                      Available by appointment only
+                    </p>
                   </CardContent>
                 </Card>
               </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* Contact Form and Business Info */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Contact Form */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <ContactForm showTitle={false} />
-            </motion.div>
+              {/* Service Area */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                viewport={{ once: true }}
+              >
+                <Card className="text-center">
+                  <CardHeader>
+                    <div className="mx-auto mb-4 p-3 bg-primary/10 rounded-full w-fit">
+                      <MapPin className="h-8 w-8 text-primary" />
+                    </div>
+                    <CardTitle className="text-xl">Service Area</CardTitle>
+                    <p className="text-gray-600">We come to you!</p>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="font-medium text-gray-900 mb-2">
+                      Solano & Contra Costa Counties
+                    </p>
+                    <p className="text-sm text-gray-600">
+                      Including Benicia, Vallejo, Fairfield, Vacaville, Concord, Walnut Creek, and surrounding areas
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            </div>
 
-            {/* Business Information */}
+            {/* Right Side - Contact Form */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
-              className="space-y-8"
             >
-              {/* Business Hours */}
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Clock className="h-5 w-5 text-primary" />
-                    Business Hours
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-2">
-                    {Object.entries(businessInfo.hours).map(([day, hours]) => (
-                      <div
-                        key={day}
-                        className="flex justify-between items-center"
-                      >
-                        <span className="font-medium">{day}</span>
-                        <span className="text-gray-600">{hours}</span>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Map Placeholder */}
-              <Card>
-                <CardHeader>
-                  <CardTitle>Our Location</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="bg-gray-300 rounded-lg h-64 flex items-center justify-center">
-                    <div className="text-center text-gray-600">
-                      <MapPin className="h-12 w-12 mx-auto mb-2" />
-                      <div className="text-lg font-medium">Interactive Map</div>
-                      <div className="text-sm text-gray-500 mt-1">
-                        {businessInfo.address}
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+              <div className="bg-white rounded-lg shadow-lg p-8">
+                <div className="text-center mb-8">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                    Request Your Free Consultation
+                  </h3>
+                  <p className="text-gray-600">
+                    Fill out the form below and we'll schedule your in-home consultation within 24 hours.
+                  </p>
+                </div>
+                <ContactForm showTitle={false} />
+              </div>
             </motion.div>
           </div>
         </div>
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4 sm:px-0">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -230,12 +159,11 @@ export default function ContactPage() {
               Why Choose East Bay Blinds?
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Experience the difference of professional service and quality
-              products
+              Experience the difference of professional service and quality products
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {whyChooseUs.map((item, index) => (
               <motion.div
                 key={index}
@@ -252,7 +180,7 @@ export default function ContactPage() {
                     <CardTitle className="text-lg">{item.title}</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-gray-600 text-sm">{item.description}</p>
+                    <p className="text-gray-600">{item.description}</p>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -261,41 +189,17 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Emergency Service */}
-      <section className="py-20 bg-primary text-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center max-w-4xl mx-auto"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Need Immediate Assistance?
-            </h2>
-            <p className="text-xl mb-8 text-white/90">
-              For urgent repairs or consultations, call us directly. We offer
-              same-day service for emergency situations.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                asChild
-                variant="secondary"
-                size="xl"
-                className="bg-white text-primary hover:bg-gray-100"
-              >
-                <a href={`tel:${businessInfo.phone}`}>
-                  <Phone className="mr-2 h-5 w-5" />
-                  Call Now: {businessInfo.phone}
-                </a>
-              </Button>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      <CTA
+        title="Ready to Transform Your Windows?"
+        description="Schedule your free in-home consultation today and discover the perfect window treatments for your space"
+        primaryButtonText="Schedule Consultation"
+        primaryButtonHref="#contact-form"
+        secondaryButtonText="Call Now"
+        secondaryButtonHref={`tel:${businessInfo.phone}`}
+      />
 
       <Footer />
     </div>
   );
 }
+

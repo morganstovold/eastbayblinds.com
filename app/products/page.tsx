@@ -42,7 +42,7 @@ export default function ProductsPage() {
       
       {/* Product Categories & Filters */}
       <section className="py-12 bg-gray-50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto px-4 sm:px-0">
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
             {/* Category Filters */}
             <div className="flex flex-wrap gap-2">
@@ -84,7 +84,7 @@ export default function ProductsPage() {
       
       {/* Product Grid */}
       <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto px-4 sm:px-0">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

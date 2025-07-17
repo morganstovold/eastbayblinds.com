@@ -14,7 +14,6 @@ interface ServicesGridProps {
   services: Service[];
   backgroundColor?: string;
   showAllFeatures?: boolean;
-  variant?: "compact" | "full";
   showViewAllButton?: boolean;
   viewAllButtonText?: string;
   viewAllButtonHref?: string;
@@ -26,7 +25,6 @@ export default function ServicesGrid({
   services,
   backgroundColor = "bg-gray-50",
   showAllFeatures = false,
-  variant = "full",
   showViewAllButton = false,
   viewAllButtonText = "View All Services",
   viewAllButtonHref = "/services",
@@ -60,7 +58,7 @@ export default function ServicesGrid({
             >
               <ServiceCard
                 service={service}
-                variant={variant}
+                variant="default"
                 showAllFeatures={showAllFeatures}
               />
             </motion.div>

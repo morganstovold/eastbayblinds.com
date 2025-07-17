@@ -27,8 +27,8 @@ interface ContactFormProps {
 }
 
 export default function ContactForm({
-  title = "Get Your Free Consultation",
-  subtitle = "Ready to transform your home? Contact us today for a personalized consultation.",
+  title = "Request Your Free Consultation",
+  subtitle = "Fill out the form below and we'll get back to you within 24 hours.",
   showTitle = true,
   onSubmit,
 }: ContactFormProps) {
@@ -47,6 +47,8 @@ export default function ContactForm({
   } = useForm<ContactFormData>();
 
   const serviceType = watch("serviceType");
+  const email = watch("email");
+  const phone = watch("phone");
 
   const handleFormSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
@@ -128,39 +130,73 @@ export default function ContactForm({
           )}
 
           <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-4">
-            {/* Name and Email Row */}
+            {/* First Name and Last Name Row */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="name">Full Name *</Label>
+                <Label htmlFor="firstName">First Name *</Label>
                 <Input
-                  id="name"
+                  id="firstName"
                   type="text"
-                  placeholder="John Doe"
-                  {...register("name", {
-                    required: "Name is required",
+                  placeholder="John"
+                  {...register("firstName", {
+                    required: "First name is required",
                     minLength: {
                       value: 2,
-                      message: "Name must be at least 2 characters",
+                      message: "First name must be at least 2 characters",
                     },
                   })}
-                  className={errors.name ? "border-red-500" : ""}
+                  className={errors.firstName ? "border-red-500" : ""}
                 />
-                {errors.name && (
-                  <p className="text-sm text-red-600">{errors.name.message}</p>
+                {errors.firstName && (
+                  <p className="text-sm text-red-600">
+                    {errors.firstName.message}
+                  </p>
                 )}
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="email">Email Address *</Label>
+                <Label htmlFor="lastName">Last Name *</Label>
+                <Input
+                  id="lastName"
+                  type="text"
+                  placeholder="Doe"
+                  {...register("lastName", {
+                    required: "Last name is required",
+                    minLength: {
+                      value: 2,
+                      message: "Last name must be at least 2 characters",
+                    },
+                  })}
+                  className={errors.lastName ? "border-red-500" : ""}
+                />
+                {errors.lastName && (
+                  <p className="text-sm text-red-600">
+                    {errors.lastName.message}
+                  </p>
+                )}
+              </div>
+            </div>
+
+            {/* Email and Phone Row */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="email">Email Address</Label>
                 <Input
                   id="email"
                   type="email"
                   placeholder="john@example.com"
                   {...register("email", {
-                    required: "Email is required",
-                    pattern: {
-                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                      message: "Invalid email address",
+                    validate: (value) => {
+                      if (!value && !phone) {
+                        return "Email or phone number is required";
+                      }
+                      if (
+                        value &&
+                        !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)
+                      ) {
+                        return "Invalid email address";
+                      }
+                      return true;
                     },
                   })}
                   className={errors.email ? "border-red-500" : ""}
@@ -169,27 +205,53 @@ export default function ContactForm({
                   <p className="text-sm text-red-600">{errors.email.message}</p>
                 )}
               </div>
-            </div>
 
-            {/* Phone and Service Type Row */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="phone">Phone Number *</Label>
+                <Label htmlFor="phone">Phone Number</Label>
                 <Input
                   id="phone"
                   type="tel"
                   placeholder="(555) 123-4567"
                   {...register("phone", {
-                    required: "Phone number is required",
-                    pattern: {
-                      value: /^[\+]?[1-9]?[\d\s\-\(\)]+$/,
-                      message: "Invalid phone number",
+                    validate: (value) => {
+                      if (!value && !email) {
+                        return "Phone or email is required";
+                      }
+                      if (value && !/^[\+]?[1-9]?[\d\s\-\(\)]+$/.test(value)) {
+                        return "Invalid phone number";
+                      }
+                      return true;
                     },
                   })}
                   className={errors.phone ? "border-red-500" : ""}
                 />
                 {errors.phone && (
                   <p className="text-sm text-red-600">{errors.phone.message}</p>
+                )}
+              </div>
+            </div>
+
+            {/* Zip Code and Service Type Row */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="zipCode">Zip Code *</Label>
+                <Input
+                  id="zipCode"
+                  type="text"
+                  placeholder="94510"
+                  {...register("zipCode", {
+                    required: "Zip code is required",
+                    pattern: {
+                      value: /^\d{5}(-\d{4})?$/,
+                      message: "Invalid zip code format",
+                    },
+                  })}
+                  className={errors.zipCode ? "border-red-500" : ""}
+                />
+                {errors.zipCode && (
+                  <p className="text-sm text-red-600">
+                    {errors.zipCode.message}
+                  </p>
                 )}
               </div>
 
@@ -201,7 +263,7 @@ export default function ContactForm({
                   <SelectTrigger
                     className={errors.serviceType ? "border-red-500" : ""}
                   >
-                    <SelectValue placeholder="Select a service" />
+                    <SelectValue placeholder="Select a service type" />
                   </SelectTrigger>
                   <SelectContent>
                     {serviceTypes.map((service) => (
@@ -227,23 +289,13 @@ export default function ContactForm({
 
             {/* Message */}
             <div className="space-y-2">
-              <Label htmlFor="message">Message *</Label>
+              <Label htmlFor="message">About Your Request (Optional)</Label>
               <Textarea
                 id="message"
                 placeholder="Tell us about your project, preferred timeline, and any specific requirements..."
-                rows={5}
-                {...register("message", {
-                  required: "Message is required",
-                  minLength: {
-                    value: 10,
-                    message: "Message must be at least 10 characters",
-                  },
-                })}
-                className={errors.message ? "border-red-500" : ""}
+                rows={4}
+                {...register("message")}
               />
-              {errors.message && (
-                <p className="text-sm text-red-600">{errors.message.message}</p>
-              )}
             </div>
 
             {/* Submit Button */}
@@ -266,19 +318,6 @@ export default function ContactForm({
               )}
             </Button>
           </form>
-
-          {/* Contact Info */}
-          <div className="text-center pt-4 border-t">
-            <p className="text-sm text-gray-600">
-              Prefer to call? Reach us at{" "}
-              <a
-                href="tel:(510) 555-0123"
-                className="text-primary hover:underline font-medium"
-              >
-                (510) 555-0123
-              </a>
-            </p>
-          </div>
         </CardContent>
       </Card>
     </motion.div>

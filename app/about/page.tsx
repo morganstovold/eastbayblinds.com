@@ -4,13 +4,10 @@ import React from "react";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Footer from "@/components/Footer";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { motion } from "framer-motion";
-import Link from "next/link";
 import {
   Check,
-  ArrowRight,
   Award,
   Users,
   Heart,
@@ -21,6 +18,8 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import CTA from "@/components/CTA";
+import HeroImage from "@/public/Hero-About.jpg";
+import AboutImage from "@/public/Ultimate-Normandy-Wood-Blinds.webp";
 
 export default function AboutPage() {
   const companyValues = [
@@ -101,11 +100,12 @@ export default function AboutPage() {
         ctaText="Meet Our Team"
         ctaHref="#team"
         height="lg"
+        backgroundImage={HeroImage}
       />
 
       {/* Company Story */}
       <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto px-4 sm:px-0">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
@@ -118,11 +118,11 @@ export default function AboutPage() {
               </h2>
               <div className="space-y-4 text-lg text-gray-600">
                 <p>
-                  Serving Benicia, CA and the surrounding areas, East Bay Blinds 
-                  offers a wide selection of Norman® blinds, shades, shutters and 
-                  sheers. We bring our showroom to you! We want you to have a great 
-                  shopping experience with our professional service before and after 
-                  every sale.
+                  Serving Benicia, CA and the surrounding areas, East Bay Blinds
+                  offers a wide selection of Norman® blinds, shades, shutters
+                  and sheers. We bring our showroom to you! We want you to have
+                  a great shopping experience with our professional service
+                  before and after every sale.
                 </p>
                 <p>
                   East Bay Blinds is committed to excellent customer service.
@@ -133,14 +133,14 @@ export default function AboutPage() {
                   possible solution that fits your lifestyle and your budget.
                 </p>
                 <p>
-                  Our certified installers will come to your home and install your 
-                  window treatments professionally. Since we're locally owned and 
-                  operated, we take our long-term commitment to the community seriously, 
-                  and we are proud of the professional products and services we provide.
+                  Our certified installers will come to your home and install
+                  your window treatments professionally. Since we're locally
+                  owned and operated, we take our long-term commitment to the
+                  community seriously, and we are proud of the professional
+                  products and services we provide.
                 </p>
               </div>
             </motion.div>
-
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -148,13 +148,11 @@ export default function AboutPage() {
               viewport={{ once: true }}
               className="bg-gray-300 rounded-lg h-96 flex items-center justify-center"
             >
-              <div className="text-center text-gray-600">
-                <div className="text-6xl mb-4">🏡</div>
-                <div className="text-lg font-medium">Our Story</div>
-                <div className="text-sm text-gray-500 mt-2">
-                  Company History Image
-                </div>
-              </div>
+              <Image
+                src={AboutImage}
+                alt="About Image"
+                className="w-full h-full object-cover rounded-lg"
+              />
             </motion.div>
           </div>
         </div>
@@ -162,7 +160,7 @@ export default function AboutPage() {
 
       {/* Company Values */}
       <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto px-4 sm:px-0">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -206,7 +204,7 @@ export default function AboutPage() {
 
       {/* Team Section */}
       <section id="team" className="py-20 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto px-4 sm:px-0">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -276,7 +274,7 @@ export default function AboutPage() {
 
       {/* Certifications */}
       <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto px-4 sm:px-0">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -320,7 +318,7 @@ export default function AboutPage() {
 
       {/* Service Area */}
       <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto px-4 sm:px-0">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div
               initial={{ opacity: 0, x: -20 }}

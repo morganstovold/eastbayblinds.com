@@ -27,12 +27,39 @@ export interface Testimonial {
   date: string;
 }
 
-export interface ContactFormData {
+export interface YelpUser {
+  id: string;
+  profile_url: string;
+  image_url: string;
   name: string;
-  email: string;
-  phone: string;
+}
+
+export interface YelpReview {
+  id: string;
+  rating: number;
+  user: YelpUser;
+  text: string;
+  time_created: string;
+  url: string;
+}
+
+export interface YelpBusinessResponse {
+  id: string;
+  name: string;
+  rating: number;
+  review_count: number;
+  url: string;
+  reviews: YelpReview[];
+}
+
+export interface ContactFormData {
+  firstName: string;
+  lastName: string;
+  email?: string;
+  phone?: string;
+  zipCode: string;
   serviceType: string;
-  message: string;
+  message?: string;
 }
 
 export interface NavigationItem {

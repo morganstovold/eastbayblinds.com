@@ -2,12 +2,11 @@
 
 import React from "react";
 import Link from "next/link";
-import { businessInfo, navigationItems } from "@/lib/data";
+import { businessInfo } from "@/lib/data";
 import { motion } from "framer-motion";
 import {
   Phone,
   MapPin,
-  Clock,
   Facebook,
   Instagram,
   ExternalLink,
@@ -19,12 +18,26 @@ import Logo from "@/public/EastBayBlinds-logo.png";
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
+  const quickLinks = [
+    { title: "Home", href: "/" },
+    { title: "About", href: "/about" },
+    { title: "Services", href: "/services" },
+    { title: "Contact", href: "/contact" },
+  ];
+
+  const productLinks = [
+    { title: "Shutters", href: "/products/shutters" },
+    { title: "Blinds", href: "/products/blinds" },
+    { title: "Shades", href: "/products/shades" },
+    { title: "All Products", href: "/products" },
+  ];
+
   return (
     <footer className="bg-gray-900 text-white">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto px-4 sm:px-0">
         {/* Main Footer Content */}
         <div className="py-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Company Info */}
             <div className="space-y-4">
               <Image
@@ -43,121 +56,118 @@ export default function Footer() {
               </p>
             </div>
 
-            {/* Quick Links */}
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold">Quick Links</h3>
-              <ul className="space-y-2">
-                {navigationItems.map((item) => (
-                  <li key={item.id}>
-                    <Link
-                      href={item.href}
-                      className="text-gray-400 hover:text-white transition-colors duration-300 text-sm"
-                    >
-                      {item.title}
-                    </Link>
-                    {item.children && (
-                      <ul className="ml-4 mt-1 space-y-1">
-                        {item.children.map((child) => (
-                          <li key={child.id}>
-                            <Link
-                              href={child.href}
-                              className="text-gray-500 hover:text-gray-300 transition-colors duration-300 text-sm"
-                            >
-                              {child.title}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Follow Us & Contact */}
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold">Follow Us</h3>
-              <div className="flex gap-4">
-                <a
-                  href={businessInfo.socialLinks.facebook}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-white transition-colors duration-300"
-                >
-                  <Facebook className="h-5 w-5" />
-                </a>
-                <a
-                  href={businessInfo.socialLinks.instagram}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-white transition-colors duration-300"
-                >
-                  <Instagram className="h-5 w-5" />
-                </a>
-                <a
-                  href={businessInfo.socialLinks.yelp}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-white transition-colors duration-300"
-                >
-                  <ExternalLink className="h-5 w-5" />
-                </a>
-                <a
-                  href={businessInfo.socialLinks.google}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-white transition-colors duration-300"
-                >
-                  <ExternalLink className="h-5 w-5" />
-                </a>
+            {/* Navigation Links */}
+            <div className="space-y-6">
+              {/* Quick Links */}
+              <div>
+                <h3 className="text-lg font-semibold mb-3">Quick Links</h3>
+                <ul className="space-y-2">
+                  {quickLinks.map((link) => (
+                    <li key={link.href}>
+                      <Link
+                        href={link.href}
+                        className="text-gray-400 hover:text-white transition-colors duration-300 text-sm"
+                      >
+                        {link.title}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
               </div>
 
+              {/* Product Links */}
+              <div>
+                <h3 className="text-lg font-semibold mb-3">Products</h3>
+                <ul className="space-y-2">
+                  {productLinks.map((link) => (
+                    <li key={link.href}>
+                      <Link
+                        href={link.href}
+                        className="text-gray-400 hover:text-white transition-colors duration-300 text-sm"
+                      >
+                        {link.title}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            {/* Contact & Social */}
+            <div className="space-y-6">
               {/* Contact Info */}
-              <div className="space-y-3 pt-4">
-                <div className="flex items-start gap-3">
-                  <MapPin className="h-5 w-5 text-gray-400 mt-0.5 flex-shrink-0" />
+              <div>
+                <h3 className="text-lg font-semibold mb-3">Contact</h3>
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3">
+                    <Phone className="h-5 w-5 text-gray-400 flex-shrink-0" />
+                    <a
+                      href={`tel:${businessInfo.phone}`}
+                      className="text-gray-400 hover:text-white transition-colors duration-300 text-sm"
+                    >
+                      {businessInfo.phone}
+                    </a>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <MapPin className="h-5 w-5 text-gray-400 mt-0.5 flex-shrink-0" />
+                    <p className="text-gray-400 text-sm">
+                      {businessInfo.address}
+                    </p>
+                  </div>
                   <p className="text-gray-400 text-sm">
-                    {businessInfo.address}
+                    Available by appointment only
                   </p>
                 </div>
-                <div className="flex items-center gap-3">
-                  <Phone className="h-5 w-5 text-gray-400 flex-shrink-0" />
+              </div>
+
+              {/* Social Links */}
+              <div>
+                <h3 className="text-lg font-semibold mb-3">Follow Us</h3>
+                <div className="flex gap-4">
                   <a
-                    href={`tel:${businessInfo.phone}`}
-                    className="text-gray-400 hover:text-white transition-colors duration-300 text-sm"
+                    href={businessInfo.socialLinks.facebook}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-white transition-colors duration-300"
                   >
-                    {businessInfo.phone}
+                    <Facebook className="h-5 w-5" />
+                  </a>
+                  <a
+                    href={businessInfo.socialLinks.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-white transition-colors duration-300"
+                  >
+                    <Instagram className="h-5 w-5" />
+                  </a>
+                  <a
+                    href={businessInfo.socialLinks.yelp}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-white transition-colors duration-300"
+                  >
+                    <ExternalLink className="h-5 w-5" />
+                  </a>
+                  <a
+                    href={businessInfo.socialLinks.google}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-white transition-colors duration-300"
+                  >
+                    <ExternalLink className="h-5 w-5" />
                   </a>
                 </div>
               </div>
 
               {/* CTA */}
-              <div className="pt-4">
+              <div className="pt-2">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 bg-gray-700 text-white px-6 py-2 rounded-lg hover:bg-gray-600 transition-colors duration-300 text-sm font-medium border border-gray-600"
+                  className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors duration-300 text-sm font-medium"
                 >
                   Free Consultation
                   <ExternalLink className="h-4 w-4" />
                 </Link>
-              </div>
-            </div>
-
-            {/* Business Hours */}
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold">Business Hours</h3>
-              <div className="space-y-3">
-                <div className="border border-gray-700 rounded-lg p-4 bg-gray-900">
-                  <div className="text-left">
-                    <p className="text-gray-400 text-sm mb-2">All Days:</p>
-                    <p className="text-white font-medium mb-1">
-                      By Appointment Only
-                    </p>
-                    <p className="text-gray-400 text-xs">
-                      Call {businessInfo.phone} to schedule
-                    </p>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -182,12 +192,6 @@ export default function Footer() {
                 className="text-gray-400 hover:text-white transition-colors duration-300"
               >
                 Terms of Service
-              </Link>
-              <Link
-                href="/sitemap"
-                className="text-gray-400 hover:text-white transition-colors duration-300"
-              >
-                Sitemap
               </Link>
             </div>
           </div>
