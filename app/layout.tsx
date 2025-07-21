@@ -13,7 +13,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,
-  themeColor: "#1e40af",
+  themeColor: "#ffffff",
 };
 
 export const metadata: Metadata = {
@@ -139,8 +139,8 @@ export default function RootLayout({
         <link rel="manifest" href="/manifest.json" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <meta name="msapplication-TileColor" content="#1e40af" />
-        <meta name="theme-color" content="#1e40af" />
+        <meta name="msapplication-TileColor" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
