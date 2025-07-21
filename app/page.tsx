@@ -17,36 +17,40 @@ import ServicesGrid from "@/components/ServicesGrid";
 import YelpReviewsSection from "@/components/YelpReviewsSection";
 
 export const metadata: Metadata = {
-  title: "East Bay Blinds - Premium Norman® Window Treatments | Shutters, Blinds & Shades",
-  description: "Transform your home with premium Norman® window treatments. East Bay Blinds offers custom shutters, blinds, and shades with professional installation in Solano & Contra Costa Counties. Free in-home consultation.",
+  title:
+    "East Bay Blinds - Premium Norman® Window Treatments | Shutters, Blinds & Shades",
+  description:
+    "Transform your home with premium Norman® window treatments. East Bay Blinds offers custom shutters, blinds, and shades with professional installation in Solano & Contra Costa Counties. Free in-home consultation.",
   keywords: [
     "Norman shutters",
     "custom blinds",
-    "window shades", 
+    "window shades",
     "plantation shutters",
     "East Bay window treatments",
     "Benicia blinds",
     "Solano County shutters",
     "professional installation",
     "free consultation",
-    "energy efficient window coverings"
+    "energy efficient window coverings",
   ],
   openGraph: {
     title: "East Bay Blinds - Premium Norman® Window Treatments",
-    description: "Transform your home with premium Norman® window treatments. Custom shutters, blinds, and shades with professional installation.",
+    description:
+      "Transform your home with premium Norman® window treatments. Custom shutters, blinds, and shades with professional installation.",
     url: "https://eastbayblinds.com",
     images: [
       {
         url: "/Hero-Home.webp",
         width: 1200,
         height: 630,
-        alt: "East Bay Blinds - Premium Window Treatments for Your Home"
-      }
+        alt: "East Bay Blinds - Premium Window Treatments for Your Home",
+      },
     ],
   },
   twitter: {
     title: "East Bay Blinds - Premium Norman® Window Treatments",
-    description: "Transform your home with premium Norman® window treatments. Professional installation in Solano & Contra Costa Counties.",
+    description:
+      "Transform your home with premium Norman® window treatments. Professional installation in Solano & Contra Costa Counties.",
     images: ["/Hero-Home.webp"],
   },
 };
@@ -54,7 +58,7 @@ export const metadata: Metadata = {
 export default async function HomePage() {
   const featuredProducts = products.slice(0, 3);
   const featuredServices = services.slice(0, 4);
-  
+
   // Fetch Yelp data on the server
   const yelpData = await getYelpDataForPage();
 
@@ -64,7 +68,7 @@ export default async function HomePage() {
 
       <Hero
         title={businessInfo.name}
-        subtitle="Get help finding the perfect window coverings."
+        subtitle={businessInfo.tagline}
         description="Transform your space with our custom-made window treatments. We provide a full-service solution that handles all aspects of installation."
         mobileDescription="Transform your space with custom window treatments and professional installation."
         ctaText="Request a Consultation"

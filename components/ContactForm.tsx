@@ -46,20 +46,32 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
     setSubmitStatus("idle");
 
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      // Submit to our API endpoint
+      const response = await fetch("/api/contact/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
 
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || "Submission failed");
+      }
+
+      // Call the onSubmit callback if provided
       if (onSubmit) {
         onSubmit(data);
-      } else {
-        console.log("Form submitted:", data);
       }
 
       setSubmitStatus("success");
       reset();
+      console.log("Form submitted successfully:", result.submissionId);
     } catch (error) {
-      setSubmitStatus("error");
       console.error("Form submission error:", error);
+      setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
     }

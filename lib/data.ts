@@ -23,7 +23,7 @@ import PortraitHoneycombShades from "@/public/Portrait-Honecomb-Shades.webp";
 
 export const businessInfo: BusinessInfo = {
   name: "East Bay Blinds",
-  tagline: "Norman Window Treatments from East Bay Blinds",
+  tagline: "Its your home, Get inspired.",
   phone: "(925) 200-4521",
   email: "",
   address: "Benicia, CA 94510-3980",
@@ -238,19 +238,6 @@ export const services: Service[] = [
       "Precision mounting",
       "Quality guarantee",
       "Clean-up service",
-    ],
-  },
-  {
-    id: "repair",
-    title: "Repair Services",
-    description:
-      "Restore your existing window treatments to like-new condition",
-    icon: "Settings",
-    features: [
-      "Cord replacement",
-      "Mechanism repair",
-      "Slat replacement",
-      "Motor servicing",
     ],
   },
   {
@@ -512,5 +499,5 @@ export const products: Product[] = [
 
 export const serviceTypes = [
   "Purchase Window Treatment",
-  "Get Service & Repair",
+  "Get Service",
 ];

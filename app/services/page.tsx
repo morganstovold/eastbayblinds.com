@@ -57,7 +57,6 @@ export default function ServicesPage() {
     "Free in-home consultation and measurement",
     "Lifetime warranty on all products",
     "Professional installation included",
-    "Same-day service available for repairs",
     "Expert design consultation",
     "Child-safe cordless options",
     "Motorization and smart home integration",
@@ -66,8 +65,8 @@ export default function ServicesPage() {
 
   const emergencyServices = [
     {
-      title: "Emergency Repairs",
-      description: "Quick response for urgent window treatment issues",
+      title: "Emergency Support",
+      description: "Quick response for urgent warranty-related issues",
       availability: "Same-day service",
     },
     {
@@ -212,10 +211,10 @@ export default function ServicesPage() {
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Emergency & Repair Services
+              Emergency & Warranty Services
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Quick response times for urgent window treatment issues
+              Quick response times for urgent warranty-related issues
             </p>
           </motion.div>
 

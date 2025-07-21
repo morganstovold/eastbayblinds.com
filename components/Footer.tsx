@@ -3,13 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { businessInfo } from "@/lib/data";
-import {
-  Phone,
-  MapPin,
-  ExternalLink,
-  Star,
-  Home,
-} from "lucide-react";
+import { Phone, MapPin, ExternalLink, Star, Home } from "lucide-react";
 
 import Image from "next/image";
 import Logo from "@/public/EastBayBlinds-logo.png";
@@ -168,6 +162,14 @@ export default function Footer() {
             </p>
 
             <div className="flex gap-6 text-sm">
+              <Link
+                href="/admin"
+                className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center gap-2"
+                title="Admin Dashboard"
+              >
+                Admin
+                <ExternalLink className="h-4 w-4" />
+              </Link>
               <Link
                 href="/privacy"
                 className="text-gray-400 hover:text-white transition-colors duration-300"

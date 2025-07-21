@@ -2,13 +2,12 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Window Treatment Services - Installation & Consultation | East Bay Blinds",
-  description: "Comprehensive window treatment services including free in-home consultation, professional installation, and repair services. Norman® certified installation in Solano & Contra Costa Counties.",
+  description: "Comprehensive window treatment services including free in-home consultation and professional installation. Norman® certified installation in Solano & Contra Costa Counties.",
   keywords: [
     "window treatment services",
     "professional installation",
     "free consultation", 
     "in-home consultation",
-    "repair services",
     "Norman certified installation",
     "window treatment consultation",
     "East Bay services",
