@@ -1,0 +1,67 @@
+{
+  "name": "East Bay Blinds - Premium Window Treatments",
+  "short_name": "East Bay Blinds",
+  "description": "Premium Norman® window treatments including custom shutters, blinds, and shades. Professional installation in Solano & Contra Costa Counties.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1e40af",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en-US",
+  "dir": "ltr",
+  "categories": ["business", "home", "lifestyle", "productivity"],
+  "shortcuts": [
+    {
+      "name": "Contact Us",
+      "short_name": "Contact",
+      "description": "Get in touch for a free consultation",
+      "url": "/contact",
+      "icons": [{ "src": "/favicon.ico", "sizes": "any" }]
+    },
+    {
+      "name": "Our Products",
+      "short_name": "Products", 
+      "description": "Browse shutters, blinds, and shades",
+      "url": "/products",
+      "icons": [{ "src": "/favicon.ico", "sizes": "any" }]
+    },
+    {
+      "name": "Services",
+      "short_name": "Services",
+      "description": "Our window treatment services",
+      "url": "/services",
+      "icons": [{ "src": "/favicon.ico", "sizes": "any" }]
+    }
+  ],
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/EastBayBlinds-logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "apple touch icon"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/Hero-Home.webp",
+      "sizes": "1200x630",
+      "type": "image/webp",
+      "form_factor": "wide",
+      "label": "East Bay Blinds Homepage"
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
+} 

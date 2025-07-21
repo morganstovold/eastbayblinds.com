@@ -1,4 +1,5 @@
 import React from "react";
+import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import ProductCard from "@/components/ProductCard";
@@ -14,6 +15,41 @@ import HeroBackground from "@/public/Hero-Home.webp";
 import CTA from "@/components/CTA";
 import ServicesGrid from "@/components/ServicesGrid";
 import YelpReviewsSection from "@/components/YelpReviewsSection";
+
+export const metadata: Metadata = {
+  title: "East Bay Blinds - Premium Norman® Window Treatments | Shutters, Blinds & Shades",
+  description: "Transform your home with premium Norman® window treatments. East Bay Blinds offers custom shutters, blinds, and shades with professional installation in Solano & Contra Costa Counties. Free in-home consultation.",
+  keywords: [
+    "Norman shutters",
+    "custom blinds",
+    "window shades", 
+    "plantation shutters",
+    "East Bay window treatments",
+    "Benicia blinds",
+    "Solano County shutters",
+    "professional installation",
+    "free consultation",
+    "energy efficient window coverings"
+  ],
+  openGraph: {
+    title: "East Bay Blinds - Premium Norman® Window Treatments",
+    description: "Transform your home with premium Norman® window treatments. Custom shutters, blinds, and shades with professional installation.",
+    url: "https://eastbayblinds.com",
+    images: [
+      {
+        url: "/Hero-Home.webp",
+        width: 1200,
+        height: 630,
+        alt: "East Bay Blinds - Premium Window Treatments for Your Home"
+      }
+    ],
+  },
+  twitter: {
+    title: "East Bay Blinds - Premium Norman® Window Treatments",
+    description: "Transform your home with premium Norman® window treatments. Professional installation in Solano & Contra Costa Counties.",
+    images: ["/Hero-Home.webp"],
+  },
+};
 
 export default async function HomePage() {
   const featuredProducts = products.slice(0, 3);

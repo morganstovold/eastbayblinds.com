@@ -68,7 +68,7 @@ export default function ContactPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             {/* Right Side - Contact Information */}
-            <div className="flex flex-col justify-center space-y-12">
+            <div className="flex flex-col justify-center items-center space-y-12 h-full">
               {/* Phone Contact */}
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
@@ -116,7 +116,6 @@ export default function ContactPage() {
               </motion.div>
             </div>
 
-            {/* Left Side - Contact Form */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
