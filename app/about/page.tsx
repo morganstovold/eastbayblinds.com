@@ -98,6 +98,7 @@ export default function AboutPage() {
         title="About East Bay Blinds"
         subtitle="Your Local Window Treatment Experts"
         description="Since 2006, we've been transforming East Bay homes with premium window treatments and exceptional service."
+        mobileDescription="East Bay's trusted window treatment experts since 2006."
         ctaText="Meet Our Team"
         ctaHref="#team"
         height="lg"

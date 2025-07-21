@@ -9,9 +9,13 @@ import { products } from "@/lib/data";
 import { motion } from "framer-motion";
 import { Check, Sun, Shield, Droplets, Wrench } from "lucide-react";
 import CTA from "@/components/CTA";
+import ProductBenefits from "@/components/ProductBenefits";
 import InstallationProcess from "@/components/InstallationProcess";
+import ProductOverview from "@/components/ProductOverview";
 import ProductCollection from "@/components/ProductCollection";
+import TaxCreditSection from "@/components/TaxCreditSection";
 import HeroBackground from "@/public/Hero-Blinds.webp";
+import BlindsImage from "@/public/Ultimate-Faux-Wood-Blinds.webp";
 
 export default function BlindsPage() {
   const blindProducts = products.filter(
@@ -97,113 +101,25 @@ export default function BlindsPage() {
         title="Premium Blinds"
         subtitle="Versatile Light Control Solutions"
         description="Explore our extensive collection of blinds that offer perfect light control, privacy, and style for every space."
+        mobileDescription="Premium blinds for perfect light control and privacy."
         ctaText="Free Consultation"
         ctaHref="/contact"
         height="xl"
         backgroundImage={HeroBackground}
       />
 
-      {/* Blinds Overview */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 sm:px-0">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                Why Choose Our Blinds?
-              </h2>
-              <p className="text-lg text-gray-600 mb-8">
-                Our blinds combine functionality with style, offering precise
-                light control and privacy while enhancing your home's décor.
-                From classic wood blinds to modern faux wood options, we have
-                the perfect solution for every room.
-              </p>
+      <ProductOverview
+        title="Why Choose Our Blinds?"
+        description="Our blinds combine functionality with style, offering precise light control and privacy while enhancing your home's décor. From classic wood blinds to modern faux wood options, we have the perfect solution for every room."
+        features={blindFeatures}
+        image={BlindsImage}
+      />
 
-              <div className="space-y-4">
-                {blindFeatures.map((feature, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                    className="flex items-start gap-3"
-                  >
-                    <Check className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">{feature}</span>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="bg-gray-300 rounded-lg h-96 flex items-center justify-center"
-            >
-              <div className="text-center text-gray-600">
-                <div className="text-6xl mb-4">🏠</div>
-                <div className="text-lg font-medium">Beautiful Blinds</div>
-                <div className="text-sm text-gray-500 mt-2">
-                  Image Placeholder
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Benefits Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4 sm:px-0">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Blind Benefits
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Experience the advantages of professional blind installation
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {blindBenefits.map((benefit, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <Card className="h-full text-center">
-                  <CardHeader>
-                    <div className="mx-auto mb-4 p-3 bg-gray-50 rounded-full w-fit">
-                      <benefit.icon className="h-8 w-8 text-primary" />
-                    </div>
-                    <CardTitle className="text-lg">{benefit.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-600 text-sm">
-                      {benefit.description}
-                    </p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ProductBenefits
+        title="Blind Benefits"
+        subtitle="Experience the advantages of professional blind installation"
+        benefits={blindBenefits}
+      />
 
       {/* Blind Types Section */}
       <section className="py-20 bg-white">
@@ -258,6 +174,7 @@ export default function BlindsPage() {
       </section>
 
       <InstallationProcess
+        backgroundColor="bg-gray-50"
         steps={[
           {
             step: "1",
@@ -287,9 +204,11 @@ export default function BlindsPage() {
         backgroundColor="bg-white"
       />
 
+      <TaxCreditSection backgroundColor="bg-gray-50" />
+
       <CTA
         title="Ready for Perfect Blinds?"
-        description="Get the light control and privacy you need with our premium blinds"
+        description="Get the light control and privacy you need with our premium blinds and save with federal tax credits"
         primaryButtonText="Free Consultation"
         primaryButtonHref="/contact"
       />

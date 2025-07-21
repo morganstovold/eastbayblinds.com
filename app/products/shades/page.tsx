@@ -9,9 +9,13 @@ import { products } from "@/lib/data";
 import { motion } from "framer-motion";
 import { Check, Sun, Moon, Thermometer, Palette } from "lucide-react";
 import CTA from "@/components/CTA";
+import ProductBenefits from "@/components/ProductBenefits";
 import InstallationProcess from "@/components/InstallationProcess";
+import ProductOverview from "@/components/ProductOverview";
 import ProductCollection from "@/components/ProductCollection";
+import TaxCreditSection from "@/components/TaxCreditSection";
 import HeroBackground from "@/public/Hero-Shades.webp";
+import ShadesImage from "@/public/Portrait-Honecomb-Shades.webp";
 
 export default function ShadesPage() {
   const shadeProducts = products.filter(
@@ -98,114 +102,25 @@ export default function ShadesPage() {
         title="Window Shades"
         subtitle="Elegant Light Control Solutions"
         description="Discover our comprehensive collection of window shades that combine style, functionality, and energy efficiency."
+        mobileDescription="Stylish window shades with energy efficiency."
         ctaText="Free Consultation"
         ctaHref="/contact"
         height="xl"
         backgroundImage={HeroBackground}
       />
 
-      {/* Shades Overview */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 sm:px-0">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                Why Choose Window Shades?
-              </h2>
-              <p className="text-lg text-gray-600 mb-8">
-                Window shades offer the perfect blend of style and
-                functionality. From energy-efficient cellular shades to elegant
-                roman shades, our collection provides solutions for every room
-                and design preference while delivering superior light control
-                and privacy.
-              </p>
+      <ProductOverview
+        title="Why Choose Window Shades?"
+        description="Window shades offer the perfect blend of style and functionality. From energy-efficient cellular shades to elegant roman shades, our collection provides solutions for every room and design preference while delivering superior light control and privacy."
+        features={shadeFeatures}
+        image={ShadesImage}
+      />
 
-              <div className="space-y-4">
-                {shadeFeatures.map((feature, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                    className="flex items-start gap-3"
-                  >
-                    <Check className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">{feature}</span>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="bg-gray-300 rounded-lg h-96 flex items-center justify-center"
-            >
-              <div className="text-center text-gray-600">
-                <div className="text-6xl mb-4">🎭</div>
-                <div className="text-lg font-medium">Beautiful Shades</div>
-                <div className="text-sm text-gray-500 mt-2">
-                  Image Placeholder
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Benefits Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4 sm:px-0">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Shade Benefits
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Experience the advantages of premium window shades
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {shadeBenefits.map((benefit, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <Card className="h-full text-center">
-                  <CardHeader>
-                    <div className="mx-auto mb-4 p-3 bg-gray-50 rounded-full w-fit">
-                      <benefit.icon className="h-8 w-8 text-primary" />
-                    </div>
-                    <CardTitle className="text-lg">{benefit.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-600 text-sm">
-                      {benefit.description}
-                    </p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ProductBenefits
+        title="Shade Benefits"
+        subtitle="Experience the advantages of premium window shades"
+        benefits={shadeBenefits}
+      />
 
       {/* Shade Types Section */}
       <section className="py-20 bg-white">
@@ -260,6 +175,7 @@ export default function ShadesPage() {
       </section>
 
       <InstallationProcess
+        backgroundColor="bg-gray-50"
         steps={[
           {
             step: "1",
@@ -289,9 +205,11 @@ export default function ShadesPage() {
         backgroundColor="bg-white"
       />
 
+      <TaxCreditSection backgroundColor="bg-gray-50" />
+
       <CTA
         title="Ready for Beautiful Shades?"
-        description="Transform your windows with our premium shade collection"
+        description="Transform your windows with our premium shade collection and save with federal tax credits"
         primaryButtonText="Free Consultation"
         primaryButtonHref="/contact"
       />

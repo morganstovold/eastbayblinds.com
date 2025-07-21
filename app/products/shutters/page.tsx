@@ -13,6 +13,7 @@ import ProductOverview from "@/components/ProductOverview";
 import ProductCollection from "@/components/ProductCollection";
 import TaxCreditSection from "@/components/TaxCreditSection";
 import HeroBackground from "@/public/Hero-Shutters.jpg";
+import ShuttersImage from "@/public/Normandy-Shutters.webp";
 
 export default function ShuttersPage() {
   const shutterProducts = products.filter(
@@ -63,6 +64,7 @@ export default function ShuttersPage() {
         title="Shutters"
         subtitle="Any Color. Any Size. Any Shape."
         description="Interior shutters, often referred to as plantation shutters, are one of the most versatile, timeless and elegant window treatments available. Norman® shutters are designed to fit any size or shape including sliding glass doors, specialty shapes and french doors."
+        mobileDescription="Timeless plantation shutters for any window size or shape."
         ctaText="Free Consultation"
         ctaHref="/contact"
         height="xl"
@@ -73,11 +75,7 @@ export default function ShuttersPage() {
         title="Why Choose Shutters?"
         description="Shutters offer the ultimate in light control, privacy and insulating value. They combine the charm of traditional window treatments with modern functionality, perfect for any room in your home, from living spaces to bedrooms and bathrooms."
         features={shutterFeatures}
-        imagePlaceholder={{
-          emoji: "🪟",
-          title: "Beautiful Shutters",
-          subtitle: "Image Placeholder",
-        }}
+        image={ShuttersImage}
       />
 
       <ProductBenefits

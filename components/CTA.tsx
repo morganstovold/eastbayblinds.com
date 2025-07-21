@@ -29,7 +29,7 @@ export default function CTA({
     <section
       className={`py-12 sm:py-16 lg:py-20 relative overflow-hidden ${className}`}
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="container mx-auto px-4 sm:px-0 relative z-10">
         <div className="bg-gray-900 rounded-lg sm:rounded-xl lg:rounded-2xl py-8 sm:py-12 lg:py-16 px-4 sm:px-8 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

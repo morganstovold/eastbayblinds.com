@@ -90,6 +90,7 @@ export default function ServicesPage() {
         title="Our Services"
         subtitle="Complete Window Treatment Solutions"
         description="From consultation to installation and beyond, we provide comprehensive services to transform your windows with style and functionality."
+        mobileDescription="Complete window treatment services from consultation to installation."
         ctaText="Free Consultation"
         ctaHref="/contact"
         height="xl"

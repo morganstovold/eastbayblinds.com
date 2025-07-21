@@ -5,7 +5,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -66,17 +71,9 @@ export default function Header() {
         <div key={item.id}>
           {item.children ? (
             <div className="space-y-2">
-              <Link
-                href={item.href}
-                className={`block py-2 text-lg font-medium transition-colors ${
-                  isActivePath(item.href)
-                    ? "text-primary"
-                    : "text-gray-700"
-                }`}
-                onClick={() => setMobileMenuOpen(false)}
-              >
+              <div className="block py-2 text-lg font-medium transition-colors text-gray-700">
                 {item.title}
-              </Link>
+              </div>
               <div className="ml-4 space-y-2">
                 {item.children.map((child) => (
                   <Link
@@ -167,28 +164,14 @@ export default function Header() {
 
           {/* Mobile Menu Button */}
           <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+            <SheetTitle className="sr-only">Menu</SheetTitle>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" className="md:hidden">
                 {mobileMenuOpen ? <X /> : <Menu />}
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-[300px] sm:w-[400px]">
-              <div className="flex flex-col h-full">
-                <div className="flex items-center justify-between pb-4">
-                  <Link href="/" className="flex items-center space-x-2">
-                    <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                      <span className="text-white font-bold text-sm">EB</span>
-                    </div>
-                    <span className="text-xl font-bold text-gray-900">
-                      {businessInfo.name}
-                    </span>
-                  </Link>
-                </div>
-                <Separator />
-                <div className="flex-1 py-4">
-                  <MobileMenu />
-                </div>
-              </div>
+              <MobileMenu />
             </SheetContent>
           </Sheet>
         </div>

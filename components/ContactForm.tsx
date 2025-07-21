@@ -17,6 +17,7 @@ import { ContactFormData } from "@/lib/types";
 import { serviceTypes } from "@/lib/data";
 import { motion } from "framer-motion";
 import { Send, CheckCircle, AlertCircle } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface ContactFormProps {
   onSubmit?: (data: ContactFormData) => void;
@@ -70,24 +71,6 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      {submitStatus === "success" && (
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="bg-green-50 border border-green-200 rounded-lg p-4 flex items-center gap-3"
-        >
-          <CheckCircle className="h-5 w-5 text-green-600" />
-          <div>
-            <p className="font-medium text-green-800">
-              Message sent successfully!
-            </p>
-            <p className="text-sm text-green-600">
-              We'll get back to you within 24 hours.
-            </p>
-          </div>
-        </motion.div>
-      )}
-
       {/* Error Message */}
       {submitStatus === "error" && (
         <motion.div
@@ -229,7 +212,10 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
             <Label htmlFor="serviceType">Service Type *</Label>
             <Select onValueChange={(value) => setValue("serviceType", value)}>
               <SelectTrigger
-                className={errors.serviceType ? "border-red-500" : ""}
+                className={cn(
+                  "w-full",
+                  errors.serviceType ? "border-red-500" : ""
+                )}
               >
                 <SelectValue placeholder="Select a service type" />
               </SelectTrigger>
@@ -285,6 +271,23 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
             </>
           )}
         </Button>
+        {submitStatus === "success" && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="bg-green-50 border border-green-200 rounded-lg p-4 flex items-center gap-3"
+          >
+            <CheckCircle className="h-5 w-5 text-green-600" />
+            <div>
+              <p className="font-medium text-green-800">
+                Message sent successfully!
+              </p>
+              <p className="text-sm text-green-600">
+                We'll get back to you within 24 hours.
+              </p>
+            </div>
+          </motion.div>
+        )}
       </form>
     </motion.div>
   );

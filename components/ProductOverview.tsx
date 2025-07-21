@@ -3,32 +3,23 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
+import Image, { StaticImageData } from "next/image";
 
 interface ProductOverviewProps {
   title: string;
   description: string;
   features: string[];
-  imagePlaceholder?: {
-    emoji: string;
-    title: string;
-    subtitle: string;
-  };
-  backgroundColor?: string;
+  image: StaticImageData;
 }
 
 export default function ProductOverview({
   title,
   description,
   features,
-  imagePlaceholder = {
-    emoji: "🪟",
-    title: "Beautiful Windows",
-    subtitle: "Image Placeholder"
-  },
-  backgroundColor = "bg-white"
+  image,
 }: ProductOverviewProps) {
   return (
-    <section className={`py-20 ${backgroundColor}`}>
+    <section className={`py-20`}>
       <div className="container mx-auto px-4 sm:px-0">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <motion.div
@@ -40,10 +31,8 @@ export default function ProductOverview({
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
               {title}
             </h2>
-            <p className="text-lg text-gray-600 mb-8">
-              {description}
-            </p>
-            
+            <p className="text-lg text-gray-600 mb-8">{description}</p>
+
             <div className="space-y-4">
               {features.map((feature, index) => (
                 <motion.div
@@ -60,7 +49,7 @@ export default function ProductOverview({
               ))}
             </div>
           </motion.div>
-          
+
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -68,14 +57,14 @@ export default function ProductOverview({
             viewport={{ once: true }}
             className="bg-gray-300 rounded-lg h-96 flex items-center justify-center"
           >
-            <div className="text-center text-gray-600">
-              <div className="text-6xl mb-4">{imagePlaceholder.emoji}</div>
-              <div className="text-lg font-medium">{imagePlaceholder.title}</div>
-              <div className="text-sm text-gray-500 mt-2">{imagePlaceholder.subtitle}</div>
-            </div>
+            <Image
+              src={image}
+              alt={title}
+              className="w-full h-full object-cover rounded-lg"
+            />
           </motion.div>
         </div>
       </div>
     </section>
   );
-} 
+}

@@ -27,9 +27,10 @@ export default async function HomePage() {
       <Header />
 
       <Hero
-        title={businessInfo.tagline}
+        title={businessInfo.name}
         subtitle="Get help finding the perfect window coverings."
         description="Transform your space with our custom-made window treatments. We provide a full-service solution that handles all aspects of installation."
+        mobileDescription="Transform your space with custom window treatments and professional installation."
         ctaText="Request a Consultation"
         ctaHref="/contact"
         height="xl"
