@@ -41,7 +41,7 @@ export default function ServiceCard({
       whileHover={{ y: -5 }}
       className={`group ${isFeatured ? 'scale-105' : ''}`}
     >
-      <Card className={`h-full transition-all duration-300 hover:shadow-lg ${
+      <Card className={`h-full transition-all duration-300 hover:shadow-lg p-0 ${
         isFeatured ? 'border-brand-primary ring-2 ring-brand-primary/20' : ''
       }`}>
         <CardHeader className={`${isCompact ? 'p-4' : 'p-6'} text-center`}>

@@ -14,7 +14,6 @@ import {
   Star,
   Shield,
   Home,
-  MapPin,
 } from "lucide-react";
 import Image from "next/image";
 import CTA from "@/components/CTA";
@@ -314,55 +313,6 @@ export default function AboutPage() {
                 </Card>
               </motion.div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Service Area */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 sm:px-0">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                Proudly Serving the East Bay
-              </h2>
-              <p className="text-lg text-gray-600 mb-8">
-                We're deeply rooted in the East Bay community and understand the
-                unique character of local homes. We proudly serve Solano and
-                Contra Costa counties, bringing the right expertise to every
-                project.
-              </p>
-
-              <div className="grid grid-cols-2 gap-4">
-                {[
-                  "Benicia",
-                  "Vallejo",
-                  "Fairfield",
-                  "Vacaville",
-                  "Suisun City",
-                  "Dixon",
-                  "Concord",
-                  "Walnut Creek",
-                  "Richmond",
-                  "Antioch",
-                  "Pittsburg",
-                  "Brentwood",
-                ].map((city) => (
-                  <div
-                    key={city}
-                    className="flex items-center gap-2 text-gray-700"
-                  >
-                    <MapPin className="h-4 w-4 text-primary" />
-                    <span className="text-sm">{city}</span>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
           </div>
         </div>
       </section>

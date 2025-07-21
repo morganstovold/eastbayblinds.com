@@ -14,7 +14,7 @@ This project uses [Better Auth](https://www.better-auth.com) for secure admin au
 
 ### 1. Environment Variables
 
-Copy `.env.local.example` to `.env.local` and configure:
+Copy `.env.example` to `.env` and configure:
 
 ```env
 # Database (Required)
@@ -130,7 +130,7 @@ npm install better-auth drizzle-orm @neondatabase/serverless
 ```
 
 **Database connection issues:**
-- Verify `DATABASE_URL` in `.env.local`
+- Verify `DATABASE_URL` in `.env`
 - Ensure Neon database is accessible
 - Check database tables exist
 
@@ -146,7 +146,7 @@ npm install better-auth drizzle-orm @neondatabase/serverless
 
 ### Debug Mode
 
-Add to `.env.local`:
+Add to `.env`:
 ```env
 NODE_ENV=development
 DEBUG=better-auth*
