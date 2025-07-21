@@ -363,22 +363,6 @@ export default function AboutPage() {
                 ))}
               </div>
             </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="bg-gray-300 rounded-lg h-96 flex items-center justify-center"
-            >
-              <div className="text-center text-gray-600">
-                <div className="text-6xl mb-4">🗺️</div>
-                <div className="text-lg font-medium">Service Area Map</div>
-                <div className="text-sm text-gray-500 mt-2">
-                  East Bay Coverage
-                </div>
-              </div>
-            </motion.div>
           </div>
         </div>
       </section>
