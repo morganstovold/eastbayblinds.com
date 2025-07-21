@@ -3,7 +3,7 @@ import {
   Product,
   Service,
   NavigationItem,
-  YelpBusinessResponse,
+
 } from "./types";
 
 import BrightwoodShutters from "@/public/Brightwood-Shutters.webp";
@@ -43,132 +43,8 @@ export const businessInfo: BusinessInfo = {
   },
 };
 
-// Mock Yelp Business Data
-export const mockYelpBusinessData: YelpBusinessResponse = {
-  id: "east-bay-blinds-benicia",
-  name: "East Bay Blinds",
-  rating: 4.9,
-  review_count: 131,
-  url: "https://www.yelp.com/biz/east-bay-blinds-benicia",
-  reviews: [
-    {
-      id: "yelp-review-1",
-      rating: 5,
-      user: {
-        id: "sarah-m-oakland",
-        profile_url: "https://www.yelp.com/user_details?userid=sarah-m-oakland",
-        image_url:
-          "https://s3-media0.fl.yelpcdn.com/photo/placeholder-avatar-1.jpg",
-        name: "Cindy T.",
-      },
-      text: "I had Larry install shutters for the upstairs.. as before, he was prompt to give me an estimate but the installation is where he really shines.. him and his son installed the shutters with expert workmanship, very minimal noise and the best part? My bedrooms were left clean!!! I am so happy and impressed with East Bay Blinds.. the shutters transforms the house and are great quality (no problems ever with the shutters he installed before)! The only downside? All windows are done so we won't have the pleasure of working with Larry!!",
-      time_created: "2025-04-18T14:30:00",
-      url: "https://www.yelp.com/biz/east-bay-blinds-benicia?hrid=yelp-review-1",
-    },
-    {
-      id: "yelp-review-2",
-      rating: 5,
-      user: {
-        id: "mike-r-berkeley",
-        profile_url: "https://www.yelp.com/user_details?userid=mike-r-berkeley",
-        image_url:
-          "https://s3-media0.fl.yelpcdn.com/photo/placeholder-avatar-2.jpg",
-        name: "Connie S.",
-      },
-      text: "Larry is the best! Very responsive. Gives great personalized and cost efficient recommendations. He guided us through selecting blackout blinds, as well as how to prep our bedroom/wall for installation. Our motorized blinds look and work great. I will absolutely work with him again in the future when the need arises!",
-      time_created: "2025-01-10T09:15:00",
-      url: "https://www.yelp.com/biz/east-bay-blinds-benicia?hrid=yelp-review-2",
-    },
-    {
-      id: "yelp-review-3",
-      rating: 5,
-      user: {
-        id: "jennifer-c-alameda",
-        profile_url:
-          "https://www.yelp.com/user_details?userid=jennifer-c-alameda",
-        image_url:
-          "https://s3-media0.fl.yelpcdn.com/photo/placeholder-avatar-3.jpg",
-        name: "Allison F.",
-      },
-      text: "After comparing a few companies, we chose East Bay Blinds to replace all of the very old, non-child-friendly blinds in our new home. Larry was very responsive, knowledgeable and even helpful with design questions. The process was seamless from start to finish and we are so happy with our new window treatments.",
-      time_created: "2024-01-05T16:45:00",
-      url: "https://www.yelp.com/biz/east-bay-blinds-benicia?hrid=yelp-review-3",
-    },
-    {
-      id: "yelp-review-4",
-      rating: 5,
-      user: {
-        id: "david-l-vallejo",
-        profile_url: "https://www.yelp.com/user_details?userid=david-l-vallejo",
-        image_url:
-          "https://s3-media0.fl.yelpcdn.com/photo/placeholder-avatar-4.jpg",
-        name: "David L.",
-      },
-      text: "We needed shutters for our entire house and Larry made the process so easy. His prices were competitive and the quality is top-notch. Norman shutters are definitely worth the investment. Installation took two days but Larry was punctual and professional throughout. Our home value has definitely increased!",
-      time_created: "2023-12-28T11:20:00",
-      url: "https://www.yelp.com/biz/east-bay-blinds-benicia?hrid=yelp-review-4",
-    },
-    {
-      id: "yelp-review-5",
-      rating: 5,
-      user: {
-        id: "maria-g-fairfield",
-        profile_url:
-          "https://www.yelp.com/user_details?userid=maria-g-fairfield",
-        image_url:
-          "https://s3-media0.fl.yelpcdn.com/photo/placeholder-avatar-5.jpg",
-        name: "Maria G.",
-      },
-      text: "East Bay Blinds exceeded our expectations! Larry brought tons of samples to our home and patiently explained all the options. We went with Norman roller shades and they're perfect. The fabric quality is excellent and the child-safe features give us peace of mind. Lifetime warranty is a huge bonus!",
-      time_created: "2023-12-20T13:10:00",
-      url: "https://www.yelp.com/biz/east-bay-blinds-benicia?hrid=yelp-review-5",
-    },
-    {
-      id: "yelp-review-6",
-      rating: 4,
-      user: {
-        id: "robert-k-concord",
-        profile_url:
-          "https://www.yelp.com/user_details?userid=robert-k-concord",
-        image_url:
-          "https://s3-media0.fl.yelpcdn.com/photo/placeholder-avatar-6.jpg",
-        name: "Robert K.",
-      },
-      text: "Very satisfied with our Norman wood blinds. Larry was professional and the installation was done well. Only minor issue was scheduling took a few weeks, but that's because he's popular! The quality is excellent and the lifetime warranty gives us confidence in our purchase.",
-      time_created: "2023-12-15T10:30:00",
-      url: "https://www.yelp.com/biz/east-bay-blinds-benicia?hrid=yelp-review-6",
-    },
-    {
-      id: "yelp-review-7",
-      rating: 5,
-      user: {
-        id: "lisa-h-walnut-creek",
-        profile_url:
-          "https://www.yelp.com/user_details?userid=lisa-h-walnut-creek",
-        image_url:
-          "https://s3-media0.fl.yelpcdn.com/photo/placeholder-avatar-7.jpg",
-        name: "Lisa H.",
-      },
-      text: "Outstanding service and quality! We had shutters installed in our master bedroom and they're gorgeous. Larry's attention to detail is impressive - everything was measured perfectly and installed with care. The Norman shutters are exactly what we wanted. Will definitely use East Bay Blinds again!",
-      time_created: "2023-12-08T14:55:00",
-      url: "https://www.yelp.com/biz/east-bay-blinds-benicia?hrid=yelp-review-7",
-    },
-    {
-      id: "yelp-review-8",
-      rating: 5,
-      user: {
-        id: "thomas-w-suisun",
-        profile_url: "https://www.yelp.com/user_details?userid=thomas-w-suisun",
-        image_url:
-          "https://s3-media0.fl.yelpcdn.com/photo/placeholder-avatar-8.jpg",
-        name: "Thomas W.",
-      },
-      text: "Highly recommend East Bay Blinds! Larry helped us choose the perfect combination of shutters and blinds for our home. His expertise really shows - he understood our style preferences and budget constraints. Installation was professional and the results look amazing. Great local business!",
-      time_created: "2023-11-30T16:20:00",
-      url: "https://www.yelp.com/biz/east-bay-blinds-benicia?hrid=yelp-review-8",
-    },
-  ],
-};
+// Reviews are now managed through the admin dashboard and stored in the database
+// Mock data removed - check /api/reviews endpoint for current reviews
 
 export const navigationItems: NavigationItem[] = [
   {
@@ -498,6 +374,9 @@ export const products: Product[] = [
 ];
 
 export const serviceTypes = [
-  "Purchase Window Treatment",
-  "Get Service",
+  { value: "purchase", label: "Purchase Window Treatment" },
+  { value: "service", label: "Get Service" },
+  { value: "consultation", label: "Free In-Home Consultation" },
+  { value: "repair", label: "Repair Existing Window Treatments" },
+  { value: "quote", label: "Get a Quote" },
 ];

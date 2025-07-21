@@ -15,6 +15,20 @@
       "when": 1753123482055,
       "tag": "0001_wonderful_blacklash",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1753126499897,
+      "tag": "0002_awesome_firebird",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1753127594353,
+      "tag": "0003_funny_the_anarchist",
+      "breakpoints": true
     }
   ]
 }

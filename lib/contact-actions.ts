@@ -1,0 +1,59 @@
+"use server";
+
+import { db } from "@/lib/db";
+import { contactSubmission } from "@/lib/db-schema";
+import { ContactFormData } from "@/lib/types";
+import { nanoid } from "nanoid";
+import { revalidateTag } from "next/cache";
+
+export async function submitContactForm(data: ContactFormData) {
+  try {
+    // Validate required fields
+    if (!data.firstName || !data.lastName || !data.zipCode || !data.serviceType) {
+      return {
+        success: false,
+        error: "Missing required fields"
+      };
+    }
+
+    // Ensure at least email or phone is provided
+    if (!data.email && !data.phone) {
+      return {
+        success: false,
+        error: "Email or phone number is required"
+      };
+    }
+
+    // Insert into database
+    const submission = await db.insert(contactSubmission).values({
+      id: nanoid(),
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email || null,
+      phone: data.phone || null,
+      zipCode: data.zipCode,
+      serviceType: data.serviceType,
+      message: data.message || null,
+      status: "new",
+    }).returning();
+
+    console.log("Contact form submission saved:", submission[0].id);
+
+    // Revalidate contact stats for admin dashboard
+    revalidateTag("contact-stats");
+    revalidateTag("contact-submissions");
+
+    return { 
+      success: true, 
+      message: "Thank you for your submission! We'll get back to you within 24 hours.",
+      submissionId: submission[0].id 
+    };
+
+  } catch (error) {
+    console.error("Contact form submission error:", error);
+    return {
+      success: false,
+      error: "Failed to submit form. Please try again."
+    };
+  }
+} 

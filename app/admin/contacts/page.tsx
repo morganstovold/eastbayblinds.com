@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   MessageSquare,
   ArrowLeft,
@@ -17,7 +17,6 @@ import {
   Search,
   X,
 } from "lucide-react";
-import { businessInfo } from "@/lib/data";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import {
@@ -27,6 +26,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { getContactSubmissions, updateContactSubmissionStatus } from "@/lib/admin-actions";
 
 interface ContactSubmission {
   id: string;
@@ -50,11 +50,11 @@ interface Pagination {
   hasMore: boolean;
 }
 
-export default function ContactSubmissionsPage() {
+export default function ContactsManagement() {
   const router = useRouter();
+  const { data: session, isPending } = authClient.useSession();
+
   const [submissions, setSubmissions] = useState<ContactSubmission[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [updating, setUpdating] = useState<string | null>(null);
   const [pagination, setPagination] = useState<Pagination>({
     page: 1,
     limit: 20,
@@ -62,21 +62,63 @@ export default function ContactSubmissionsPage() {
     pages: 0,
     hasMore: false,
   });
-  const [statusFilter, setStatusFilter] = useState<string>("");
-  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [loading, setLoading] = useState(true);
+  const [updating, setUpdating] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [statusFilter, setStatusFilter] = useState("");
 
-  const { data: session, isPending } = authClient.useSession();
+  const loadSubmissions = useCallback(
+    async (page = 1) => {
+      try {
+        setLoading(true);
+        
+        const result = await getContactSubmissions({
+          page,
+          limit: 20,
+          status: statusFilter || undefined,
+          search: searchQuery || undefined,
+        });
 
-  // Debounced search effect
+                 if (result.success) {
+           setSubmissions(result.submissions as ContactSubmission[]);
+           setPagination(result.pagination);
+         } else {
+          console.error("Error loading submissions:", result.error);
+          setSubmissions([]);
+          setPagination({
+            page: 1,
+            limit: 20,
+            total: 0,
+            pages: 0,
+            hasMore: false,
+          });
+        }
+      } catch (error) {
+        console.error("Error loading submissions:", error);
+        setSubmissions([]);
+        setPagination({
+          page: 1,
+          limit: 20,
+          total: 0,
+          pages: 0,
+          hasMore: false,
+        });
+      } finally {
+        setLoading(false);
+      }
+    },
+    [searchQuery, statusFilter]
+  );
+
   useEffect(() => {
     if (!session?.user) return;
 
     const timer = setTimeout(() => {
       loadSubmissions();
-    }, 300); // 300ms debounce
+    }, 300);
 
     return () => clearTimeout(timer);
-  }, [searchQuery, statusFilter, session?.user]);
+  }, [searchQuery, statusFilter, session?.user, loadSubmissions]);
 
   useEffect(() => {
     if (isPending) return;
@@ -87,57 +129,16 @@ export default function ContactSubmissionsPage() {
     if (session?.user) {
       loadSubmissions();
     }
-  }, [session, isPending, router]);
-
-  const loadSubmissions = async (page = 1) => {
-    try {
-      setLoading(true);
-      const params = new URLSearchParams({
-        page: page.toString(),
-        limit: "20",
-      });
-
-      if (statusFilter) {
-        params.append("status", statusFilter);
-      }
-
-      if (searchQuery) {
-        params.append("search", searchQuery);
-      }
-
-      const response = await fetch(`/api/admin/contact-submissions?${params}`, {
-        credentials: "include",
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to load submissions");
-      }
-
-      const data = await response.json();
-      setSubmissions(data.submissions);
-      setPagination(data.pagination);
-    } catch (error) {
-      console.error("Error loading submissions:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  }, [session, isPending, router, loadSubmissions]);
 
   const updateSubmissionStatus = async (id: string, newStatus: string) => {
     try {
       setUpdating(id);
 
-      const response = await fetch("/api/admin/contact-submissions", {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify({ id, status: newStatus }),
-      });
+      const result = await updateContactSubmissionStatus(id, newStatus);
 
-      if (!response.ok) {
-        throw new Error("Failed to update status");
+      if (!result.success) {
+        throw new Error(result.error || "Failed to update status");
       }
 
       // Update local state
@@ -146,7 +147,7 @@ export default function ContactSubmissionsPage() {
           sub.id === id
             ? {
                 ...sub,
-                status: newStatus as any,
+                status: newStatus as "new" | "viewed" | "responded" | "closed",
                 updatedAt: new Date().toISOString(),
               }
             : sub
@@ -188,8 +189,6 @@ export default function ContactSubmissionsPage() {
     });
   };
 
-  // Remove the full page loading state - we'll handle it inline
-
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
@@ -200,184 +199,152 @@ export default function ContactSubmissionsPage() {
               <Button
                 size="sm"
                 onClick={() => router.push("/admin")}
-                className="flex items-center gap-2 shrink-0"
+                className="flex items-center gap-2"
               >
                 <ArrowLeft className="h-4 w-4" />
-                <span className="hidden sm:inline">Back</span>
+                <span className="hidden sm:inline">Back to Dashboard</span>
+                <span className="sm:hidden">Back</span>
               </Button>
               <div>
                 <h1 className="text-lg sm:text-xl font-semibold text-gray-900">
                   Contact Submissions
                 </h1>
                 <p className="text-sm text-gray-600 sm:hidden">
-                  {pagination.total} total submissions
+                  Manage customer inquiries
                 </p>
               </div>
             </div>
-            <div className="text-sm text-gray-600 hidden sm:block">
-              Total: {pagination.total} submissions
+            <div className="flex items-center gap-3">
+              <MessageSquare className="h-5 w-5 text-gray-400" />
+              <div className="text-sm text-gray-600 hidden sm:block">
+                Manage customer inquiries
+              </div>
             </div>
           </div>
         </div>
       </header>
 
       <main className="container mx-auto px-4 py-6 sm:py-8">
-        {/* Search and Filters */}
-        <div className="mb-6">
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-start sm:items-center">
-            {/* Search Bar */}
-            <div className="relative flex-1 min-w-0 w-full sm:w-auto">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+        {/* Filters */}
+        <div className="bg-white rounded-lg shadow-sm p-4 sm:p-6 mb-6">
+          <div className="flex flex-col sm:flex-row gap-4">
+            {/* Search */}
+            <div className="flex-1 relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
               <Input
                 placeholder="Search by name, email, phone, or zip code..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 pr-10 text-sm sm:text-base"
-                disabled={loading}
+                className="pl-10 pr-10"
               />
               {searchQuery && (
                 <button
-                  type="button"
                   onClick={clearSearch}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 touch-manipulation"
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
                 >
                   <X className="h-4 w-4" />
                 </button>
               )}
             </div>
 
-            {/* Status Filters */}
-            <div className="flex gap-2 flex-wrap w-full sm:w-auto">
-              <Button
-                variant={statusFilter === "" ? "default" : "outline"}
-                size="sm"
-                onClick={() => setStatusFilter("")}
-                disabled={loading}
-                className="text-xs sm:text-sm"
+            {/* Status Filter */}
+            <div className="w-full sm:w-48">
+              <Select
+                value={statusFilter}
+                onValueChange={setStatusFilter}
               >
-                All ({pagination.total})
-              </Button>
-              <Button
-                variant={statusFilter === "new" ? "default" : "outline"}
-                size="sm"
-                onClick={() => setStatusFilter("new")}
-                disabled={loading}
-                className="text-xs sm:text-sm"
-              >
-                New
-              </Button>
-              <Button
-                variant={statusFilter === "viewed" ? "default" : "outline"}
-                size="sm"
-                onClick={() => setStatusFilter("viewed")}
-                disabled={loading}
-                className="text-xs sm:text-sm"
-              >
-                Viewed
-              </Button>
-              <Button
-                variant={statusFilter === "responded" ? "default" : "outline"}
-                size="sm"
-                onClick={() => setStatusFilter("responded")}
-                disabled={loading}
-                className="text-xs sm:text-sm"
-              >
-                Responded
-              </Button>
-              <Button
-                variant={statusFilter === "closed" ? "default" : "outline"}
-                size="sm"
-                onClick={() => setStatusFilter("closed")}
-                disabled={loading}
-                className="text-xs sm:text-sm"
-              >
-                Closed
-              </Button>
+                <SelectTrigger>
+                  <SelectValue placeholder="All Statuses" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="">All Statuses</SelectItem>
+                  <SelectItem value="new">New</SelectItem>
+                  <SelectItem value="viewed">Viewed</SelectItem>
+                  <SelectItem value="responded">Responded</SelectItem>
+                  <SelectItem value="closed">Closed</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
           </div>
-
-          {/* Active Filters Display */}
-          {(searchQuery || statusFilter) && (
-            <div className="flex items-center gap-2 mt-3 pt-3 border-t">
-              <span className="text-sm text-gray-600">Active filters:</span>
-              {searchQuery && (
-                <Badge variant="secondary" className="flex items-center gap-1">
-                  Search: "{searchQuery}"
-                  <X className="h-3 w-3 cursor-pointer" onClick={clearSearch} />
-                </Badge>
-              )}
-              {statusFilter && (
-                <Badge variant="secondary" className="flex items-center gap-1">
-                  Status: {statusFilter}
-                  <X
-                    className="h-3 w-3 cursor-pointer"
-                    onClick={() => setStatusFilter("")}
-                  />
-                </Badge>
-              )}
-            </div>
-          )}
         </div>
 
-        {/* Submissions List */}
-        <div className="space-y-3 sm:space-y-4">
-          {loading && submissions.length === 0 ? (
-            // Loading state for first load
-            <Card>
-              <CardContent className="p-12 text-center">
-                <Loader2 className="h-8 w-8 animate-spin mx-auto mb-4 text-primary" />
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  Loading Contact Submissions
-                </h3>
-                <p className="text-gray-600">
-                  Please wait while we fetch your customer inquiries...
-                </p>
-              </CardContent>
-            </Card>
-          ) : (
-            <>
+        {/* Loading State */}
+        {loading && submissions.length === 0 ? (
+          <div className="flex justify-center items-center py-12">
+            <div className="text-center">
+              <Loader2 className="h-8 w-8 animate-spin mx-auto mb-4 text-primary" />
+              <p className="text-gray-600">Loading contact submissions...</p>
+            </div>
+          </div>
+        ) : (
+          <>
+            {/* Results */}
+            <div className="space-y-4">
               {submissions.map((submission) => (
                 <Card
                   key={submission.id}
                   className="hover:shadow-md transition-shadow"
                 >
-                  <CardContent>
+                  <CardContent className="p-4 sm:p-6">
                     <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-4">
-                      <div className="flex items-center gap-3 min-w-0">
-                        <div className="p-2 bg-blue-100 rounded-full shrink-0">
-                          <User className="h-4 w-4 text-blue-600" />
+                      <div className="flex items-start gap-3 min-w-0 flex-1">
+                        <div className="p-2 bg-primary/10 rounded-full flex-shrink-0">
+                          <User className="h-4 w-4 text-primary" />
                         </div>
                         <div className="min-w-0 flex-1">
-                          <h3 className="font-semibold text-gray-900 text-sm sm:text-base">
+                          <h3 className="font-semibold text-gray-900 text-lg">
                             {submission.firstName} {submission.lastName}
                           </h3>
-                          <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600">
-                            <Clock className="h-3 w-3 shrink-0" />
-                            <span className="truncate">
-                              {formatDate(submission.createdAt)}
-                            </span>
+                          <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600 mt-1">
+                            {submission.email && (
+                              <div className="flex items-center gap-1">
+                                <Mail className="h-3 w-3" />
+                                <a
+                                  href={`mailto:${submission.email}`}
+                                  className="hover:text-primary truncate"
+                                >
+                                  {submission.email}
+                                </a>
+                              </div>
+                            )}
+                            {submission.phone && (
+                              <div className="flex items-center gap-1">
+                                <Phone className="h-3 w-3" />
+                                <a
+                                  href={`tel:${submission.phone}`}
+                                  className="hover:text-primary"
+                                >
+                                  {submission.phone}
+                                </a>
+                              </div>
+                            )}
+                            <div className="flex items-center gap-1">
+                              <MapPin className="h-3 w-3" />
+                              <span>{submission.zipCode}</span>
+                            </div>
+                            <div className="flex items-center gap-1">
+                              <Clock className="h-3 w-3" />
+                              <span>{formatDate(submission.createdAt)}</span>
+                            </div>
                           </div>
                         </div>
                       </div>
-                      <div className="flex items-center gap-3 shrink-0">
-                        <Badge
-                          className={`${getStatusColor(
-                            submission.status
-                          )} text-xs`}
-                        >
+                      <div className="flex items-center gap-2">
+                        <Badge className={getStatusColor(submission.status)}>
                           {submission.status}
                         </Badge>
                         <Select
                           value={submission.status}
-                          onValueChange={(newStatus) =>
-                            updateSubmissionStatus(submission.id, newStatus)
+                          onValueChange={(value) =>
+                            updateSubmissionStatus(submission.id, value)
                           }
                           disabled={updating === submission.id}
                         >
-                          <SelectTrigger className="w-28 sm:w-32 text-xs sm:text-sm">
-                            <SelectValue />
-                            {updating === submission.id && (
-                              <Loader2 className="h-3 w-3 animate-spin ml-1" />
+                          <SelectTrigger className="w-32">
+                            {updating === submission.id ? (
+                              <Loader2 className="h-4 w-4 animate-spin" />
+                            ) : (
+                              <SelectValue />
                             )}
                           </SelectTrigger>
                           <SelectContent>
@@ -390,122 +357,75 @@ export default function ContactSubmissionsPage() {
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mb-4">
-                      <div className="flex items-center gap-2 text-xs sm:text-sm min-w-0">
-                        <Mail className="h-3 w-3 text-gray-500 shrink-0" />
-                        {submission.email ? (
-                          <a
-                            href={`mailto:${submission.email}`}
-                            className="text-blue-600 hover:underline truncate"
-                          >
-                            {submission.email}
-                          </a>
-                        ) : (
-                          <span className="text-gray-500">No email</span>
-                        )}
-                      </div>
-                      <div className="flex items-center gap-2 text-xs sm:text-sm min-w-0">
-                        <Phone className="h-3 w-3 text-gray-500 shrink-0" />
-                        {submission.phone ? (
-                          <a
-                            href={`tel:${submission.phone}`}
-                            className="text-blue-600 hover:underline truncate"
-                          >
-                            {submission.phone}
-                          </a>
-                        ) : (
-                          <span className="text-gray-500">No phone</span>
-                        )}
-                      </div>
-                      <div className="flex items-center gap-2 text-xs sm:text-sm min-w-0">
-                        <MapPin className="h-3 w-3 text-gray-500 shrink-0" />
-                        <span className="truncate">{submission.zipCode}</span>
-                      </div>
-                    </div>
-
-                    <div className="mb-4">
-                      <Badge
-                        variant="secondary"
-                        className="text-xs break-words"
-                      >
-                        {submission.serviceType}
-                      </Badge>
-                    </div>
-
-                    {submission.message && (
-                      <div className="bg-gray-50 rounded-lg p-3 sm:p-4">
-                        <h4 className="text-xs sm:text-sm font-medium text-gray-900 mb-2">
-                          Message:
-                        </h4>
-                        <p className="text-xs sm:text-sm text-gray-700 leading-relaxed break-words">
-                          {submission.message}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+                      <div>
+                        <p className="font-medium text-gray-900 mb-1">
+                          Service Type:
                         </p>
+                        <p className="text-gray-600">{submission.serviceType}</p>
                       </div>
-                    )}
+                      {submission.message && (
+                        <div className="sm:col-span-2">
+                          <p className="font-medium text-gray-900 mb-1">
+                            Message:
+                          </p>
+                          <p className="text-gray-600 bg-gray-50 p-3 rounded-lg">
+                            {submission.message}
+                          </p>
+                        </div>
+                      )}
+                    </div>
                   </CardContent>
                 </Card>
               ))}
+            </div>
 
-              {submissions.length === 0 && !loading && (
-                <Card>
-                  <CardContent className="p-8 text-center">
-                    <MessageSquare className="h-12 w-12 mx-auto text-gray-400 mb-4" />
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      No submissions found
-                    </h3>
-                    <p className="text-gray-600">
-                      {statusFilter
-                        ? `No submissions with status "${statusFilter}" found.`
-                        : "No contact form submissions yet. Check back once customers start reaching out!"}
-                    </p>
-                  </CardContent>
-                </Card>
-              )}
+            {/* Empty State */}
+            {!loading && submissions.length === 0 && (
+              <div className="text-center py-12">
+                <MessageSquare className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                <h3 className="text-lg font-medium text-gray-900 mb-2">
+                  No submissions found
+                </h3>
+                <p className="text-gray-600">
+                  {searchQuery || statusFilter
+                    ? "Try adjusting your filters"
+                    : "Contact submissions will appear here when customers submit the form"}
+                </p>
+              </div>
+            )}
 
-              {loading && submissions.length > 0 && (
-                <Card>
-                  <CardContent className="p-8 text-center">
-                    <Loader2 className="h-6 w-6 animate-spin mx-auto mb-2 text-primary" />
-                    <p className="text-sm text-gray-600">Updating results...</p>
-                  </CardContent>
-                </Card>
-              )}
-            </>
-          )}
-        </div>
+            {/* Pagination */}
+            {pagination.pages > 1 && (
+              <div className="flex justify-center items-center gap-4 mt-8">
+                <Button
+                  onClick={() => loadSubmissions(pagination.page - 1)}
+                  disabled={pagination.page === 1 || loading}
+                  size="sm"
+                >
+                  Previous
+                </Button>
+                <span className="text-sm text-gray-600">
+                  Page {pagination.page} of {pagination.pages}
+                </span>
+                <Button
+                  onClick={() => loadSubmissions(pagination.page + 1)}
+                  disabled={!pagination.hasMore || loading}
+                  size="sm"
+                >
+                  Next
+                </Button>
+              </div>
+            )}
+          </>
+        )}
 
-        {/* Pagination */}
-        {pagination.pages > 1 && (
-          <div className="flex justify-center mt-6 sm:mt-8">
-            <div className="flex items-center gap-2 sm:gap-4">
-              <Button
-                variant="outline"
-                size="sm"
-                disabled={pagination.page === 1 || loading}
-                onClick={() => loadSubmissions(pagination.page - 1)}
-                className="text-xs sm:text-sm"
-              >
-                {loading ? (
-                  <Loader2 className="h-3 w-3 sm:h-4 sm:w-4 animate-spin mr-1 sm:mr-2" />
-                ) : null}
-                <span className="hidden sm:inline">Previous</span>
-                <span className="sm:hidden">Prev</span>
-              </Button>
-              <span className="flex items-center px-2 sm:px-4 py-2 text-xs sm:text-sm text-gray-600 whitespace-nowrap">
-                {pagination.page} of {pagination.pages}
-              </span>
-              <Button
-                variant="outline"
-                size="sm"
-                disabled={!pagination.hasMore || loading}
-                onClick={() => loadSubmissions(pagination.page + 1)}
-                className="text-xs sm:text-sm"
-              >
-                {loading ? (
-                  <Loader2 className="h-3 w-3 sm:h-4 sm:w-4 animate-spin mr-1 sm:mr-2" />
-                ) : null}
-                Next
-              </Button>
+        {/* Loading overlay for updates */}
+        {loading && submissions.length > 0 && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+            <div className="bg-white p-6 rounded-lg shadow-lg text-center">
+              <Loader2 className="h-6 w-6 animate-spin mx-auto mb-2 text-primary" />
+              <p className="text-gray-600">Updating...</p>
             </div>
           </div>
         )}

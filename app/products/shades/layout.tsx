@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "East Bay Blinds - Window Shades | Cellular, Roller & Roman Shades",
     description: "Energy-efficient Norman® window shades with professional installation. Cellular, roller, and roman styles available.",
-    url: "https://eastbayblinds.com/products/shades",
+    url: "https://www.eastbayblinds.com//products/shades",
     images: [
       {
         url: "/Hero-Shades.webp",

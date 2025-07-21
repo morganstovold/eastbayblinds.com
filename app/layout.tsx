@@ -17,7 +17,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://eastbayblinds.com"),
+  metadataBase: new URL("https://www.eastbayblinds.com/"),
   title: {
     default:
       "East Bay Blinds - Premium Window Treatments | Shutters, Blinds & Shades | Benicia, CA",
@@ -79,7 +79,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://eastbayblinds.com",
+    url: "https://www.eastbayblinds.com/",
     siteName: "East Bay Blinds",
     title:
       "East Bay Blinds - Premium Window Treatments | Shutters, Blinds & Shades",
@@ -105,7 +105,7 @@ export const metadata: Metadata = {
     images: ["/Hero-Home.webp"],
   },
   alternates: {
-    canonical: "https://eastbayblinds.com",
+    canonical: "https://www.eastbayblinds.com/",
   },
   other: {
     "geo.region": "US-CA",
@@ -122,7 +122,7 @@ export const metadata: Metadata = {
     "DC.date": new Date().toISOString(),
     "DC.type": "Service",
     "DC.format": "text/html",
-    "DC.identifier": "https://eastbayblinds.com",
+    "DC.identifier": "https://www.eastbayblinds.com/",
     "DC.language": "en",
     "DC.coverage": "Solano County, Contra Costa County, California",
   },
@@ -147,11 +147,11 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
-              "@id": "https://eastbayblinds.com",
+              "@id": "https://www.eastbayblinds.com/",
               name: "East Bay Blinds",
               description:
                 "East Bay Blinds provides premium Norman® window treatments including custom shutters, blinds, and shades. Serving Solano & Contra Costa Counties with professional installation and lifetime warranties.",
-              url: "https://eastbayblinds.com",
+              url: "https://www.eastbayblinds.com/",
               telephone: "(925) 200-4521",
               email: "mailto:info@eastbayblinds.com",
               address: {
@@ -251,8 +251,8 @@ export default function RootLayout({
                   },
                 ],
               },
-              logo: "https://eastbayblinds.com/EastBayBlinds-logo.png",
-              image: "https://eastbayblinds.com/Hero-Home.webp",
+              logo: "https://www.eastbayblinds.com//EastBayBlinds-logo.png",
+              image: "https://www.eastbayblinds.com//Hero-Home.webp",
               sameAs: [
                 "https://www.yelp.com/biz/east-bay-blinds-benicia-2",
                 "https://www.houzz.com/professionals/window-treatments/east-bay-blinds-pfvwus-pf~1292857805",

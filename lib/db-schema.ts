@@ -1,4 +1,4 @@
-import { pgTable, text, timestamp, boolean } from "drizzle-orm/pg-core";
+import { pgTable, text, timestamp, boolean, integer } from "drizzle-orm/pg-core";
 
 export const user = pgTable("user", {
   id: text("id").primaryKey(),
@@ -70,3 +70,18 @@ export const contactSubmission = pgTable("contact_submission", {
   createdAt: timestamp("created_at").$defaultFn(() => new Date()),
   updatedAt: timestamp("updated_at").$defaultFn(() => new Date()),
 });
+
+export const review = pgTable("review", {
+  id: text("id").primaryKey(),
+  customerName: text("customer_name").notNull(),
+  rating: integer("rating").notNull(), // 1-5 stars
+  text: text("text").notNull(),
+  location: text("location"), // e.g. "Oakland, CA"
+  reviewDate: timestamp("review_date"), // When the review was originally written
+  isActive: boolean("is_active").default(true).notNull(),
+  isFeatured: boolean("is_featured").default(false).notNull(),
+  createdAt: timestamp("created_at").$defaultFn(() => new Date()),
+  updatedAt: timestamp("updated_at").$defaultFn(() => new Date()),
+});
+
+export type Review = typeof review.$inferSelect;

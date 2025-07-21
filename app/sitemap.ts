@@ -1,11 +1,9 @@
 import { MetadataRoute } from 'next'
-import { products } from '@/lib/data'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://eastbayblinds.com'
+  const baseUrl = 'https://www.eastbayblinds.com/'
   const currentDate = new Date()
 
-  // Static pages with their priorities and change frequencies
   const staticPages = [
     {
       url: baseUrl,

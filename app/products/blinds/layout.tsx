@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "East Bay Blinds - Premium Blinds | Wood, Faux Wood & Aluminum",
     description: "Premium Norman® blinds with professional installation. Wood, faux wood, and aluminum options with motorization available.",
-    url: "https://eastbayblinds.com/products/blinds",
+    url: "https://www.eastbayblinds.com//products/blinds",
     images: [
       {
         url: "/Hero-Blinds.webp",

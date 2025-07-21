@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "East Bay Blinds - Window Treatment Services & Professional Installation",
     description: "Professional window treatment services including free consultation and certified installation. Serving Solano & Contra Costa Counties.",
-    url: "https://eastbayblinds.com/services",
+    url: "https://www.eastbayblinds.com//services",
     images: [
       {
         url: "/Hero-Home.webp",

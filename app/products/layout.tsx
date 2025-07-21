@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "East Bay Blinds - Window Treatment Products | Shutters, Blinds & Shades",
     description: "Complete collection of Norman® window treatments with professional installation. Shutters, blinds, and shades for every home.",
-    url: "https://eastbayblinds.com/products",
+    url: "https://www.eastbayblinds.com//products",
     images: [
       {
         url: "/Hero-Home.webp",

@@ -18,6 +18,7 @@ import { serviceTypes } from "@/lib/data";
 import { motion } from "framer-motion";
 import { Send, CheckCircle, AlertCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { submitContactForm } from "@/lib/contact-actions";
 
 interface ContactFormProps {
   onSubmit?: (data: ContactFormData) => void;
@@ -28,6 +29,7 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
   const [submitStatus, setSubmitStatus] = useState<
     "idle" | "success" | "error"
   >("idle");
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
   const {
     register,
@@ -44,21 +46,16 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
   const handleFormSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
     setSubmitStatus("idle");
+    setErrorMessage("");
 
     try {
-      // Submit to our API endpoint
-      const response = await fetch("/api/contact/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+      // Submit using server action
+      const result = await submitContactForm(data);
 
-      const result = await response.json();
-
-      if (!response.ok) {
-        throw new Error(result.error || "Submission failed");
+      if (!result.success) {
+        setErrorMessage(result.error || "Submission failed");
+        setSubmitStatus("error");
+        return;
       }
 
       // Call the onSubmit callback if provided
@@ -71,6 +68,7 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
       console.log("Form submitted successfully:", result.submissionId);
     } catch (error) {
       console.error("Form submission error:", error);
+      setErrorMessage("Failed to submit form. Please try again.");
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
@@ -88,27 +86,45 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="bg-red-50 border border-red-200 rounded-lg p-4 flex items-center gap-3"
+          className="bg-red-50 border border-red-200 rounded-lg p-4 flex items-center gap-3 mb-6"
         >
           <AlertCircle className="h-5 w-5 text-red-600" />
           <div>
             <p className="font-medium text-red-800">Failed to send message</p>
             <p className="text-sm text-red-600">
-              Please try again or call us directly.
+              {errorMessage || "Please try again or call us directly."}
             </p>
           </div>
         </motion.div>
       )}
 
-      <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-4">
-        {/* First Name and Last Name Row */}
+      {/* Success Message */}
+      {submitStatus === "success" && (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="bg-green-50 border border-green-200 rounded-lg p-4 flex items-center gap-3 mb-6"
+        >
+          <CheckCircle className="h-5 w-5 text-green-600" />
+          <div>
+            <p className="font-medium text-green-800">Message sent successfully!</p>
+            <p className="text-sm text-green-600">
+              Thank you for your submission! We'll get back to you within 24 hours.
+            </p>
+          </div>
+        </motion.div>
+      )}
+
+      <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-6">
+        {/* Personal Information */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="space-y-2">
-            <Label htmlFor="firstName">First Name *</Label>
+          <div>
+            <Label htmlFor="firstName">
+              First Name <span className="text-red-500">*</span>
+            </Label>
             <Input
               id="firstName"
               type="text"
-              placeholder="John"
               {...register("firstName", {
                 required: "First name is required",
                 minLength: {
@@ -116,19 +132,26 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
                   message: "First name must be at least 2 characters",
                 },
               })}
-              className={errors.firstName ? "border-red-500" : ""}
+              className={cn(
+                "mt-1",
+                errors.firstName ? "border-red-500 focus:ring-red-500" : ""
+              )}
+              placeholder="Enter your first name"
             />
             {errors.firstName && (
-              <p className="text-sm text-red-600">{errors.firstName.message}</p>
+              <p className="text-red-500 text-sm mt-1">
+                {errors.firstName.message}
+              </p>
             )}
           </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="lastName">Last Name *</Label>
+          <div>
+            <Label htmlFor="lastName">
+              Last Name <span className="text-red-500">*</span>
+            </Label>
             <Input
               id="lastName"
               type="text"
-              placeholder="Doe"
               {...register("lastName", {
                 required: "Last name is required",
                 minLength: {
@@ -136,117 +159,130 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
                   message: "Last name must be at least 2 characters",
                 },
               })}
-              className={errors.lastName ? "border-red-500" : ""}
+              className={cn(
+                "mt-1",
+                errors.lastName ? "border-red-500 focus:ring-red-500" : ""
+              )}
+              placeholder="Enter your last name"
             />
             {errors.lastName && (
-              <p className="text-sm text-red-600">{errors.lastName.message}</p>
+              <p className="text-red-500 text-sm mt-1">
+                {errors.lastName.message}
+              </p>
             )}
           </div>
         </div>
 
-        {/* Email and Phone Row */}
+        {/* Contact Information */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="space-y-2">
-            <Label htmlFor="email">Email Address</Label>
+          <div>
+            <Label htmlFor="email">
+              Email Address{!phone ? <span className="text-red-500">*</span> : ""}
+            </Label>
             <Input
               id="email"
               type="email"
-              placeholder="john@example.com"
               {...register("email", {
-                validate: (value) => {
-                  if (!value && !phone) {
-                    return "Email or phone number is required";
-                  }
-                  if (
-                    value &&
-                    !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)
-                  ) {
-                    return "Invalid email address";
-                  }
-                  return true;
+                required: !phone ? "Email is required when phone is not provided" : false,
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                  message: "Invalid email address",
                 },
               })}
-              className={errors.email ? "border-red-500" : ""}
+              className={cn(
+                "mt-1",
+                errors.email ? "border-red-500 focus:ring-red-500" : ""
+              )}
+              placeholder="your.email@example.com"
             />
             {errors.email && (
-              <p className="text-sm text-red-600">{errors.email.message}</p>
+              <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
             )}
           </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="phone">Phone Number</Label>
+          <div>
+            <Label htmlFor="phone">
+              Phone Number{!email ? <span className="text-red-500">*</span> : ""}
+            </Label>
             <Input
               id="phone"
               type="tel"
-              placeholder="(555) 123-4567"
               {...register("phone", {
-                validate: (value) => {
-                  if (!value && !email) {
-                    return "Phone or email is required";
-                  }
-                  if (value && !/^[\+]?[1-9]?[\d\s\-\(\)]+$/.test(value)) {
-                    return "Invalid phone number";
-                  }
-                  return true;
+                required: !email ? "Phone is required when email is not provided" : false,
+                pattern: {
+                  value: /^[\+]?[1-9][\d]{0,15}$/,
+                  message: "Invalid phone number",
                 },
               })}
-              className={errors.phone ? "border-red-500" : ""}
+              className={cn(
+                "mt-1",
+                errors.phone ? "border-red-500 focus:ring-red-500" : ""
+              )}
+              placeholder="(123) 456-7890"
             />
             {errors.phone && (
-              <p className="text-sm text-red-600">{errors.phone.message}</p>
+              <p className="text-red-500 text-sm mt-1">{errors.phone.message}</p>
             )}
           </div>
         </div>
 
-        {/* Zip Code and Service Type Row */}
+        {/* Service Request Information */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="space-y-2">
-            <Label htmlFor="zipCode">Zip Code *</Label>
+          <div>
+            <Label htmlFor="zipCode">
+              ZIP Code <span className="text-red-500">*</span>
+            </Label>
             <Input
               id="zipCode"
               type="text"
-              placeholder="94510"
               {...register("zipCode", {
-                required: "Zip code is required",
+                required: "ZIP code is required",
                 pattern: {
                   value: /^\d{5}(-\d{4})?$/,
-                  message: "Invalid zip code format",
+                  message: "Invalid ZIP code format",
                 },
               })}
-              className={errors.zipCode ? "border-red-500" : ""}
+              className={cn(
+                "mt-1",
+                errors.zipCode ? "border-red-500 focus:ring-red-500" : ""
+              )}
+              placeholder="12345"
             />
             {errors.zipCode && (
-              <p className="text-sm text-red-600">{errors.zipCode.message}</p>
+              <p className="text-red-500 text-sm mt-1">
+                {errors.zipCode.message}
+              </p>
             )}
           </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="serviceType">Service Type *</Label>
-            <Select onValueChange={(value) => setValue("serviceType", value)}>
+          <div>
+            <Label htmlFor="serviceType">
+              Service Type <span className="text-red-500">*</span>
+            </Label>
+            <Select
+              onValueChange={(value) => setValue("serviceType", value)}
+              {...register("serviceType", {
+                required: "Please select a service type",
+              })}
+            >
               <SelectTrigger
                 className={cn(
-                  "w-full",
-                  errors.serviceType ? "border-red-500" : ""
+                  "mt-1",
+                  errors.serviceType ? "border-red-500 focus:ring-red-500" : ""
                 )}
               >
-                <SelectValue placeholder="Select a service type" />
+                <SelectValue placeholder="Select a service" />
               </SelectTrigger>
               <SelectContent>
                 {serviceTypes.map((service) => (
-                  <SelectItem key={service} value={service}>
-                    {service}
+                  <SelectItem key={service.value} value={service.value}>
+                    {service.label}
                   </SelectItem>
                 ))}
               </SelectContent>
             </Select>
-            <input
-              type="hidden"
-              {...register("serviceType", {
-                required: "Service type is required",
-              })}
-            />
             {errors.serviceType && (
-              <p className="text-sm text-red-600">
+              <p className="text-red-500 text-sm mt-1">
                 {errors.serviceType.message}
               </p>
             )}
@@ -254,52 +290,43 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
         </div>
 
         {/* Message */}
-        <div className="space-y-2">
-          <Label htmlFor="message">About Your Request (Optional)</Label>
+        <div>
+          <Label htmlFor="message">Additional Message</Label>
           <Textarea
             id="message"
-            placeholder="Tell us about your project, preferred timeline, and any specific requirements..."
-            rows={4}
             {...register("message")}
+            className="mt-1"
+            placeholder="Tell us more about your project or any specific requirements..."
+            rows={4}
           />
+          <p className="text-sm text-gray-500 mt-1">
+            Optional: Provide additional details about your window treatment needs
+          </p>
         </div>
 
         {/* Submit Button */}
         <Button
           type="submit"
-          size="lg"
           className="w-full"
+          size="lg"
           disabled={isSubmitting}
         >
           {isSubmitting ? (
             <>
-              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-              Sending...
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                className="w-5 h-5 border-2 border-white border-t-transparent rounded-full mr-2"
+              />
+              Sending Message...
             </>
           ) : (
             <>
-              <Send className="h-4 w-4 mr-2" />
+              <Send className="w-5 h-5 mr-2" />
               Send Message
             </>
           )}
         </Button>
-        {submitStatus === "success" && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="bg-green-50 border border-green-200 rounded-lg p-4 flex items-center gap-3"
-          >
-            <CheckCircle className="h-5 w-5 text-green-600" />
-            <div>
-              <p className="font-medium text-green-800">
-                Message sent successfully!
-              </p>
-              <p className="text-sm text-green-600">
-                We'll get back to you within 24 hours.
-              </p>
-            </div>
-          </motion.div>
-        )}
       </form>
     </motion.div>
   );

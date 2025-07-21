@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "East Bay Blinds - Premium Norman® Shutters | Plantation Shutters",
     description: "Custom Norman® plantation shutters with professional installation. Energy efficient and beautiful interior shutters for your home.",
-    url: "https://eastbayblinds.com/products/shutters",
+    url: "https://www.eastbayblinds.com//products/shutters",
     images: [
       {
         url: "/Hero-Shutters.jpg",

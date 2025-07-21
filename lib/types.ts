@@ -1,14 +1,12 @@
-import { StaticImageData } from "next/image";
-
 export interface Product {
   id: string;
   name: string;
-  category: "shutters" | "blinds" | "shades";
   description: string;
+  image: string;
+  href: string;
+  category: string;
   features: string[];
-  image: StaticImageData;
-  price?: string;
-  brand?: string;
+  benefits?: string[];
 }
 
 export interface Service {
@@ -16,52 +14,8 @@ export interface Service {
   title: string;
   description: string;
   icon: string;
-  features: string[];
-}
-
-export interface Testimonial {
-  id: string;
-  name: string;
-  location: string;
-  rating: number;
-  comment: string;
-  avatarUrl: string;
-  date: string;
-}
-
-export interface YelpUser {
-  id: string;
-  profile_url: string;
-  image_url: string;
-  name: string;
-}
-
-export interface YelpReview {
-  id: string;
-  rating: number;
-  user: YelpUser;
-  text: string;
-  time_created: string;
-  url: string;
-}
-
-export interface YelpBusinessResponse {
-  id: string;
-  name: string;
-  rating: number;
-  review_count: number;
-  url: string;
-  reviews: YelpReview[];
-}
-
-export interface ContactFormData {
-  firstName: string;
-  lastName: string;
-  email?: string;
-  phone?: string;
-  zipCode: string;
-  serviceType: string;
-  message?: string;
+  href: string;
+  features?: string[];
 }
 
 export interface NavigationItem {
@@ -91,4 +45,34 @@ export interface PageMeta {
   description: string;
   keywords?: string[];
   canonical?: string;
+}
+
+// Simple Review interface matching database schema
+export interface Review {
+  id: string;
+  customerName: string;
+  rating: number;
+  text: string;
+  location: string | null;
+  reviewDate: Date | null;
+  isActive: boolean;
+  isFeatured: boolean;
+  createdAt: Date | null;
+  updatedAt: Date | null;
+}
+
+export interface ReviewsData {
+  featuredReviews: Review[];
+  allReviews: Review[];
+  averageRating: number;
+}
+
+export interface ContactFormData {
+  firstName: string;
+  lastName: string;
+  email?: string;
+  phone?: string;
+  zipCode: string;
+  serviceType: string;
+  message?: string;
 }

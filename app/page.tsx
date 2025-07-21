@@ -7,14 +7,15 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { businessInfo, products, services } from "@/lib/data";
-import { getYelpDataForPage } from "@/lib/yelp-service";
 import { AnimatedSection, AnimatedGrid } from "@/components/AnimatedSection";
 import Link from "next/link";
 import { ArrowRight, Home, Shield, Star } from "lucide-react";
 import HeroBackground from "@/public/Hero-Home.webp";
 import CTA from "@/components/CTA";
 import ServicesGrid from "@/components/ServicesGrid";
-import YelpReviewsSection from "@/components/YelpReviewsSection";
+import ReviewsSectionAsync from "@/components/ReviewsSectionAsync";
+import ReviewsLoading from "@/components/ReviewsLoading";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title:
@@ -37,7 +38,7 @@ export const metadata: Metadata = {
     title: "East Bay Blinds - Premium Norman® Window Treatments",
     description:
       "Transform your home with premium Norman® window treatments. Custom shutters, blinds, and shades with professional installation.",
-    url: "https://eastbayblinds.com",
+    url: "https://www.eastbayblinds.com/",
     images: [
       {
         url: "/Hero-Home.webp",
@@ -55,12 +56,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function HomePage() {
+export default function HomePage() {
   const featuredProducts = products.slice(0, 3);
-  const featuredServices = services.slice(0, 4);
-
-  // Fetch Yelp data on the server
-  const yelpData = await getYelpDataForPage();
+  const featuredServices = services.slice(0, 3);
 
   return (
     <div className="min-h-screen bg-white">
@@ -189,8 +187,10 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Yelp Reviews Section */}
-      <YelpReviewsSection initialData={yelpData} />
+      {/* Customer Reviews Section */}
+      <Suspense fallback={<ReviewsLoading />}>
+        <ReviewsSectionAsync />
+      </Suspense>
 
       <CTA
         title="Ready to Transform Your Home?"
