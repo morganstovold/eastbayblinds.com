@@ -141,7 +141,7 @@ export default async function HomePage() {
                 </CardHeader>
                 <CardContent>
                   <p className="text-gray-600">
-                    Serving the East Bay area for over 10 years with deep
+                    Serving the East Bay area for over 20 years with deep
                     understanding of local home styles and climate needs.
                   </p>
                 </CardContent>
