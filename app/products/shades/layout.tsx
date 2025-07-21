@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     "Benicia shades"
   ],
   openGraph: {
-    title: "Window Shades - Cellular, Roller & Roman Shades",
+    title: "East Bay Blinds - Window Shades | Cellular, Roller & Roman Shades",
     description: "Energy-efficient Norman® window shades with professional installation. Cellular, roller, and roman styles available.",
     url: "https://eastbayblinds.com/products/shades",
     images: [
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     ],
   },
   twitter: {
-    title: "Window Shades - Cellular, Roller & Roman Shades", 
+    title: "East Bay Blinds - Window Shades | Cellular, Roller & Roman Shades", 
     description: "Energy-efficient Norman® window shades with professional installation in Solano & Contra Costa Counties.",
     images: ["/Hero-Shades.webp"],
   },

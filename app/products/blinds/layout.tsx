@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     "Benicia blinds"
   ],
   openGraph: {
-    title: "Premium Blinds - Wood, Faux Wood & Aluminum",
+    title: "East Bay Blinds - Premium Blinds | Wood, Faux Wood & Aluminum",
     description: "Premium Norman® blinds with professional installation. Wood, faux wood, and aluminum options with motorization available.",
     url: "https://eastbayblinds.com/products/blinds",
     images: [
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     ],
   },
   twitter: {
-    title: "Premium Blinds - Wood, Faux Wood & Aluminum",
+    title: "East Bay Blinds - Premium Blinds | Wood, Faux Wood & Aluminum",
     description: "Premium Norman® blinds with professional installation in Solano & Contra Costa Counties.",
     images: ["/Hero-Blinds.webp"],
   },

@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     "appointment scheduling"
   ],
   openGraph: {
-    title: "Contact East Bay Blinds - Free In-Home Consultation",
+    title: "East Bay Blinds - Contact Us for Free In-Home Consultation",
     description: "Get your free in-home consultation for premium Norman® window treatments. Expert service in Solano & Contra Costa Counties.",
     url: "https://eastbayblinds.com/contact",
     images: [
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     ],
   },
   twitter: {
-    title: "Contact East Bay Blinds - Free In-Home Consultation",
+    title: "East Bay Blinds - Contact Us for Free In-Home Consultation",
     description: "Get your free consultation for premium window treatments. Serving Solano & Contra Costa Counties with expert installation.",
     images: ["/Hero-Contact.jpg"],
   },

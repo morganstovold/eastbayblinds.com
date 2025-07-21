@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     "owner operated"
   ],
   openGraph: {
-    title: "About East Bay Blinds - 20+ Years Experience | Norman® Dealer",
+    title: "East Bay Blinds - About Us | 20+ Years Experience Norman® Dealer",
     description: "Family-owned Norman® dealer with over 20 years of experience. Personalized service and certified installation in Solano & Contra Costa Counties.",
     url: "https://eastbayblinds.com/about",
     images: [
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     ],
   },
   twitter: {
-    title: "About East Bay Blinds - 20+ Years Experience",
+    title: "East Bay Blinds - About Us | 20+ Years Experience",
     description: "Family-owned Norman® dealer with certified installation. Serving Solano & Contra Costa Counties with personalized service.",
     images: ["/Hero-About.jpg"],
   },

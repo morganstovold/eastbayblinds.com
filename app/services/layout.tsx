@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     "certified installer"
   ],
   openGraph: {
-    title: "Window Treatment Services - Installation & Consultation",
+    title: "East Bay Blinds - Window Treatment Services & Professional Installation",
     description: "Professional window treatment services including free consultation and certified installation. Serving Solano & Contra Costa Counties.",
     url: "https://eastbayblinds.com/services",
     images: [
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     ],
   },
   twitter: {
-    title: "Window Treatment Services - Installation & Consultation",
+    title: "East Bay Blinds - Window Treatment Services & Professional Installation",
     description: "Professional services including free consultation and certified installation in Solano & Contra Costa Counties.",
     images: ["/Hero-Home.webp"],
   },

@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     "professional shutter installation"
   ],
   openGraph: {
-    title: "Premium Norman® Shutters - Plantation Shutters",
+    title: "East Bay Blinds - Premium Norman® Shutters | Plantation Shutters",
     description: "Custom Norman® plantation shutters with professional installation. Energy efficient and beautiful interior shutters for your home.",
     url: "https://eastbayblinds.com/products/shutters",
     images: [
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     ],
   },
   twitter: {
-    title: "Premium Norman® Shutters - Plantation Shutters",
+    title: "East Bay Blinds - Premium Norman® Shutters | Plantation Shutters",
     description: "Custom plantation shutters with professional installation in Solano & Contra Costa Counties.",
     images: ["/Hero-Shutters.jpg"],
   },

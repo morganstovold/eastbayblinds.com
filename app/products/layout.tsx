@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     "motorized options"
   ],
   openGraph: {
-    title: "Window Treatment Products - Shutters, Blinds & Shades",
+    title: "East Bay Blinds - Window Treatment Products | Shutters, Blinds & Shades",
     description: "Complete collection of Norman® window treatments with professional installation. Shutters, blinds, and shades for every home.",
     url: "https://eastbayblinds.com/products",
     images: [
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     ],
   },
   twitter: {
-    title: "Window Treatment Products - Shutters, Blinds & Shades",
+    title: "East Bay Blinds - Window Treatment Products | Shutters, Blinds & Shades",
     description: "Complete Norman® collection with professional installation in Solano & Contra Costa Counties.",
     images: ["/Hero-Home.webp"],
   },
