@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
 const inter = Inter({
@@ -8,24 +10,26 @@ const inter = Inter({
 });
 
 export const viewport: Viewport = {
-  width: 'device-width',
+  width: "device-width",
   initialScale: 1,
   maximumScale: 1,
-  themeColor: '#1e40af',
+  themeColor: "#1e40af",
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://eastbayblinds.com'),
+  metadataBase: new URL("https://eastbayblinds.com"),
   title: {
-    default: "East Bay Blinds - Premium Window Treatments | Shutters, Blinds & Shades | Benicia, CA",
-    template: "%s | East Bay Blinds"
+    default:
+      "East Bay Blinds - Premium Window Treatments | Shutters, Blinds & Shades | Benicia, CA",
+    template: "%s | East Bay Blinds",
   },
-  description: "East Bay Blinds provides premium Norman® window treatments including custom shutters, blinds, and shades. Serving Solano & Contra Costa Counties with professional installation and lifetime warranties.",
+  description:
+    "East Bay Blinds provides premium Norman® window treatments including custom shutters, blinds, and shades. Serving Solano & Contra Costa Counties with professional installation and lifetime warranties.",
   applicationName: "East Bay Blinds",
   keywords: [
     "window treatments",
     "shutters",
-    "blinds", 
+    "blinds",
     "shades",
     "Norman shutters",
     "plantation shutters",
@@ -35,7 +39,7 @@ export const metadata: Metadata = {
     "roman shades",
     "East Bay",
     "Benicia",
-    "Vallejo", 
+    "Vallejo",
     "Fairfield",
     "Vacaville",
     "Concord",
@@ -51,14 +55,14 @@ export const metadata: Metadata = {
     "energy efficient",
     "UV protection",
     "privacy",
-    "light control"
+    "light control",
   ],
   authors: [{ name: "East Bay Blinds" }],
   creator: "East Bay Blinds",
   publisher: "East Bay Blinds",
   category: "Home Improvement",
   classification: "Window Treatments",
-  referrer: 'origin-when-cross-origin',
+  referrer: "origin-when-cross-origin",
   robots: {
     index: true,
     follow: true,
@@ -67,57 +71,61 @@ export const metadata: Metadata = {
       index: true,
       follow: true,
       noimageindex: false,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
   },
   openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    url: 'https://eastbayblinds.com',
-    siteName: 'East Bay Blinds',
-    title: 'East Bay Blinds - Premium Window Treatments | Shutters, Blinds & Shades',
-    description: 'East Bay Blinds provides premium Norman® window treatments including custom shutters, blinds, and shades. Serving Solano & Contra Costa Counties with professional installation and lifetime warranties.',
+    type: "website",
+    locale: "en_US",
+    url: "https://eastbayblinds.com",
+    siteName: "East Bay Blinds",
+    title:
+      "East Bay Blinds - Premium Window Treatments | Shutters, Blinds & Shades",
+    description:
+      "East Bay Blinds provides premium Norman® window treatments including custom shutters, blinds, and shades. Serving Solano & Contra Costa Counties with professional installation and lifetime warranties.",
     images: [
       {
-        url: '/Hero-Home.webp',
+        url: "/Hero-Home.webp",
         width: 1200,
         height: 630,
-        alt: 'East Bay Blinds - Premium Window Treatments',
-        type: 'image/webp',
-      }
+        alt: "East Bay Blinds - Premium Window Treatments",
+        type: "image/webp",
+      },
     ],
   },
   twitter: {
-    card: 'summary_large_image',
-    site: '@eastbayblinds',
-    creator: '@eastbayblinds',
-    title: 'East Bay Blinds - Premium Window Treatments',
-    description: 'Premium Norman® shutters, blinds & shades. Professional installation in Solano & Contra Costa Counties.',
-    images: ['/Hero-Home.webp'],
+    card: "summary_large_image",
+    site: "@eastbayblinds",
+    creator: "@eastbayblinds",
+    title: "East Bay Blinds - Premium Window Treatments",
+    description:
+      "Premium Norman® shutters, blinds & shades. Professional installation in Solano & Contra Costa Counties.",
+    images: ["/Hero-Home.webp"],
   },
   alternates: {
-    canonical: 'https://eastbayblinds.com',
+    canonical: "https://eastbayblinds.com",
   },
   other: {
-    'geo.region': 'US-CA',
-    'geo.placename': 'Benicia, California',
-    'geo.position': '38.049430;-122.158170',
-    'ICBM': '38.049430, -122.158170',
-    'DC.title': 'East Bay Blinds - Premium Window Treatments',
-    'DC.creator': 'East Bay Blinds',
-    'DC.subject': 'Window Treatments, Shutters, Blinds, Shades',
-    'DC.description': 'Premium Norman® window treatments with professional installation',
-    'DC.publisher': 'East Bay Blinds',
-    'DC.contributor': 'East Bay Blinds',
-    'DC.date': new Date().toISOString(),
-    'DC.type': 'Service',
-    'DC.format': 'text/html',
-    'DC.identifier': 'https://eastbayblinds.com',
-    'DC.language': 'en',
-    'DC.coverage': 'Solano County, Contra Costa County, California',
-  }
+    "geo.region": "US-CA",
+    "geo.placename": "Benicia, California",
+    "geo.position": "38.049430;-122.158170",
+    ICBM: "38.049430, -122.158170",
+    "DC.title": "East Bay Blinds - Premium Window Treatments",
+    "DC.creator": "East Bay Blinds",
+    "DC.subject": "Window Treatments, Shutters, Blinds, Shades",
+    "DC.description":
+      "Premium Norman® window treatments with professional installation",
+    "DC.publisher": "East Bay Blinds",
+    "DC.contributor": "East Bay Blinds",
+    "DC.date": new Date().toISOString(),
+    "DC.type": "Service",
+    "DC.format": "text/html",
+    "DC.identifier": "https://eastbayblinds.com",
+    "DC.language": "en",
+    "DC.coverage": "Solano County, Contra Costa County, California",
+  },
 };
 
 export default function RootLayout({
@@ -140,111 +148,127 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
               "@id": "https://eastbayblinds.com",
-              "name": "East Bay Blinds",
-              "description": "East Bay Blinds provides premium Norman® window treatments including custom shutters, blinds, and shades. Serving Solano & Contra Costa Counties with professional installation and lifetime warranties.",
-              "url": "https://eastbayblinds.com",
-              "telephone": "(925) 200-4521",
-              "email": "mailto:info@eastbayblinds.com",
-              "address": {
+              name: "East Bay Blinds",
+              description:
+                "East Bay Blinds provides premium Norman® window treatments including custom shutters, blinds, and shades. Serving Solano & Contra Costa Counties with professional installation and lifetime warranties.",
+              url: "https://eastbayblinds.com",
+              telephone: "(925) 200-4521",
+              email: "mailto:info@eastbayblinds.com",
+              address: {
                 "@type": "PostalAddress",
-                "streetAddress": "",
-                "addressLocality": "Benicia",
-                "addressRegion": "CA",
-                "postalCode": "94510",
-                "addressCountry": "US"
+                streetAddress: "",
+                addressLocality: "Benicia",
+                addressRegion: "CA",
+                postalCode: "94510",
+                addressCountry: "US",
               },
-              "geo": {
+              geo: {
                 "@type": "GeoCoordinates",
-                "latitude": 38.049430,
-                "longitude": -122.158170
+                latitude: 38.04943,
+                longitude: -122.15817,
               },
-              "areaServed": [
+              areaServed: [
                 {
                   "@type": "City",
-                  "name": "Benicia, CA"
-                },
-                {
-                  "@type": "City", 
-                  "name": "Vallejo, CA"
+                  name: "Benicia, CA",
                 },
                 {
                   "@type": "City",
-                  "name": "Fairfield, CA"
+                  name: "Vallejo, CA",
                 },
                 {
                   "@type": "City",
-                  "name": "Vacaville, CA"
+                  name: "Fairfield, CA",
                 },
                 {
                   "@type": "City",
-                  "name": "Concord, CA"
+                  name: "Vacaville, CA",
                 },
                 {
                   "@type": "City",
-                  "name": "Walnut Creek, CA"
+                  name: "Concord, CA",
+                },
+                {
+                  "@type": "City",
+                  name: "Walnut Creek, CA",
                 },
                 {
                   "@type": "AdministrativeArea",
-                  "name": "Solano County, CA"
+                  name: "Solano County, CA",
                 },
                 {
-                  "@type": "AdministrativeArea", 
-                  "name": "Contra Costa County, CA"
-                }
+                  "@type": "AdministrativeArea",
+                  name: "Contra Costa County, CA",
+                },
               ],
-              "openingHoursSpecification": {
+              openingHoursSpecification: {
                 "@type": "OpeningHoursSpecification",
-                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-                "opens": "09:00",
-                "closes": "17:00",
-                "validFrom": "2024-01-01",
-                "description": "By appointment only"
+                dayOfWeek: [
+                  "Monday",
+                  "Tuesday",
+                  "Wednesday",
+                  "Thursday",
+                  "Friday",
+                  "Saturday",
+                  "Sunday",
+                ],
+                opens: "09:00",
+                closes: "17:00",
+                validFrom: "2024-01-01",
+                description: "By appointment only",
               },
-              "serviceType": "Window Treatment Installation",
-              "hasOfferCatalog": {
+              serviceType: "Window Treatment Installation",
+              hasOfferCatalog: {
                 "@type": "OfferCatalog",
-                "name": "Window Treatment Services",
-                "itemListElement": [
+                name: "Window Treatment Services",
+                itemListElement: [
                   {
                     "@type": "Offer",
-                    "itemOffered": {
+                    itemOffered: {
                       "@type": "Service",
-                      "name": "Custom Shutters",
-                      "description": "Premium Norman® plantation shutters with professional installation"
-                    }
-                  },
-                  {
-                    "@type": "Offer", 
-                    "itemOffered": {
-                      "@type": "Service",
-                      "name": "Custom Blinds",
-                      "description": "Wood, faux wood, and aluminum blinds with motorization options"
-                    }
+                      name: "Custom Shutters",
+                      description:
+                        "Premium Norman® plantation shutters with professional installation",
+                    },
                   },
                   {
                     "@type": "Offer",
-                    "itemOffered": {
-                      "@type": "Service", 
-                      "name": "Custom Shades",
-                      "description": "Cellular, roller, and roman shades with energy efficiency"
-                    }
-                  }
-                ]
+                    itemOffered: {
+                      "@type": "Service",
+                      name: "Custom Blinds",
+                      description:
+                        "Wood, faux wood, and aluminum blinds with motorization options",
+                    },
+                  },
+                  {
+                    "@type": "Offer",
+                    itemOffered: {
+                      "@type": "Service",
+                      name: "Custom Shades",
+                      description:
+                        "Cellular, roller, and roman shades with energy efficiency",
+                    },
+                  },
+                ],
               },
-              "logo": "https://eastbayblinds.com/EastBayBlinds-logo.png",
-              "image": "https://eastbayblinds.com/Hero-Home.webp",
-              "sameAs": [
+              logo: "https://eastbayblinds.com/EastBayBlinds-logo.png",
+              image: "https://eastbayblinds.com/Hero-Home.webp",
+              sameAs: [
                 "https://www.yelp.com/biz/east-bay-blinds-benicia-2",
-                "https://www.houzz.com/professionals/window-treatments/east-bay-blinds-pfvwus-pf~1292857805"
+                "https://www.houzz.com/professionals/window-treatments/east-bay-blinds-pfvwus-pf~1292857805",
               ],
-              "priceRange": "$$-$$$",
-              "paymentAccepted": "Cash, Credit Card, Check",
-              "currenciesAccepted": "USD"
-            })
+              priceRange: "$$-$$$",
+              paymentAccepted: "Cash, Credit Card, Check",
+              currenciesAccepted: "USD",
+            }),
           }}
         />
       </head>
-      <body className={`${inter.variable} antialiased`}>{children}</body>
+      <body className={`${inter.variable} antialiased`}>
+        {children}
+        <Analytics />
+        <SpeedInsights />
+      </body>
     </html>
   );
 }
