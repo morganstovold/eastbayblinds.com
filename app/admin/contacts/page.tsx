@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useEffect, useState, useCallback } from "react";
+
+export const dynamic = 'force-dynamic';
 import { useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 import { Button } from "@/components/ui/button";
@@ -27,6 +29,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { getContactSubmissions, updateContactSubmissionStatus } from "@/lib/admin-actions";
+import { serviceTypes } from "@/lib/data";
 
 interface ContactSubmission {
   id: string;
@@ -65,7 +68,7 @@ export default function ContactsManagement() {
   const [loading, setLoading] = useState(true);
   const [updating, setUpdating] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
-  const [statusFilter, setStatusFilter] = useState("");
+  const [statusFilter, setStatusFilter] = useState("all");
 
   const loadSubmissions = useCallback(
     async (page = 1) => {
@@ -75,7 +78,7 @@ export default function ContactsManagement() {
         const result = await getContactSubmissions({
           page,
           limit: 20,
-          status: statusFilter || undefined,
+          status: statusFilter === "all" ? undefined : statusFilter,
           search: searchQuery || undefined,
         });
 
@@ -229,7 +232,7 @@ export default function ContactsManagement() {
         <div className="bg-white rounded-lg shadow-sm p-4 sm:p-6 mb-6">
           <div className="flex flex-col sm:flex-row gap-4">
             {/* Search */}
-            <div className="flex-1 relative">
+            <div className="relative w-full">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
               <Input
                 placeholder="Search by name, email, phone, or zip code..."
@@ -248,7 +251,7 @@ export default function ContactsManagement() {
             </div>
 
             {/* Status Filter */}
-            <div className="w-full sm:w-48">
+            <div className="flex-1">
               <Select
                 value={statusFilter}
                 onValueChange={setStatusFilter}
@@ -257,7 +260,7 @@ export default function ContactsManagement() {
                   <SelectValue placeholder="All Statuses" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All Statuses</SelectItem>
+                  <SelectItem value="all">All Statuses</SelectItem>
                   <SelectItem value="new">New</SelectItem>
                   <SelectItem value="viewed">Viewed</SelectItem>
                   <SelectItem value="responded">Responded</SelectItem>
@@ -362,7 +365,7 @@ export default function ContactsManagement() {
                         <p className="font-medium text-gray-900 mb-1">
                           Service Type:
                         </p>
-                        <p className="text-gray-600">{submission.serviceType}</p>
+                        <p className="text-gray-600">{serviceTypes.find(type => type.value === submission.serviceType)?.label}</p>
                       </div>
                       {submission.message && (
                         <div className="sm:col-span-2">
@@ -418,16 +421,6 @@ export default function ContactsManagement() {
               </div>
             )}
           </>
-        )}
-
-        {/* Loading overlay for updates */}
-        {loading && submissions.length > 0 && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-            <div className="bg-white p-6 rounded-lg shadow-lg text-center">
-              <Loader2 className="h-6 w-6 animate-spin mx-auto mb-2 text-primary" />
-              <p className="text-gray-600">Updating...</p>
-            </div>
-          </div>
         )}
       </main>
     </div>

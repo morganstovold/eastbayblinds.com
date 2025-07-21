@@ -356,8 +356,5 @@ export const products: Product[] = [
 
 export const serviceTypes = [
   { value: "purchase", label: "Purchase Window Treatment" },
-  { value: "service", label: "Get Service" },
   { value: "consultation", label: "Free In-Home Consultation" },
-  { value: "repair", label: "Repair Existing Window Treatments" },
-  { value: "quote", label: "Get a Quote" },
 ];

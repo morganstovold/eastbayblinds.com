@@ -1,5 +1,7 @@
 import React, { Suspense } from "react";
 import { redirect } from "next/navigation";
+
+export const dynamic = 'force-dynamic';
 import { buttonVariants } from "@/components/ui/button";
 import {
   Card,

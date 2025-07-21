@@ -1,5 +1,7 @@
 import React, { Suspense } from "react";
 import { redirect } from "next/navigation";
+
+export const dynamic = 'force-dynamic';
 import { getAdminSession, getAdminReviews } from "@/lib/admin-actions";
 import { Card, CardContent } from "@/components/ui/card";
 import ReviewsClientComponent from "@/components/ReviewsClientComponent";
