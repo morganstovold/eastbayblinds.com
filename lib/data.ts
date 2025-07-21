@@ -37,10 +37,9 @@ export const businessInfo: BusinessInfo = {
     Sunday: "By Appointment Only",
   },
   socialLinks: {
-    facebook: "https://facebook.com/eastbayblinds",
-    instagram: "https://instagram.com/eastbayblinds",
-    yelp: "https://yelp.com/biz/eastbayblinds",
-    google: "https://maps.google.com/business/eastbayblinds",
+    yelp: "https://www.yelp.com/biz/east-bay-blinds-benicia-2",
+    houzz:
+      "https://www.houzz.com/professionals/window-treatments/east-bay-blinds-pfvwus-pf~1292857805",
   },
 };
 

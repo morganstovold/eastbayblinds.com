@@ -81,10 +81,8 @@ export interface BusinessInfo {
     [key: string]: string;
   };
   socialLinks: {
-    facebook?: string;
-    instagram?: string;
     yelp?: string;
-    google?: string;
+    houzz?: string;
   };
 }
 

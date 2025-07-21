@@ -75,7 +75,7 @@ export default function Hero({
       <div className="absolute inset-0 bg-black/60" />
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+      <div className="relative z-10 container mx-auto px-4 sm:px-0 text-center text-white">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}

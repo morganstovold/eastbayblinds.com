@@ -6,9 +6,9 @@ import { businessInfo } from "@/lib/data";
 import {
   Phone,
   MapPin,
-  Facebook,
-  Instagram,
   ExternalLink,
+  Star,
+  Home,
 } from "lucide-react";
 
 import Image from "next/image";
@@ -121,39 +121,27 @@ export default function Footer() {
 
               {/* Social Links */}
               <div>
-                <h3 className="text-lg font-semibold mb-3">Follow Us</h3>
-                <div className="flex gap-4">
-                  <a
-                    href={businessInfo.socialLinks.facebook}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-white transition-colors duration-300"
-                  >
-                    <Facebook className="h-5 w-5" />
-                  </a>
-                  <a
-                    href={businessInfo.socialLinks.instagram}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-white transition-colors duration-300"
-                  >
-                    <Instagram className="h-5 w-5" />
-                  </a>
+                <h3 className="text-lg font-semibold mb-3">Find Us Online</h3>
+                <div className="space-y-3">
                   <a
                     href={businessInfo.socialLinks.yelp}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-white transition-colors duration-300"
+                    className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors duration-300 group"
                   >
-                    <ExternalLink className="h-5 w-5" />
+                    <Star className="h-5 w-5 flex-shrink-0" />
+                    <span className="text-sm">Read our Yelp reviews</span>
+                    <ExternalLink className="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
                   </a>
                   <a
-                    href={businessInfo.socialLinks.google}
+                    href={businessInfo.socialLinks.houzz}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-white transition-colors duration-300"
+                    className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors duration-300 group"
                   >
-                    <ExternalLink className="h-5 w-5" />
+                    <Home className="h-5 w-5 flex-shrink-0" />
+                    <span className="text-sm">View our Houzz portfolio</span>
+                    <ExternalLink className="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
                   </a>
                 </div>
               </div>
