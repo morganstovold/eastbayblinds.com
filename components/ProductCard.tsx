@@ -52,15 +52,6 @@ export default function ProductCard({
               {product.category}
             </span>
           </div>
-
-          {/* Brand Badge */}
-          {product.brand && (
-            <div className="absolute top-4 right-4">
-              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-500 text-white">
-                {product.brand}
-              </span>
-            </div>
-          )}
         </div>
 
         <CardHeader className={isCompact ? "p-4" : "p-6"}>
@@ -108,16 +99,6 @@ export default function ProductCard({
                   +{product.features.length - 3} more features
                 </p>
               )}
-            </div>
-          )}
-
-          {/* Price */}
-          {product.price && (
-            <div className="flex items-center gap-2">
-              <span className="text-sm text-gray-600">Starting at</span>
-              <span className="text-lg font-bold text-primary">
-                {product.price}
-              </span>
             </div>
           )}
 

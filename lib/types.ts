@@ -1,9 +1,10 @@
+import { StaticImageData } from "next/image";
+
 export interface Product {
   id: string;
   name: string;
   description: string;
-  image: string;
-  href: string;
+  image: StaticImageData;
   category: string;
   features: string[];
   benefits?: string[];
@@ -14,7 +15,6 @@ export interface Service {
   title: string;
   description: string;
   icon: string;
-  href: string;
   features?: string[];
 }
 

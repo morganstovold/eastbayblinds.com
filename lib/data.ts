@@ -132,7 +132,6 @@ export const services: Service[] = [
 ];
 
 export const products: Product[] = [
-  // Shutters
   {
     id: "brightwood-shutters",
     name: "Brightwood™ Shutters",
@@ -147,7 +146,6 @@ export const products: Product[] = [
       "Professional installation",
     ],
     image: BrightwoodShutters,
-    brand: "Norman",
   },
   {
     id: "normandy-shutters",
@@ -164,7 +162,6 @@ export const products: Product[] = [
       "Lifetime warranty",
     ],
     image: NormandyShutters,
-    brand: "Norman",
   },
   {
     id: "woodlore-plus-shutters",
@@ -180,7 +177,6 @@ export const products: Product[] = [
       "Durable construction",
     ],
     image: WoodlorePlusShutters,
-    brand: "Norman",
   },
   {
     id: "woodlore-shutters",
@@ -196,10 +192,7 @@ export const products: Product[] = [
       "Durable and robust",
     ],
     image: WoodloreShutters,
-    brand: "Norman",
   },
-
-  // Blinds
   {
     id: "ultimate-faux-wood-blinds",
     name: "Ultimate™ Faux Wood Blinds",
@@ -215,7 +208,6 @@ export const products: Product[] = [
       "Moisture resistant",
     ],
     image: UltimateFauxWoodBlinds,
-    brand: "Norman",
   },
   {
     id: "synchrony-vertical-blinds",
@@ -232,7 +224,6 @@ export const products: Product[] = [
       "Sliding door compatibility",
     ],
     image: SynchronyVerticalBlinds,
-    brand: "Norman",
   },
   {
     id: "normandy-wood-blinds",
@@ -249,7 +240,6 @@ export const products: Product[] = [
       "Sustainable materials",
     ],
     image: UltimateNormandyWoodBlinds,
-    brand: "Norman",
   },
   {
     id: "citylights-aluminum-blinds",
@@ -266,10 +256,7 @@ export const products: Product[] = [
       "Modern styling",
     ],
     image: CityLightsAluminumBlinds,
-    brand: "Norman",
   },
-
-  // Shades
   {
     id: "smartdrape-shades",
     name: "SmartDrape™",
@@ -284,7 +271,6 @@ export const products: Product[] = [
       "Large opening coverage",
     ],
     image: SmartDrapeShades,
-    brand: "Norman",
   },
   {
     id: "soluna-roller-shades",
@@ -301,7 +287,6 @@ export const products: Product[] = [
       "Cordless operation",
     ],
     image: SolunaRollerShades,
-    brand: "Norman",
   },
   {
     id: "blackout-shades",
@@ -318,7 +303,6 @@ export const products: Product[] = [
       "Enhanced privacy",
     ],
     image: BlackoutShades,
-    brand: "Norman",
   },
   {
     id: "centerpiece-roman-shades",
@@ -335,7 +319,6 @@ export const products: Product[] = [
       "Premium materials",
     ],
     image: CenterpieceRomanShades,
-    brand: "Norman",
   },
   {
     id: "perfectsheer-shades",
@@ -352,7 +335,6 @@ export const products: Product[] = [
       "Innovative design",
     ],
     image: PerfectSheerShades,
-    brand: "Norman",
   },
   {
     id: "portrait-honeycomb-shades",
@@ -369,7 +351,6 @@ export const products: Product[] = [
       "Universal compatibility",
     ],
     image: PortraitHoneycombShades,
-    brand: "Norman",
   },
 ];
 
