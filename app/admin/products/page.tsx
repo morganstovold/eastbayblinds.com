@@ -2,11 +2,11 @@ import React from "react";
 import { redirect } from "next/navigation";
 
 export const dynamic = 'force-dynamic';
-import { getAdminSession, getAdminReviews } from "@/lib/admin-actions";
-import ReviewsClientComponent from "@/components/ReviewsClientComponent";
+import { getAdminSession, getProductsData } from "@/lib/admin-actions";
 import BackButton from "@/components/BackButton";
+import ProductsClientComponent from "@/components/ProductsClientComponent";
 
-export default async function ReviewsManagement() {
+export default async function ProductsManagement() {
   // Check authentication server-side
   const user = await getAdminSession();
 
@@ -14,8 +14,8 @@ export default async function ReviewsManagement() {
     redirect("/auth/signin");
   }
 
-  // Fetch reviews data server-side
-  const { reviews } = await getAdminReviews();
+  // Fetch products data server-side
+  const { products } = await getProductsData();
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -27,16 +27,16 @@ export default async function ReviewsManagement() {
               <BackButton />
               <div>
                 <h1 className="text-lg sm:text-xl font-semibold text-gray-900">
-                  Customer Reviews
+                  Product Configuration
                 </h1>
                 <p className="text-sm text-gray-600 sm:hidden">
-                  Manage customer reviews
+                  Configure product marketing copy
                 </p>
               </div>
             </div>
             <div className="flex items-center gap-3">
               <div className="text-sm text-gray-600 hidden sm:block">
-                Manage customer reviews
+                Configure product marketing copy
               </div>
             </div>
           </div>
@@ -44,8 +44,8 @@ export default async function ReviewsManagement() {
       </header>
 
       <main className="container mx-auto px-4 py-6 sm:py-8">
-        <ReviewsClientComponent initialReviews={reviews} />
+        <ProductsClientComponent initialProducts={products} />
       </main>
     </div>
   );
-}
+} 

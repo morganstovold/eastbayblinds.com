@@ -107,11 +107,10 @@ export default function ContactPage() {
                   Service Area
                 </h3>
                 <p className="font-semibold text-gray-900 text-lg mb-2">
-                  Solano & Contra Costa Counties
+                  East Bay Communities
                 </p>
                 <p className="text-gray-600 max-w-sm mx-auto leading-relaxed">
-                  Including Benicia, Vallejo, Fairfield, Vacaville, Concord,
-                  Walnut Creek, and surrounding areas
+                  Lafayette, Orinda, Moraga, Danville, Alamo, Walnut Creek, and surrounding areas
                 </p>
               </motion.div>
             </div>

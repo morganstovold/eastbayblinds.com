@@ -3,10 +3,32 @@
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { motion } from "framer-motion";
-import { LucideIcon } from "lucide-react";
+import { 
+  Shield, 
+  Palette, 
+  Wrench, 
+  Home,
+  Sun,
+  Droplets,
+  Moon,
+  Thermometer,
+  LucideIcon 
+} from "lucide-react";
+
+// Icon mapping
+const iconMap: Record<string, LucideIcon> = {
+  Shield,
+  Palette,
+  Wrench,
+  Home,
+  Sun,
+  Droplets,
+  Moon,
+  Thermometer,
+};
 
 interface Benefit {
-  icon: LucideIcon;
+  icon: string;
   title: string;
   description: string;
 }
@@ -43,27 +65,29 @@ export default function ProductBenefits({
         </motion.div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {benefits.map((benefit, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-            >
-              <Card className="h-full text-center">
-                <CardHeader>
-                  <div className="mx-auto mb-4 p-3 bg-gray-50 rounded-full w-fit">
-                    <benefit.icon className="h-8 w-8 text-primary" />
-                  </div>
-                  <CardTitle className="text-lg">{benefit.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600 text-sm">{benefit.description}</p>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
+          {benefits.map((benefit, index) => {
+            const IconComponent = iconMap[benefit.icon];
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <Card className="h-full text-center">
+                  <CardHeader>
+                    <div className="mx-auto mb-4 p-3 bg-gray-50 rounded-full w-fit">
+                      {IconComponent && <IconComponent className="h-8 w-8 text-primary" />}
+                    </div>
+                    <CardTitle className="text-lg">{benefit.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-gray-600 text-sm">{benefit.description}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+          )})}
         </div>
       </div>
     </section>

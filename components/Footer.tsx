@@ -43,7 +43,7 @@ export default function Footer() {
                 {businessInfo.tagline}
               </p>
               <p className="text-gray-400 text-sm leading-relaxed">
-                Serving Solano and Contra Costa counties with premium Norman®
+                Serving Lafayette, Orinda, Moraga, Danville, Alamo, Walnut Creek and surrounding East Bay communities with premium Norman®
                 window treatments since 2006. Professional installation and
                 lifetime warranty on all products.
               </p>

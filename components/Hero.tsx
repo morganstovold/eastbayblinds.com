@@ -9,6 +9,7 @@ import Image, { StaticImageData } from "next/image";
 
 interface HeroProps {
   title: string;
+  boldTitle?: boolean;
   subtitle?: string;
   description?: string;
   mobileDescription?: string; // Optional shorter description for mobile
@@ -21,6 +22,7 @@ interface HeroProps {
 
 export default function Hero({
   title,
+  boldTitle = true,
   subtitle,
   description,
   mobileDescription,
@@ -97,11 +99,11 @@ export default function Hero({
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6 leading-tight"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl mb-4 sm:mb-6 leading-tight"
           >
             {/* Show truncated title on very small screens */}
             <span className="block sm:hidden">{truncateTitle(title, 40)}</span>
-            <span className="hidden sm:block">{title}</span>
+            <span className={`${boldTitle ? 'font-bold' : 'font-normal'} font-roboto hidden sm:block`}>{title}</span>
           </motion.h1>
 
           {(description || mobileDescription) && (

@@ -1,12 +1,12 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Roboto } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
-const inter = Inter({
+const roboto = Roboto({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-roboto",
 });
 
 export const viewport: Viewport = {
@@ -174,18 +174,6 @@ export default function RootLayout({
                 },
                 {
                   "@type": "City",
-                  name: "Vallejo, CA",
-                },
-                {
-                  "@type": "City",
-                  name: "Fairfield, CA",
-                },
-                {
-                  "@type": "City",
-                  name: "Vacaville, CA",
-                },
-                {
-                  "@type": "City",
                   name: "Concord, CA",
                 },
                 {
@@ -264,7 +252,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${inter.variable} antialiased`}>
+      <body className={`${roboto.variable} antialiased`}>
         {children}
         <Analytics />
         <SpeedInsights />

@@ -6,7 +6,8 @@ import ProductCard from "@/components/ProductCard";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { businessInfo, products, services } from "@/lib/data";
+import { businessInfo, services } from "@/lib/data";
+import { getProductsData } from "@/lib/admin-actions";
 import { AnimatedSection, AnimatedGrid } from "@/components/AnimatedSection";
 import Link from "next/link";
 import { ArrowRight, Home, Shield, Star } from "lucide-react";
@@ -56,8 +57,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default function HomePage() {
-  const featuredProducts = products.slice(0, 3);
+export default async function HomePage() {
+  const { featuredProducts } = await getProductsData();
   const featuredServices = services.slice(0, 3);
 
   return (
@@ -65,7 +66,8 @@ export default function HomePage() {
       <Header />
 
       <Hero
-        title={businessInfo.name}
+        title={businessInfo.name.toUpperCase()}
+        boldTitle={false}
         subtitle={businessInfo.tagline}
         description="Transform your space with our custom-made window treatments. We provide a full-service solution that handles all aspects of installation."
         mobileDescription="Transform your space with custom window treatments and professional installation."

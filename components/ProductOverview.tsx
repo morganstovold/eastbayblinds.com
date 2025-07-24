@@ -9,7 +9,7 @@ interface ProductOverviewProps {
   title: string;
   description: string;
   features: string[];
-  image: StaticImageData;
+  image: string | StaticImageData;
 }
 
 export default function ProductOverview({

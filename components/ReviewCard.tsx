@@ -3,6 +3,9 @@ import { motion } from "framer-motion";
 import { Star, ExternalLink } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Review } from "@/lib/types";
+import Link from "next/link";
+import { businessInfo } from "@/lib/data";
+import { buttonVariants } from "./ui/button";
 
 interface ReviewCardProps {
   review: Review;
@@ -29,7 +32,7 @@ const truncateText = (text: string, maxLength: number) => {
 // Helper function to format date
 function formatDate(date: Date | null): string {
   if (!date) return "Recent";
-  
+
   try {
     return date.toLocaleDateString("en-US", {
       year: "numeric",
@@ -54,10 +57,7 @@ const StarRating = ({ rating }: { rating: number }) => {
   ));
 };
 
-export function ReviewCard({
-  review,
-  variant = "default",
-}: ReviewCardProps) {
+export function ReviewCard({ review, variant = "default" }: ReviewCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const isFeatured = variant === "featured";
 
@@ -116,13 +116,15 @@ export function ReviewCard({
               </div>
             </div>
 
-            {/* External Link Button */}
-            <button className="flex-shrink-0 p-2 hover:bg-gray-100 rounded-full transition-colors group">
-              <ExternalLink 
-                size={16} 
-                className="text-gray-400 group-hover:text-gray-600 transition-colors" 
+            <Link
+              href={businessInfo.socialLinks.yelp || ""}
+              className={buttonVariants({ size: "icon", variant: "ghost" })}
+            >
+              <ExternalLink
+                size={16}
+                className="text-gray-400 group-hover:text-gray-600 transition-colors"
               />
-            </button>
+            </Link>
           </div>
 
           {/* Review Text */}
@@ -130,7 +132,7 @@ export function ReviewCard({
             <span className="text-gray-400 text-lg leading-none">"</span>
             {displayText}
             <span className="text-gray-400 text-lg leading-none">"</span>
-            
+
             {isTruncated && (
               <button
                 onClick={() => setIsExpanded(!isExpanded)}
@@ -144,4 +146,4 @@ export function ReviewCard({
       </Card>
     </motion.div>
   );
-} 
+}

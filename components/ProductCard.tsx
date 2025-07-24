@@ -4,13 +4,13 @@ import React from "react";
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Product } from "@/lib/types";
+import { ConfigurableProduct } from "@/lib/static-products";
 import { motion } from "framer-motion";
 import { ArrowRight, Check } from "lucide-react";
 import Image from "next/image";
 
 interface ProductCardProps {
-  product: Product;
+  product: ConfigurableProduct;
   showAllFeatures?: boolean;
   variant?: "default" | "featured" | "compact";
 }
@@ -74,7 +74,6 @@ export default function ProductCard({
         <CardContent
           className={`${isCompact ? "p-4 pt-0" : "p-6 pt-0"} space-y-4`}
         >
-          {/* Features List */}
           {product.features && product.features.length > 0 && (
             <div className="space-y-2">
               <h4 className="font-medium text-gray-900 text-sm">
@@ -84,7 +83,7 @@ export default function ProductCard({
                 {(showAllFeatures
                   ? product.features
                   : product.features.slice(0, 3)
-                ).map((feature, index) => (
+                ).map((feature: string, index: number) => (
                   <li
                     key={index}
                     className="flex items-start gap-2 text-sm text-gray-600"

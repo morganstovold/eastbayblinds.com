@@ -129,7 +129,7 @@ export default function AboutPage() {
                   East Bay Blinds is committed to excellent customer service.
                   Our unique shop-at-home experience provides you with samples
                   and all the information needed to make a confident window
-                  treatment decision. We serve Solano and Contra Costa counties
+                  treatment decision. We serve Lafayette, Orinda, Moraga, Danville, Alamo, Walnut Creek and surrounding East Bay communities
                   with a goal to listen to your needs and provide the best
                   possible solution that fits your lifestyle and your budget.
                 </p>

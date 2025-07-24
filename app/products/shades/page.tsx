@@ -1,48 +1,43 @@
-"use client";
-
 import React from "react";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Footer from "@/components/Footer";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { products } from "@/lib/data";
-import { motion } from "framer-motion";
-import { Check, Sun, Moon, Thermometer, Palette } from "lucide-react";
+import { getProductsData } from "@/lib/admin-actions";
 import CTA from "@/components/CTA";
 import ProductBenefits from "@/components/ProductBenefits";
 import InstallationProcess from "@/components/InstallationProcess";
 import ProductOverview from "@/components/ProductOverview";
 import ProductCollection from "@/components/ProductCollection";
 import TaxCreditSection from "@/components/TaxCreditSection";
+import ShadesTypesSection from "@/components/ShadesTypesSection";
 import HeroBackground from "@/public/Hero-Shades.webp";
 import ShadesImage from "@/public/Portrait-Honecomb-Shades.webp";
 
-export default function ShadesPage() {
-  const shadeProducts = products.filter(
-    (product) => product.category === "shades"
-  );
+export default async function ShadesPage() {
+  const { products } = await getProductsData();
+  const shadeProducts = products.filter((product) => product.category === "shades");
 
   const shadeBenefits = [
     {
-      icon: Sun,
+      icon: "Sun",
       title: "Light Filtering",
       description:
         "Control natural light while maintaining your view and connection to the outdoors.",
     },
     {
-      icon: Moon,
+      icon: "Moon",
       title: "Privacy Options",
       description:
         "From sheer to blackout, choose your level of privacy and light control.",
     },
     {
-      icon: Thermometer,
+      icon: "Thermometer",
       title: "Energy Efficiency",
       description:
         "Cellular construction provides insulation to reduce heating and cooling costs.",
     },
     {
-      icon: Palette,
+      icon: "Palette",
       title: "Style Variety",
       description:
         "Wide range of fabrics, textures, and colors to match any decor.",
@@ -123,56 +118,7 @@ export default function ShadesPage() {
       />
 
       {/* Shade Types Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 sm:px-0">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Types of Shades
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Choose the perfect shade style for your home
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {shadeTypes.map((type, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <Card className="h-full">
-                  <CardHeader>
-                    <CardTitle className="text-xl">{type.title}</CardTitle>
-                    <p className="text-gray-600">{type.description}</p>
-                  </CardHeader>
-                  <CardContent>
-                    <ul className="space-y-2">
-                      {type.features.map((feature, featureIndex) => (
-                        <li
-                          key={featureIndex}
-                          className="flex items-start gap-2 text-sm"
-                        >
-                          <Check className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                          <span className="text-gray-700">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ShadesTypesSection shadeTypes={shadeTypes} />
 
       <InstallationProcess
         backgroundColor="bg-gray-50"
@@ -204,8 +150,6 @@ export default function ShadesPage() {
         products={shadeProducts}
         backgroundColor="bg-white"
       />
-
-      <TaxCreditSection backgroundColor="bg-gray-50" />
 
       <CTA
         title="Ready for Beautiful Shades?"

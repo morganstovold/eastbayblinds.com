@@ -1,7 +1,6 @@
 import React, { Suspense } from "react";
 import { redirect } from "next/navigation";
 
-export const dynamic = 'force-dynamic';
 import { buttonVariants } from "@/components/ui/button";
 import {
   Card,
@@ -16,13 +15,19 @@ import {
   Calendar,
   AlertCircle,
   Star,
+  Package,
 } from "lucide-react";
 import { businessInfo } from "@/lib/data";
 import Link from "next/link";
-import { getAdminSession, getContactStats, getReviewStats } from "@/lib/admin-actions";
+import {
+  getAdminSession,
+  getContactStats,
+  getReviewStats,
+  getProductsData,
+} from "@/lib/admin-actions";
+import { staticProducts } from "@/lib/static-products";
 import AdminSignOutButton from "@/components/AdminSignOutButton";
 
-// Loading components for Suspense boundaries
 function StatsCardSkeleton() {
   return (
     <Card>
@@ -59,7 +64,7 @@ function ManagementCardSkeleton() {
 // Stats components that fetch data
 async function ContactStatsCards() {
   const stats = await getContactStats();
-  
+
   return (
     <>
       <Card>
@@ -101,7 +106,9 @@ async function ContactStatsCards() {
           <AlertCircle className="h-4 w-4 text-muted-foreground" />
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold text-orange-600">{stats.unreadContacts}</div>
+          <div className="text-2xl font-bold text-orange-600">
+            {stats.unreadContacts}
+          </div>
           <p className="text-xs text-muted-foreground">Need attention</p>
         </CardContent>
       </Card>
@@ -110,10 +117,33 @@ async function ContactStatsCards() {
 }
 
 async function ManagementCards() {
-  const [contactStats, reviewStats] = await Promise.all([
+  const [contactStats, reviewStats, productsData] = await Promise.all([
     getContactStats(),
-    getReviewStats()
+    getReviewStats(),
+    getProductsData(),
   ]);
+
+  // Calculate stats for hybrid static + database system
+  const totalStaticProducts = staticProducts.length;
+  const customizedProducts = productsData.products.filter(product => {
+    const staticProduct = staticProducts.find(sp => sp.id === product.id);
+    return staticProduct && (
+      product.name !== staticProduct.defaultName ||
+      product.description !== staticProduct.defaultDescription ||
+      JSON.stringify(product.features) !== JSON.stringify(staticProduct.defaultFeatures) ||
+      product.isFeatured !== staticProduct.defaultIsFeatured
+    );
+  }).length;
+
+  const productStats = {
+    totalStaticProducts,
+    customizedProducts,
+    featuredProducts: productsData.featuredProducts.length,
+    categoryBreakdown: staticProducts.reduce((acc, product) => {
+      acc[product.category] = (acc[product.category] || 0) + 1;
+      return acc;
+    }, {} as Record<string, number>),
+  };
 
   return (
     <>
@@ -191,14 +221,55 @@ async function ManagementCards() {
           </Link>
         </CardContent>
       </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Package className="h-5 w-5" />
+            Product Configuration
+          </CardTitle>
+          <CardDescription>
+            Configure marketing copy for static products. Customize names, descriptions, features, and featured status.
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-3">
+          <div className="flex justify-between text-sm">
+            <span className="text-gray-600">Static products:</span>
+            <span className="font-medium">{productStats.totalStaticProducts}</span>
+          </div>
+          <div className="flex justify-between text-sm">
+            <span className="text-gray-600">Customized:</span>
+            <span className="font-medium">{productStats.customizedProducts}</span>
+          </div>
+          <div className="flex justify-between text-sm">
+            <span className="text-gray-600">Featured:</span>
+            <span className="font-medium">
+              {productStats.featuredProducts}/3
+            </span>
+          </div>
+          <div className="flex justify-between text-sm">
+            <span className="text-gray-600">Categories:</span>
+            <span className="font-medium">
+              Shutters ({productStats.categoryBreakdown.shutters || 0}), 
+              Blinds ({productStats.categoryBreakdown.blinds || 0}), 
+              Shades ({productStats.categoryBreakdown.shades || 0})
+            </span>
+          </div>
+          <Link
+            href="/admin/products"
+            className={buttonVariants({ className: "w-full mt-4" })}
+          >
+            Configure Products
+          </Link>
+        </CardContent>
+      </Card>
     </>
   );
 }
 
 export default async function AdminDashboard() {
-  // Check authentication server-side
   const user = await getAdminSession();
-  
+
   if (!user) {
     redirect("/auth/signin");
   }
@@ -234,98 +305,18 @@ export default async function AdminDashboard() {
           </p>
         </div>
 
-        {/* Stats Cards with Suspense */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-8">
           <Suspense fallback={<StatsCardSkeleton />}>
             <ContactStatsCards />
           </Suspense>
         </div>
 
-        {/* Management Cards with Suspense */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
           <Suspense fallback={<ManagementCardSkeleton />}>
             <ManagementCards />
           </Suspense>
         </div>
-
-        {/* Account Info - No suspense needed as user data is already available */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <MessageSquare className="h-5 w-5" />
-              Account Information
-            </CardTitle>
-            <CardDescription>
-              Your admin account details and system access.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-              <div className="flex justify-between text-sm">
-                <span className="text-gray-600">Signed in as:</span>
-                <span className="font-medium">{user.name}</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="text-gray-600">Email:</span>
-                <span className="font-medium text-xs sm:text-sm break-all">{user.email}</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="text-gray-600">Role:</span>
-                <span className="font-medium">Administrator</span>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Quick Actions for Mobile */}
-        <div className="lg:hidden space-y-4 mt-6">
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-base">Quick Actions</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              {/* Contact stats for mobile quick access */}
-              <Suspense fallback={
-                <div className="space-y-3">
-                  <div className="h-10 w-full bg-gray-200 rounded animate-pulse" />
-                  <div className="h-10 w-full bg-gray-200 rounded animate-pulse" />
-                </div>
-              }>
-                <MobileQuickActions />
-              </Suspense>
-            </CardContent>
-          </Card>
-        </div>
       </main>
     </div>
-  );
-}
-
-// Mobile quick actions component
-async function MobileQuickActions() {
-  const contactStats = await getContactStats();
-  
-  return (
-    <>
-      <Link
-        href="/admin/contacts"
-        className={buttonVariants({ className: "w-full" })}
-      >
-        <MessageSquare className="h-4 w-4 mr-2" />
-        Manage Contacts
-        {contactStats.unreadContacts > 0 && (
-          <span className="ml-2 bg-orange-500 text-white text-xs px-2 py-1 rounded-full">
-            {contactStats.unreadContacts}
-          </span>
-        )}
-      </Link>
-      <Link
-        href="/admin/reviews"
-        className={buttonVariants({ className: "w-full" })}
-      >
-        <Star className="h-4 w-4 mr-2" />
-        Manage Reviews
-      </Link>
-    </>
   );
 }

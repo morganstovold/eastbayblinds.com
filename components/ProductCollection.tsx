@@ -3,12 +3,12 @@
 import React from "react";
 import { motion } from "framer-motion";
 import ProductCard from "@/components/ProductCard";
-import { Product } from "@/lib/types";
+import { ConfigurableProduct } from "@/lib/static-products";
 
 interface ProductCollectionProps {
   title: string;
   subtitle: string;
-  products: Product[];
+  products: ConfigurableProduct[];
   backgroundColor?: string;
 }
 

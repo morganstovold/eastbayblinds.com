@@ -85,3 +85,16 @@ export const review = pgTable("review", {
 });
 
 export type Review = typeof review.$inferSelect;
+
+// Product Configuration table - only stores configurable fields
+export const productConfig = pgTable("product_config", {
+  id: text("id").primaryKey(), // matches static product ID
+  name: text("name"), // null means use default
+  description: text("description"), // null means use default
+  features: text("features").array(), // null means use default
+  isFeatured: boolean("is_featured"), // null means use default
+  createdAt: timestamp("created_at").$defaultFn(() => new Date()),
+  updatedAt: timestamp("updated_at").$defaultFn(() => new Date()),
+});
+
+export type ProductConfig = typeof productConfig.$inferSelect;

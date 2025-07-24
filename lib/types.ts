@@ -1,15 +1,3 @@
-import { StaticImageData } from "next/image";
-
-export interface Product {
-  id: string;
-  name: string;
-  description: string;
-  image: StaticImageData;
-  category: string;
-  features: string[];
-  benefits?: string[];
-}
-
 export interface Service {
   id: string;
   title: string;

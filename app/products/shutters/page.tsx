@@ -1,11 +1,8 @@
-"use client";
-
 import React from "react";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Footer from "@/components/Footer";
-import { products } from "@/lib/data";
-import { Shield, Palette, Wrench, Home } from "lucide-react";
+import { getProductsData } from "@/lib/admin-actions";
 import CTA from "@/components/CTA";
 import ProductBenefits from "@/components/ProductBenefits";
 import InstallationProcess from "@/components/InstallationProcess";
@@ -15,32 +12,31 @@ import TaxCreditSection from "@/components/TaxCreditSection";
 import HeroBackground from "@/public/Hero-Shutters.jpg";
 import ShuttersImage from "@/public/Normandy-Shutters.webp";
 
-export default function ShuttersPage() {
-  const shutterProducts = products.filter(
-    (product) => product.category === "shutters"
-  );
+export default async function ShuttersPage() {
+  const { products } = await getProductsData();
+  const shutterProducts = products.filter((product) => product.category === "shutters");
 
   const shutterBenefits = [
     {
-      icon: Shield,
+      icon: "Shield",
       title: "Durability & Longevity",
       description:
         "Built to last with premium materials that withstand daily use and weather conditions.",
     },
     {
-      icon: Palette,
+      icon: "Palette",
       title: "Customizable Style",
       description:
         "Choose from various finishes, colors, and louver sizes to match your home decor.",
     },
     {
-      icon: Home,
+      icon: "Home",
       title: "Increased Home Value",
       description:
         "Shutters are a premium feature that adds lasting value to your property.",
     },
     {
-      icon: Wrench,
+      icon: "Wrench",
       title: "Easy Maintenance",
       description:
         "Simple to clean and maintain with occasional dusting and gentle cleaning.",
