@@ -4,10 +4,9 @@ import React from "react";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Footer from "@/components/Footer";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { services } from "@/lib/data";
 import { motion } from "framer-motion";
-import { Check, Clock, Award, Users, Wrench } from "lucide-react";
+import { Check, Award, Users, Wrench } from "lucide-react";
 import CTA from "@/components/CTA";
 import Image from "next/image";
 import ServicesGrid from "@/components/ServicesGrid";
@@ -61,24 +60,6 @@ export default function ServicesPage() {
     "Child-safe cordless options",
     "Motorization and smart home integration",
     "Post-installation support and maintenance",
-  ];
-
-  const emergencyServices = [
-    {
-      title: "Emergency Support",
-      description: "Quick response for urgent warranty-related issues",
-      availability: "Same-day service",
-    },
-    {
-      title: "Warranty Service",
-      description: "Fast resolution for warranty-covered issues",
-      availability: "24-48 hours",
-    },
-    {
-      title: "Replacement Parts",
-      description: "Genuine replacement parts for all major brands",
-      availability: "Next-day delivery",
-    },
   ];
 
   return (

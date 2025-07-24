@@ -13,13 +13,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { updateProductConfig, resetProductConfig } from "@/lib/admin-actions";
 import { staticProducts } from "@/lib/static-products";
 import { X, Plus, RotateCcw } from "lucide-react";
@@ -148,7 +141,8 @@ export default function ProductsClientComponent({
         prev.map((p) => (p.id === editProduct.id ? result.product! : p))
       );
       closeModal();
-    } catch (e) {
+    } catch (error) {
+      console.error(error);
       setModalError("Failed to update product.");
     } finally {
       setLoading(false);
@@ -185,7 +179,8 @@ export default function ProductsClientComponent({
           )
         );
       }
-    } catch (e) {
+    } catch (error) {
+      console.error(error);
       setError("Failed to reset product.");
     } finally {
       setLoading(false);

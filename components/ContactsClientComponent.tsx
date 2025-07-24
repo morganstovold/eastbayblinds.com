@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import {
@@ -17,7 +16,6 @@ import {
   Phone,
   Mail,
   MapPin,
-  Clock,
   User,
   Search,
   X,
@@ -48,7 +46,6 @@ export default function ContactsClientComponent({
   initialSubmissions,
 }: ContactsClientComponentProps) {
   const [submissions, setSubmissions] = useState(initialSubmissions);
-  const [loading, setLoading] = useState(false);
   const [updating, setUpdating] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
@@ -83,7 +80,8 @@ export default function ContactsClientComponent({
           sub.id === id ? { ...sub, status: newStatus as any } : sub
         )
       );
-    } catch (e) {
+    } catch (error) {
+      console.error(error);
       setError("Failed to update status");
     } finally {
       setUpdating(null);

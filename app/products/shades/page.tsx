@@ -8,7 +8,6 @@ import ProductBenefits from "@/components/ProductBenefits";
 import InstallationProcess from "@/components/InstallationProcess";
 import ProductOverview from "@/components/ProductOverview";
 import ProductCollection from "@/components/ProductCollection";
-import TaxCreditSection from "@/components/TaxCreditSection";
 import ShadesTypesSection from "@/components/ShadesTypesSection";
 import HeroBackground from "@/public/Hero-Shades.webp";
 import ShadesImage from "@/public/Portrait-Honecomb-Shades.webp";

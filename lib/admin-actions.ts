@@ -16,7 +16,6 @@ import {
 import { desc, eq, gte, sql, or, ilike, and } from "drizzle-orm";
 import { headers } from "next/headers";
 import { unstable_cache, revalidateTag } from "next/cache";
-import { nanoid } from "nanoid";
 
 const PRODUCTS_CACHE_TAG = "products";
 
