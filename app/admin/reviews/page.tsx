@@ -1,10 +1,12 @@
 import React from "react";
 import { redirect } from "next/navigation";
 
-export const dynamic = 'force-dynamic';
 import { getAdminSession, getAdminReviews } from "@/lib/admin-actions";
 import ReviewsClientComponent from "@/components/ReviewsClientComponent";
 import BackButton from "@/components/BackButton";
+
+// Force dynamic rendering for admin pages that require authentication  
+export const dynamic = 'force-dynamic';
 
 export default async function ReviewsManagement() {
   // Check authentication server-side

@@ -11,6 +11,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { AlertCircle, Eye, EyeOff, Loader2 } from "lucide-react";
 import Link from "next/link";
 
+// Force dynamic rendering to prevent build-time auth issues
+export const dynamic = 'force-dynamic';
+
 interface SignInFormData {
   email: string;
   password: string;

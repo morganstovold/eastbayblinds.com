@@ -153,7 +153,7 @@ export default function RootLayout({
                 "East Bay Blinds provides premium Norman® window treatments including custom shutters, blinds, and shades. Serving Solano & Contra Costa Counties with professional installation and lifetime warranties.",
               url: "https://www.eastbayblinds.com/",
               telephone: "(925) 200-4521",
-              email: "mailto:info@eastbayblinds.com",
+              email: "mailto:larry@eastbayblinds.com",
               address: {
                 "@type": "PostalAddress",
                 streetAddress: "",

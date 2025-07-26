@@ -28,6 +28,8 @@ import {
 import { staticProducts } from "@/lib/static-products";
 import AdminSignOutButton from "@/components/AdminSignOutButton";
 
+export const dynamic = 'force-dynamic';
+
 function StatsCardSkeleton() {
   return (
     <Card>

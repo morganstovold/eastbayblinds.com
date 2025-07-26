@@ -1,13 +1,15 @@
 import React from "react";
 import { redirect } from "next/navigation";
 
-export const dynamic = "force-dynamic";
 import {
   getAdminSession,
   getAdminContactSubmissions,
 } from "@/lib/admin-actions";
 import ContactsClientComponent from "@/components/ContactsClientComponent";
 import BackButton from "@/components/BackButton";
+
+// Force dynamic rendering for admin pages that require authentication
+export const dynamic = 'force-dynamic';
 
 export default async function ContactsManagement() {
   const user = await getAdminSession();
