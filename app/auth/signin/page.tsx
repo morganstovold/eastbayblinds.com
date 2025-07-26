@@ -29,24 +29,37 @@ export default function SignInPage() {
   } = useForm<SignInFormData>();
 
   const onSubmit = async (data: SignInFormData) => {
+    console.log("Form submitted with data:", data);
     setIsLoading(true);
     setError("");
 
     try {
+      console.log("About to call authClient.signIn.email");
       const result = await authClient.signIn.email({
         email: data.email,
         password: data.password,
         callbackURL: "/admin",
       });
 
+      console.log("Auth result:", result);
+
       if (result.error) {
-        setError(result.error.message || "Sign in failed");
+        console.error("Auth error:", result.error);
+        let errorMessage = result.error.message || "Sign in failed";
+        
+        // Provide browser-specific guidance for common issues
+        if (errorMessage.includes('cookie') || errorMessage.includes('session')) {
+          errorMessage += " - This might be due to browser cookie settings. Try enabling cookies or using a different browser.";
+        }
+        
+        setError(errorMessage);
       } else {
+        console.log("Sign in successful, redirecting to /admin");
         router.push("/admin");
       }
     } catch (err) {
-      setError("An unexpected error occurred");
       console.error("Sign in error:", err);
+      setError("An unexpected error occurred. If you're using Microsoft Edge, try enabling third-party cookies or switching browsers.");
     } finally {
       setIsLoading(false);
     }
@@ -154,6 +167,9 @@ export default function SignInPage() {
                 >
                   Sign up here
                 </Link>
+              </p>
+              <p className="mt-2 text-xs text-gray-500">
+                Having trouble? Check the browser console (F12) for error messages.
               </p>
             </div>
           </CardContent>
