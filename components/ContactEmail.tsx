@@ -11,6 +11,7 @@ import {
   Row,
   Column,
 } from "@react-email/components";
+import { serviceTypes } from "@/lib/data";
 
 interface ContactEmailProps {
   name: string;
@@ -33,25 +34,32 @@ export default function ContactEmail({
 }: ContactEmailProps) {
   const contactFields = [
     { label: "Name", value: name },
-    { 
-      label: "Email", 
-      value: email, 
-      link: `mailto:${email}` 
+    {
+      label: "Email",
+      value: email,
+      link: `mailto:${email}`,
     },
-    { 
-      label: "Phone", 
-      value: phone, 
-      link: `tel:${phone}` 
+    {
+      label: "Phone",
+      value: phone,
+      link: `tel:${phone}`,
     },
     { label: "Zip Code", value: zipCode },
-    { label: "Service Type", value: serviceType },
+    {
+      label: "Service Type",
+      value:
+        serviceTypes.find((type) => type.value === serviceType)?.label ||
+        serviceType,
+    },
     { label: "Submitted", value: submittedAt },
   ];
 
   return (
     <Html>
       <Head />
-      <Preview>New Contact Form Submission from {name} - East Bay Blinds</Preview>
+      <Preview>
+        New Contact Form Submission from {name} - East Bay Blinds
+      </Preview>
       <Body style={main}>
         <Container style={container}>
           <Section style={headerSection}>
@@ -60,7 +68,7 @@ export default function ContactEmail({
 
           <Section style={contentSection}>
             <Text style={sectionTitle}>Contact Information</Text>
-            
+
             {contactFields.map(({ label, value, link }) => (
               <Row key={label} style={fieldRow}>
                 <Column style={labelColumn}>
@@ -92,7 +100,7 @@ export default function ContactEmail({
 
           <Section style={footerSection}>
             <Text style={footerText}>
-              This email was automatically generated from the East Bay Blinds 
+              This email was automatically generated from the East Bay Blinds
               contact form submission.
             </Text>
           </Section>
