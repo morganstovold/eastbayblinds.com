@@ -29,52 +29,30 @@ export default function SignInPage() {
   } = useForm<SignInFormData>();
 
   const onSubmit = async (data: SignInFormData) => {
-    console.log("Form submitted with data:", data);
-    console.log("Current environment:", process.env.NODE_ENV);
-    console.log("Current URL:", window.location.href);
-    
     setIsLoading(true);
     setError("");
 
     try {
-      console.log("About to call authClient.signIn.email");
       const result = await authClient.signIn.email({
         email: data.email,
         password: data.password,
         callbackURL: "/admin",
       });
 
-      console.log("Auth result:", result);
-      console.log("Auth result data:", result.data);
-      console.log("Auth result error:", result.error);
-
       if (result.error) {
-        console.error("Auth error:", result.error);
-        let errorMessage = result.error.message || "Sign in failed";
-        
-        // Provide browser-specific guidance for common issues
-        if (errorMessage.includes('cookie') || errorMessage.includes('session')) {
-          errorMessage += " - This might be due to browser cookie settings. Try enabling cookies or using a different browser.";
-        }
-        
-        setError(errorMessage);
+        setError(result.error.message || "Sign in failed");
       } else if (result.data) {
-        console.log("Sign in successful, user data:", result.data);
-        console.log("About to redirect to /admin");
-        
-        // Force a hard redirect for production
         if (typeof window !== 'undefined') {
           window.location.href = "/admin";
         } else {
           router.push("/admin");
         }
       } else {
-        console.log("Sign in returned neither error nor data:", result);
         setError("Sign in completed but no session data received. Please try refreshing the page.");
       }
     } catch (err) {
+      setError("An unexpected error occurred");
       console.error("Sign in error:", err);
-      setError("An unexpected error occurred. If you're using Microsoft Edge, try enabling third-party cookies or switching browsers.");
     } finally {
       setIsLoading(false);
     }
@@ -97,11 +75,6 @@ export default function SignInPage() {
             <CardTitle>Sign In</CardTitle>
             <CardDescription>
               Enter your credentials to access the admin dashboard
-              {typeof window !== 'undefined' && navigator.userAgent.includes('Edg/') && (
-                <div className="mt-2 text-sm text-yellow-600">
-                  ⚠️ Using Microsoft Edge? Try enabling cookies if you have issues.
-                </div>
-              )}
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -187,9 +160,6 @@ export default function SignInPage() {
                 >
                   Sign up here
                 </Link>
-              </p>
-              <p className="mt-2 text-xs text-gray-500">
-                Having trouble? Check the browser console (F12) for error messages.
               </p>
             </div>
           </CardContent>

@@ -49,7 +49,6 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
     setErrorMessage("");
 
     try {
-      // Submit using server action
       const result = await submitContactForm(data);
 
       if (!result.success) {
@@ -58,14 +57,12 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
         return;
       }
 
-      // Call the onSubmit callback if provided
       if (onSubmit) {
         onSubmit(data);
       }
 
       setSubmitStatus("success");
       reset();
-      console.log("Form submitted successfully:", result.submissionId);
     } catch (error) {
       console.error("Form submission error:", error);
       setErrorMessage("Failed to submit form. Please try again.");
@@ -81,7 +78,6 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      {/* Error Message */}
       {submitStatus === "error" && (
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
@@ -98,7 +94,6 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
         </motion.div>
       )}
 
-      {/* Success Message */}
       {submitStatus === "success" && (
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
@@ -116,7 +111,6 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
       )}
 
       <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-6">
-        {/* Personal Information */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <Label htmlFor="firstName">
@@ -173,7 +167,6 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
           </div>
         </div>
 
-        {/* Contact Information */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <Label htmlFor="email">
@@ -226,7 +219,6 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
           </div>
         </div>
 
-        {/* Service Request Information */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <Label htmlFor="zipCode">
@@ -289,7 +281,6 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
           </div>
         </div>
 
-        {/* Message */}
         <div>
           <Label htmlFor="message">Additional Message</Label>
           <Textarea
@@ -304,7 +295,6 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
           </p>
         </div>
 
-        {/* Submit Button */}
         <Button
           type="submit"
           className="w-full"
