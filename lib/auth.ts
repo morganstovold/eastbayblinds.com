@@ -20,6 +20,17 @@ function getBaseURL() {
   return url;
 }
 
+const isProduction = process.env.NODE_ENV === "production";
+const baseURL = getBaseURL();
+
+console.log("Better Auth Config:", {
+  isProduction,
+  baseURL,
+  nodeEnv: process.env.NODE_ENV,
+  betterAuthUrl: process.env.BETTER_AUTH_URL,
+  nextPublicAppUrl: process.env.NEXT_PUBLIC_APP_URL
+});
+
 export const auth = betterAuth({
   database: drizzleAdapter(db, {
     provider: "pg",
@@ -34,22 +45,28 @@ export const auth = betterAuth({
     expiresIn: 60 * 60 * 24 * 7,
     updateAge: 60 * 60 * 24,
   },
-  // Minimal fix for Microsoft Edge cookie compatibility
+  // Production-optimized cookie settings
   cookies: {
     sessionToken: {
-      sameSite: "lax", // Helps with Edge compatibility
+      name: "better-auth.session_token",
+      httpOnly: true,
+      secure: isProduction, // Only secure in production
+      sameSite: isProduction ? "none" : "lax", // "none" for production cross-origin, "lax" for dev
+      domain: isProduction ? ".eastbayblinds.com" : undefined, // Allow www and non-www in production
+      path: "/",
+      maxAge: 60 * 60 * 24 * 7, // 7 days
     },
   },
   // Add trusted origins for both www and non-www versions
   trustedOrigins: [
     "https://eastbayblinds.com",
     "https://www.eastbayblinds.com",
-    "http://localhost:3000",
+    "http://localhost:3000", // For development
   ],
   secret:
     process.env.BETTER_AUTH_SECRET ||
     "fallback-secret-key-change-in-production",
-  baseURL: getBaseURL(),
+  baseURL: baseURL,
 });
 
 export async function checkUserLimit() {
