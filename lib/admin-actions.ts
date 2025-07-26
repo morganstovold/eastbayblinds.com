@@ -341,8 +341,25 @@ export const getReviewStats = unstable_cache(
 // Server action to verify admin session
 export const getAdminSession = async () => {
   try {
+    console.log("getAdminSession - Starting auth check");
+    
+    const headersList = await headers();
+    console.log("getAdminSession - Headers available:", {
+      hasHeaders: !!headersList,
+      userAgent: headersList.get('user-agent')?.substring(0, 50),
+      cookie: headersList.get('cookie')?.includes('better-auth.session_token') ? 'has session token' : 'no session token',
+      host: headersList.get('host')
+    });
+    
     const session = await auth.api.getSession({
-      headers: await headers(),
+      headers: headersList,
+    });
+
+    console.log("getAdminSession - Session result:", {
+      hasSession: !!session,
+      hasUser: !!session?.user,
+      userId: session?.user?.id,
+      userEmail: session?.user?.email
     });
 
     return session?.user || null;
