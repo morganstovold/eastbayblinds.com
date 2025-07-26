@@ -5,6 +5,7 @@ import { contactSubmission } from "@/lib/db-schema";
 import { ContactFormData } from "@/lib/types";
 import { nanoid } from "nanoid";
 import { revalidateTag } from "next/cache";
+import { sendContactNotification } from "@/lib/email";
 
 export async function submitContactForm(data: ContactFormData) {
   try {
@@ -41,6 +42,30 @@ export async function submitContactForm(data: ContactFormData) {
         status: "new",
       })
       .returning();
+
+    // Send email notification
+    const fullName = `${data.firstName} ${data.lastName}`;
+    const submittedAt = new Date().toLocaleString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      timeZoneName: 'short'
+    });
+
+    // Send email notification (don't await to avoid blocking the response)
+    sendContactNotification({
+      name: fullName,
+      email: data.email || 'No email provided',
+      phone: data.phone || 'No phone provided',
+      zipCode: data.zipCode,
+      serviceType: data.serviceType,
+      message: data.message || 'No message provided',
+      submittedAt,
+    }).catch(error => {
+      console.error('Failed to send contact notification email:', error);
+    });
 
     revalidateTag("contact-stats");
     revalidateTag("contact-submissions");
