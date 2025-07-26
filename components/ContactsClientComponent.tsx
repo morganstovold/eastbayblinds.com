@@ -157,7 +157,7 @@ export default function ContactsClientComponent({
       <div className="space-y-4">
         {filteredSubmissions.map((submission) => (
           <Card key={submission.id}>
-            <CardContent className="p-4 sm:p-6">
+            <CardContent>
               <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-4">
                 <div className="flex items-start gap-3 min-w-0 flex-1">
                   <div className="p-2 bg-primary/10 rounded-full flex-shrink-0">
