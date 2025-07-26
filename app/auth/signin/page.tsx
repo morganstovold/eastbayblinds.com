@@ -30,6 +30,9 @@ export default function SignInPage() {
 
   const onSubmit = async (data: SignInFormData) => {
     console.log("Form submitted with data:", data);
+    console.log("Current environment:", process.env.NODE_ENV);
+    console.log("Current URL:", window.location.href);
+    
     setIsLoading(true);
     setError("");
 
@@ -42,6 +45,8 @@ export default function SignInPage() {
       });
 
       console.log("Auth result:", result);
+      console.log("Auth result data:", result.data);
+      console.log("Auth result error:", result.error);
 
       if (result.error) {
         console.error("Auth error:", result.error);
@@ -53,9 +58,19 @@ export default function SignInPage() {
         }
         
         setError(errorMessage);
+      } else if (result.data) {
+        console.log("Sign in successful, user data:", result.data);
+        console.log("About to redirect to /admin");
+        
+        // Force a hard redirect for production
+        if (typeof window !== 'undefined') {
+          window.location.href = "/admin";
+        } else {
+          router.push("/admin");
+        }
       } else {
-        console.log("Sign in successful, redirecting to /admin");
-        router.push("/admin");
+        console.log("Sign in returned neither error nor data:", result);
+        setError("Sign in completed but no session data received. Please try refreshing the page.");
       }
     } catch (err) {
       console.error("Sign in error:", err);
@@ -82,6 +97,11 @@ export default function SignInPage() {
             <CardTitle>Sign In</CardTitle>
             <CardDescription>
               Enter your credentials to access the admin dashboard
+              {typeof window !== 'undefined' && navigator.userAgent.includes('Edg/') && (
+                <div className="mt-2 text-sm text-yellow-600">
+                  ⚠️ Using Microsoft Edge? Try enabling cookies if you have issues.
+                </div>
+              )}
             </CardDescription>
           </CardHeader>
           <CardContent>

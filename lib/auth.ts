@@ -51,7 +51,7 @@ export const auth = betterAuth({
       name: "better-auth.session_token",
       httpOnly: true,
       secure: isProduction, // Only secure in production
-      sameSite: isProduction ? "none" : "lax", // "none" for production cross-origin, "lax" for dev
+      sameSite: "lax", // More permissive for same-site authentication
       domain: isProduction ? ".eastbayblinds.com" : undefined, // Allow www and non-www in production
       path: "/",
       maxAge: 60 * 60 * 24 * 7, // 7 days
