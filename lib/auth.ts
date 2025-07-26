@@ -17,6 +17,25 @@ export const auth = betterAuth({
   session: {
     expiresIn: 60 * 60 * 24 * 7,
     updateAge: 60 * 60 * 24,
+    cookieCache: {
+      enabled: true,
+      maxAge: 60 * 60 * 24 * 7,
+    },
+  },
+  cookies: {
+    sessionToken: {
+      name: "better-auth.session_token",
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax", // Better compatibility with Edge
+      path: "/",
+      maxAge: 60 * 60 * 24 * 7, // 7 days
+    },
+  },
+  advanced: {
+    crossSubDomainCookies: {
+      enabled: true,
+    },
   },
   secret:
     process.env.BETTER_AUTH_SECRET ||
