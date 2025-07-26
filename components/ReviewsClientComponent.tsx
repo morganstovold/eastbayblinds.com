@@ -398,15 +398,14 @@ export default function ReviewsClientComponent({
             </CardContent>
           </Card>
         ) : (
-            initialReviews.map((review) => (
+          initialReviews.map((review) => (
             <Card
               key={review.id}
               className={`${!review.isActive ? "opacity-60" : ""}`}
             >
-              <CardContent className="p-4 sm:p-6">
+              <CardContent>
                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-4">
                   <div className="flex items-start gap-3 min-w-0 flex-1">
-                    {/* Default Profile Picture */}
                     <div className="shrink-0">
                       <div className="h-10 w-10 bg-blue-100 rounded-full flex items-center justify-center">
                         <User className="h-5 w-5 text-blue-600" />
@@ -424,6 +423,12 @@ export default function ReviewsClientComponent({
                               review.location.slice(1)}
                           </span>
                         )}
+                        <Badge
+                          variant={review.isActive ? "default" : "secondary"}
+                          className="text-xs"
+                        >
+                          {review.isActive ? "Active" : "Inactive"}
+                        </Badge>
                       </div>
                       <div className="flex items-center gap-4 mb-2">
                         <div className="flex items-center gap-1">
@@ -446,14 +451,6 @@ export default function ReviewsClientComponent({
                             ? new Date(review.reviewDate).toLocaleDateString()
                             : "No date"}
                         </span>
-                      </div>
-                      <div className="flex flex-wrap items-center gap-2">
-                        <Badge
-                          variant={review.isActive ? "default" : "secondary"}
-                          className="text-xs"
-                        >
-                          {review.isActive ? "Active" : "Inactive"}
-                        </Badge>
                       </div>
                     </div>
                   </div>
