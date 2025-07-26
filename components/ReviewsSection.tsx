@@ -20,7 +20,7 @@ export default function ReviewsSection({
   }
 
   return (
-    <section className="py-16 sm:py-20 bg-gray-50">
+    <section className="py-16 sm:py-20 bg-white">
       <div className="container mx-auto px-4 sm:px-0">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

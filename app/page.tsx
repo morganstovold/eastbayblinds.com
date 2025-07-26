@@ -11,7 +11,7 @@ import { getProductsData } from "@/lib/admin-actions";
 import { AnimatedSection, AnimatedGrid } from "@/components/AnimatedSection";
 import Link from "next/link";
 import { ArrowRight, Home, Shield, Star } from "lucide-react";
-import HeroBackground from "@/public/Hero-Home.webp";
+import HeroBackground from "@/public/Hero-Blinds.webp";
 import CTA from "@/components/CTA";
 import ServicesGrid from "@/components/ServicesGrid";
 import ReviewsSectionAsync from "@/components/ReviewsSectionAsync";

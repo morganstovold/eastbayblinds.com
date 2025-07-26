@@ -9,7 +9,7 @@ export default async function ReviewsSectionAsync() {
   return (
     <ReviewsSection 
       reviews={reviewsData.featuredReviews}
-      averageRating={reviewsData.averageRating}
+      averageRating={4.9}
     />
   );
 } 
