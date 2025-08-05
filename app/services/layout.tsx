@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Window Treatment Services - Installation & Consultation | East Bay Blinds",
-  description: "Comprehensive window treatment services including free in-home consultation and professional installation. Norman® certified installation in Solano & Contra Costa Counties.",
+  title: "Window Treatment Services - Free Consultation & Installation | East Bay Blinds",
+  description: "Professional window treatment services including free consultation, expert measurement, and certified installation. Serving Lafayette, Orinda, Moraga, Danville & East Bay communities.",
   keywords: [
     "window treatment services",
     "professional installation",
@@ -11,13 +11,34 @@ export const metadata: Metadata = {
     "Norman certified installation",
     "window treatment consultation",
     "East Bay services",
-    "Benicia installation",
-    "certified installer"
+    "Lafayette installation",
+    "Orinda window treatment services",
+    "Walnut Creek installation",
+    "Moraga window treatments",
+    "Danville installation services",
+    "Alamo window treatment consultation",
+    "Martinez installation",
+    "Pleasant Hill window services",
+    "Dublin installation services",
+    "San Ramon window treatments",
+    "Bay Area installation services",
+    "certified installer",
+    "professional measurement",
+    "expert installation",
+    "window treatment repair",
+    "maintenance services",
+    "same day service",
+    "emergency repair",
+    "commercial installation",
+    "residential services",
+    "office window treatments",
+    "home consultation",
+    "appointment scheduling"
   ],
   openGraph: {
     title: "East Bay Blinds - Window Treatment Services & Professional Installation",
-    description: "Professional window treatment services including free consultation and certified installation. Serving Solano & Contra Costa Counties.",
-    url: "https://www.eastbayblinds.com//services",
+    description: "Professional window treatment services including free consultation, expert measurement, and certified installation. Serving Lafayette, Orinda, Moraga, Danville & East Bay communities.",
+    url: "https://www.eastbayblinds.com/services",
     images: [
       {
         url: "/Hero-Home.webp",
@@ -29,7 +50,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     title: "East Bay Blinds - Window Treatment Services & Professional Installation",
-    description: "Professional services including free consultation and certified installation in Solano & Contra Costa Counties.",
+    description: "Professional services including free consultation and certified installation in Lafayette, Orinda, Walnut Creek & East Bay communities.",
     images: ["/Hero-Home.webp"],
   },
 };

@@ -19,9 +19,6 @@ export interface BusinessInfo {
   phone: string;
   email: string;
   address: string;
-  hours: {
-    [key: string]: string;
-  };
   socialLinks: {
     yelp?: string;
     houzz?: string;

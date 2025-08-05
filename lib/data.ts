@@ -6,24 +6,12 @@ export const businessInfo: BusinessInfo = {
   phone: "(925) 200-4521",
   email: "",
   address: "Benicia, CA 94510-3980",
-  hours: {
-    Monday: "By Appointment Only",
-    Tuesday: "By Appointment Only",
-    Wednesday: "By Appointment Only",
-    Thursday: "By Appointment Only",
-    Friday: "By Appointment Only",
-    Saturday: "By Appointment Only",
-    Sunday: "By Appointment Only",
-  },
   socialLinks: {
     yelp: "https://www.yelp.com/biz/east-bay-blinds-benicia-2",
     houzz:
       "https://www.houzz.com/professionals/window-treatments/east-bay-blinds-pfvwus-pf~1292857805",
   },
 };
-
-// Reviews are now managed through the admin dashboard and stored in the database
-// Mock data removed - check /api/reviews endpoint for current reviews
 
 export const navigationItems: NavigationItem[] = [
   {

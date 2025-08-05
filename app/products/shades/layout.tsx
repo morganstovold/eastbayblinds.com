@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Window Shades - Cellular, Roller & Roman Shades | East Bay Blinds",
-  description: "Energy-efficient Norman® window shades including cellular, roller, and roman styles. Professional installation of custom shades in Solano & Contra Costa Counties.",
+  title:
+    "Energy-Efficient Window Shades - Cellular, Roller & Roman | East Bay Blinds",
+  description:
+    "Energy-efficient cellular, roller & roman shades. Light filtering to blackout options. Professional installation throughout East Bay communities. Free in-home consultation available.",
   keywords: [
     "window shades",
     "cellular shades",
@@ -14,25 +16,90 @@ export const metadata: Metadata = {
     "custom shades",
     "motorized shades",
     "blackout shades",
+    "Lafayette shades",
+    "Orinda cellular shades",
+    "Walnut Creek roller shades",
+    "Moraga roman shades",
+    "Danville window shades",
+    "Alamo honeycomb shades",
+    "Martinez custom shades",
+    "Pleasant Hill energy shades",
+    "Dublin blackout shades",
+    "San Ramon window shades",
+    "Bay Area shades",
     "East Bay shades",
-    "Benicia shades"
+    "cellular honeycomb shades",
+    "top down bottom up shades",
+    "blackout roller shades",
+    "light filtering shades",
+    "motorized roller shades",
+    "cordless cellular shades",
+    "energy efficient shades",
+    "room darkening shades",
+    "solar screen shades",
+    "natural woven shades",
+    "dual cellular shades",
+    "triple cell shades",
+    "single cell shades",
+    "insulating window shades",
+    "thermal shades",
+    "UV protection shades",
+    "fade protection shades",
+    "noise reducing shades",
+    "sound absorbing shades",
+    "moisture resistant shades",
+    "bathroom shades",
+    "bedroom shades",
+    "living room shades",
+    "kitchen shades",
+    "office shades",
+    "nursery shades",
+    "child safe shades",
+    "cordless shades safety",
+    "smart shades",
+    "automated shades",
+    "remote control shades",
+    "app controlled shades",
+    "Alexa shades",
+    "Google Home shades",
+    "flat roman shades",
+    "hobbled roman shades",
+    "relaxed roman shades",
+    "custom roman shade fabric",
+    "designer fabric shades",
+    "natural texture shades",
+    "bamboo roller shades",
+    "solar roller shades",
+    "exterior roller shades",
+    "interior roller shades",
+    "chain operated shades",
+    "spring loaded shades",
+    "continuous cord shades",
+    "professional shade installation",
+    "shade repair services",
+    "shade maintenance",
+    "custom shade colors",
+    "inside mount shades",
+    "outside mount shades",
   ],
   openGraph: {
     title: "East Bay Blinds - Window Shades | Cellular, Roller & Roman Shades",
-    description: "Energy-efficient Norman® window shades with professional installation. Cellular, roller, and roman styles available.",
-    url: "https://www.eastbayblinds.com//products/shades",
+    description:
+      "Energy-efficient Norman® window shades with professional installation. Cellular, roller, and roman styles available.",
+    url: "https://www.eastbayblinds.com/products/shades",
     images: [
       {
         url: "/Hero-Shades.webp",
         width: 1200,
         height: 630,
-        alt: "Premium Window Shades Collection by East Bay Blinds"
-      }
+        alt: "Premium Window Shades Collection by East Bay Blinds",
+      },
     ],
   },
   twitter: {
-    title: "East Bay Blinds - Window Shades | Cellular, Roller & Roman Shades", 
-    description: "Energy-efficient Norman® window shades with professional installation in Solano & Contra Costa Counties.",
+    title: "East Bay Blinds - Window Shades | Cellular, Roller & Roman Shades",
+    description:
+      "Energy-efficient Norman® window shades with professional installation in Lafayette, Orinda, Walnut Creek & East Bay communities.",
     images: ["/Hero-Shades.webp"],
   },
 };
@@ -43,4 +110,4 @@ export default function ShadesLayout({
   children: React.ReactNode;
 }) {
   return <>{children}</>;
-} 
+}

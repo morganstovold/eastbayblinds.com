@@ -259,7 +259,7 @@ export default function ContactForm({ onSubmit }: ContactFormProps) {
             >
               <SelectTrigger
                 className={cn(
-                  "mt-1",
+                  "mt-1 w-full",
                   errors.serviceType ? "border-red-500 focus:ring-red-500" : ""
                 )}
               >

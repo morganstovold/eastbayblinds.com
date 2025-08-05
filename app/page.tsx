@@ -20,25 +20,51 @@ import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title:
-    "East Bay Blinds - Premium Norman® Window Treatments | Shutters, Blinds & Shades",
+    "East Bay Blinds - Premium Norman® Window Treatments | Lafayette, Orinda, Walnut Creek",
   description:
-    "Transform your home with premium Norman® window treatments. East Bay Blinds offers custom shutters, blinds, and shades with professional installation in Solano & Contra Costa Counties. Free in-home consultation.",
+    "Transform your East Bay home with premium Norman® shutters, blinds & shades. Free in-home consultation in Lafayette, Orinda, Walnut Creek & surrounding areas. Call (925) 200-4521 today!",
   keywords: [
     "Norman shutters",
     "custom blinds",
     "window shades",
     "plantation shutters",
     "East Bay window treatments",
-    "Benicia blinds",
+    "Lafayette blinds",
+    "Orinda shutters",
+    "Walnut Creek window treatments",
+    "Moraga blinds",
+    "Danville shutters",
+    "Alamo window treatments",
+    "Martinez blinds",
+    "Pleasant Hill shutters",
+    "Dublin window treatments",
+    "San Ramon blinds",
+    "Bay Area window treatments",
+    "Bay Area shutters",
+    "Bay Area custom blinds",
     "Solano County shutters",
+    "Contra Costa County blinds",
     "professional installation",
     "free consultation",
     "energy efficient window coverings",
+    "motorized window blinds",
+    "smart home window treatments",
+    "child safe window treatments",
+    "bedroom window treatments",
+    "living room blinds",
+    "kitchen window blinds",
+    "bathroom window treatments",
+    "cellular honeycomb shades",
+    "blackout roller shades",
+    "interior plantation shutters",
+    "cordless blinds child safety",
+    "energy saving window treatments",
   ],
   openGraph: {
-    title: "East Bay Blinds - Premium Norman® Window Treatments",
+    title:
+      "East Bay Blinds - Premium Norman® Window Treatments | Lafayette, Orinda, Walnut Creek",
     description:
-      "Transform your home with premium Norman® window treatments. Custom shutters, blinds, and shades with professional installation.",
+      "Transform your East Bay home with premium Norman® shutters, blinds & shades. Free in-home consultation in Lafayette, Orinda, Walnut Creek & surrounding areas.",
     url: "https://www.eastbayblinds.com/",
     images: [
       {
@@ -50,9 +76,10 @@ export const metadata: Metadata = {
     ],
   },
   twitter: {
-    title: "East Bay Blinds - Premium Norman® Window Treatments",
+    title:
+      "East Bay Blinds - Premium Norman® Window Treatments | Lafayette, Orinda, Walnut Creek",
     description:
-      "Transform your home with premium Norman® window treatments. Professional installation in Solano & Contra Costa Counties.",
+      "Transform your East Bay home with premium Norman® window treatments. Professional installation in Lafayette, Orinda, Walnut Creek & East Bay communities.",
     images: ["/Hero-Home.webp"],
   },
 };

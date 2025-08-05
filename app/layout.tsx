@@ -20,11 +20,11 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.eastbayblinds.com/"),
   title: {
     default:
-      "East Bay Blinds - Premium Window Treatments | Shutters, Blinds & Shades | Benicia, CA",
+      "East Bay Blinds - Premium Norman® Window Treatments | Lafayette, Orinda, Walnut Creek",
     template: "%s | East Bay Blinds",
   },
   description:
-    "East Bay Blinds provides premium Norman® window treatments including custom shutters, blinds, and shades. Serving Solano & Contra Costa Counties with professional installation and lifetime warranties.",
+    "Transform your East Bay home with premium Norman® shutters, blinds & shades. Free in-home consultation in Lafayette, Orinda, Walnut Creek & surrounding areas. Call (925) 200-4521 today!",
   applicationName: "East Bay Blinds",
   keywords: [
     "window treatments",
@@ -38,15 +38,31 @@ export const metadata: Metadata = {
     "roller shades",
     "roman shades",
     "East Bay",
+    "Lafayette",
+    "Orinda",
+    "Moraga",
+    "Danville",
+    "Alamo",
+    "Walnut Creek",
+    "Martinez",
+    "Pleasant Hill",
+    "Dublin",
+    "San Ramon",
     "Benicia",
     "Vallejo",
     "Fairfield",
     "Vacaville",
     "Concord",
-    "Walnut Creek",
     "Solano County",
     "Contra Costa County",
     "California",
+    "Bay Area window treatments",
+    "San Francisco Bay Area blinds",
+    "Bay Area shutters",
+    "Bay Area custom blinds",
+    "Northern California window treatments",
+    "East Bay interior design",
+    "Bay Area home improvement",
     "window coverings",
     "interior design",
     "home improvement",
@@ -56,6 +72,63 @@ export const metadata: Metadata = {
     "UV protection",
     "privacy",
     "light control",
+    "window treatment installation cost",
+    "affordable custom blinds",
+    "discount Norman shutters",
+    "window treatment sale",
+    "best window blinds Bay Area",
+    "professional blind installation",
+    "same day window treatment service",
+    "free window treatment consultation",
+    "window treatment financing",
+    "2025 window treatment trends",
+    "smart home window treatments",
+    "energy saving window treatments",
+    "child safe window treatments",
+    "motorized window blinds",
+    "automated home blinds",
+    "eco friendly window treatments",
+    "sustainable window coverings",
+    "bedroom window treatments",
+    "living room blinds",
+    "kitchen window blinds",
+    "bathroom window treatments",
+    "office window blinds",
+    "dining room shutters",
+    "family room window treatments",
+    "master bedroom blinds",
+    "home office window coverings",
+    "sliding door window treatments",
+    "interior plantation shutters",
+    "shutters for sliding doors",
+    "shutters for french doors",
+    "shutters for bay windows",
+    "white plantation shutters",
+    "natural wood shutters",
+    "moisture resistant shutters",
+    "bathroom shutters",
+    "bedroom shutters",
+    "living room shutters",
+    "2 inch wood blinds",
+    "faux wood bathroom blinds",
+    "motorized blinds smart home",
+    "cordless blinds child safety",
+    "venetian blinds",
+    "wide slat blinds",
+    "vertical blinds patio doors",
+    "mini blinds office",
+    "blackout blinds bedroom",
+    "waterproof bathroom blinds",
+    "cellular honeycomb shades",
+    "top down bottom up shades",
+    "blackout roller shades",
+    "light filtering shades",
+    "motorized roller shades",
+    "cordless cellular shades",
+    "energy efficient shades",
+    "room darkening shades",
+    "solar screen shades",
+    "natural woven shades",
   ],
   authors: [{ name: "East Bay Blinds" }],
   creator: "East Bay Blinds",
@@ -82,9 +155,9 @@ export const metadata: Metadata = {
     url: "https://www.eastbayblinds.com/",
     siteName: "East Bay Blinds",
     title:
-      "East Bay Blinds - Premium Window Treatments | Shutters, Blinds & Shades",
+      "East Bay Blinds - Premium Norman® Window Treatments | Lafayette, Orinda, Walnut Creek",
     description:
-      "East Bay Blinds provides premium Norman® window treatments including custom shutters, blinds, and shades. Serving Solano & Contra Costa Counties with professional installation and lifetime warranties.",
+      "Transform your East Bay home with premium Norman® shutters, blinds & shades. Free in-home consultation in Lafayette, Orinda, Walnut Creek & surrounding areas. Call (925) 200-4521 today!",
     images: [
       {
         url: "/Hero-Home.webp",
@@ -99,9 +172,9 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@eastbayblinds",
     creator: "@eastbayblinds",
-    title: "East Bay Blinds - Premium Window Treatments",
+    title: "East Bay Blinds - Premium Norman® Window Treatments",
     description:
-      "Premium Norman® shutters, blinds & shades. Professional installation in Solano & Contra Costa Counties.",
+      "Premium Norman® shutters, blinds & shades. Professional installation in Lafayette, Orinda, Walnut Creek & East Bay communities.",
     images: ["/Hero-Home.webp"],
   },
   alternates: {
@@ -124,7 +197,7 @@ export const metadata: Metadata = {
     "DC.format": "text/html",
     "DC.identifier": "https://www.eastbayblinds.com/",
     "DC.language": "en",
-    "DC.coverage": "Solano County, Contra Costa County, California",
+    "DC.coverage": "East Bay, Solano County, Contra Costa County, California",
   },
 };
 
@@ -135,7 +208,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
+<head>
         <link rel="manifest" href="/manifest.json" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -149,11 +222,17 @@ export default function RootLayout({
               "@type": "LocalBusiness",
               "@id": "https://www.eastbayblinds.com/",
               name: "East Bay Blinds",
+              alternateName: "East Bay Blinds & Shutters",
               description:
-                "East Bay Blinds provides premium Norman® window treatments including custom shutters, blinds, and shades. Serving Solano & Contra Costa Counties with professional installation and lifetime warranties.",
+                "East Bay Blinds provides premium Norman® window treatments including custom shutters, blinds, and shades. Serving the East Bay with professional installation and lifetime warranties.",
               url: "https://www.eastbayblinds.com/",
               telephone: "(925) 200-4521",
               email: "mailto:larry@eastbayblinds.com",
+              foundingDate: "2006",
+              founder: {
+                "@type": "Person",
+                name: "Larry Collins",
+              },
               address: {
                 "@type": "PostalAddress",
                 streetAddress: "",
@@ -170,15 +249,47 @@ export default function RootLayout({
               areaServed: [
                 {
                   "@type": "City",
-                  name: "Benicia, CA",
+                  name: "Lafayette, CA",
                 },
                 {
                   "@type": "City",
-                  name: "Concord, CA",
+                  name: "Orinda, CA",
+                },
+                {
+                  "@type": "City",
+                  name: "Moraga, CA",
+                },
+                {
+                  "@type": "City",
+                  name: "Danville, CA",
+                },
+                {
+                  "@type": "City",
+                  name: "Alamo, CA",
                 },
                 {
                   "@type": "City",
                   name: "Walnut Creek, CA",
+                },
+                {
+                  "@type": "City",
+                  name: "Martinez, CA",
+                },
+                {
+                  "@type": "City",
+                  name: "Pleasant Hill, CA",
+                },
+                {
+                  "@type": "City",
+                  name: "Dublin, CA",
+                },
+                {
+                  "@type": "City",
+                  name: "San Ramon, CA",
+                },
+                {
+                  "@type": "City",
+                  name: "Benicia, CA",
                 },
                 {
                   "@type": "AdministrativeArea",
@@ -187,6 +298,10 @@ export default function RootLayout({
                 {
                   "@type": "AdministrativeArea",
                   name: "Contra Costa County, CA",
+                },
+                {
+                  "@type": "AdministrativeArea",
+                  name: "East Bay, California",
                 },
               ],
               openingHoursSpecification: {
@@ -205,7 +320,14 @@ export default function RootLayout({
                 validFrom: "2024-01-01",
                 description: "By appointment only",
               },
-              serviceType: "Window Treatment Installation",
+              serviceType: [
+                "Window Treatment Installation",
+                "Custom Shutters",
+                "Blinds Installation",
+                "Shades Installation",
+                "In-Home Consultation",
+                "Professional Measurement",
+              ],
               hasOfferCatalog: {
                 "@type": "OfferCatalog",
                 name: "Window Treatment Services",
@@ -214,33 +336,36 @@ export default function RootLayout({
                     "@type": "Offer",
                     itemOffered: {
                       "@type": "Service",
-                      name: "Custom Shutters",
+                      name: "Norman Plantation Shutters",
                       description:
-                        "Premium Norman® plantation shutters with professional installation",
+                        "Custom interior plantation shutters with professional installation",
                     },
+                    areaServed: "East Bay, California",
                   },
                   {
                     "@type": "Offer",
                     itemOffered: {
                       "@type": "Service",
-                      name: "Custom Blinds",
+                      name: "Custom Wood and Faux Wood Blinds",
                       description:
-                        "Wood, faux wood, and aluminum blinds with motorization options",
+                        "Premium horizontal and vertical blinds with motorization options",
                     },
+                    areaServed: "East Bay, California",
                   },
                   {
                     "@type": "Offer",
                     itemOffered: {
                       "@type": "Service",
-                      name: "Custom Shades",
+                      name: "Cellular and Roller Shades",
                       description:
-                        "Cellular, roller, and roman shades with energy efficiency",
+                        "Energy-efficient window shades with light filtering and blackout options",
                     },
+                    areaServed: "East Bay, California",
                   },
                 ],
               },
-              logo: "https://www.eastbayblinds.com//EastBayBlinds-logo.png",
-              image: "https://www.eastbayblinds.com//Hero-Home.webp",
+              logo: "https://www.eastbayblinds.com/EastBayBlinds-logo.png",
+              image: "https://www.eastbayblinds.com/Hero-Home.webp",
               sameAs: [
                 "https://www.yelp.com/biz/east-bay-blinds-benicia-2",
                 "https://www.houzz.com/professionals/window-treatments/east-bay-blinds-pfvwus-pf~1292857805",
