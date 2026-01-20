@@ -1,1 +1,0 @@
-ALTER TABLE "review" ADD COLUMN "review_date" timestamp;

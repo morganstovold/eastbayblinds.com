@@ -1,198 +1,257 @@
-"use client";
+import { CheckIcon, MailIcon, PhoneIcon } from "lucide-react";
+import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import ContactForm from "@/components/contactForm";
+import Footer from "@/components/footer";
+import Header from "@/components/header";
+import { ScrollToTopButton } from "@/components/scroll-to-top-button";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import HeroImage from "@/public/new/HD/shades.webp";
 
-import React from "react";
-import Header from "@/components/Header";
-import Hero from "@/components/Hero";
-import ContactForm from "@/components/ContactForm";
-import Footer from "@/components/Footer";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { businessInfo } from "@/lib/data";
-import { motion } from "framer-motion";
-import { Phone, MapPin, Car, Shield, User } from "lucide-react";
-import HeroContactImage from "@/public/Hero-Contact.jpg";
-import CTA from "@/components/CTA";
+export const metadata: Metadata = {
+	title: "Schedule Free Consultation | East Bay Blinds | Lafayette, CA",
+	description:
+		"Schedule your free, no-pressure in-home consultation with Larry Collins. Serving Lafayette, Walnut Creek, Orinda, Moraga, Danville, and East Bay. Call (925) 200-4521.",
+};
+
+const serviceAreas = [
+	"Lafayette",
+	"Walnut Creek",
+	"Orinda",
+	"Moraga",
+	"Danville",
+	"Alamo",
+	"Pleasant Hill",
+	"Concord",
+	"Martinez",
+	"And surrounding East Bay communities",
+];
+
+const faqs = [
+	{
+		question: "Do you charge for consultations?",
+		answer:
+			"No! Your in-home consultation is completely free with no obligation.",
+	},
+	{
+		question: "How long does installation take?",
+		answer:
+			"Most installations are completed in 1 day. Larger projects may take 2-3 days. Larry will give you an exact timeline during your consultation.",
+	},
+	{
+		question: "Do you offer financing?",
+		answer:
+			"Yes, we offer flexible payment options. Ask Larry about our current financing options during your consultation.",
+	},
+	{
+		question: "What if I'm outside your service area?",
+		answer:
+			"Give us a call anyway! We occasionally travel outside our standard service area for larger projects.",
+	},
+	{
+		question: "Do you provide free estimates?",
+		answer:
+			"Yes, all consultations include a detailed written estimate with no hidden fees.",
+	},
+];
 
 export default function ContactPage() {
-  const whyChooseUs = [
-    {
-      icon: User,
-      title: "Expert Consultation",
-      description: "Professional advice tailored to your needs and budget",
-    },
-    {
-      icon: Car,
-      title: "Free In-Home Service",
-      description: "We come to you with samples and measurements",
-    },
-    {
-      icon: Shield,
-      title: "Lifetime Warranty",
-      description: "All products backed by comprehensive warranty",
-    },
-  ];
+	return (
+		<div className="relative flex flex-col">
+			<Header />
 
-  return (
-    <div className="min-h-screen bg-white">
-      <Header />
+			{/* HERO SECTION */}
+			<section className="relative flex h-[60vh] min-h-[400px] w-full md:h-[70vh]">
+				<Image
+					alt="Schedule Your Free Consultation"
+					className="absolute inset-0 z-0 object-cover"
+					fill
+					priority
+					src={HeroImage}
+				/>
+				<div className="absolute inset-0 z-1 bg-black/60" />
+				<div className="z-2 flex h-full w-full flex-col items-center justify-center gap-4 px-4 text-center text-primary-foreground md:gap-6">
+					<h1 className="max-w-3xl font-bold text-3xl tracking-tighter md:text-4xl lg:text-5xl">
+						Schedule Your Free Consultation
+					</h1>
+					<p className="max-w-2xl text-sm md:text-base lg:text-lg">
+						Larry will visit your home with samples, measure your windows, and
+						provide expert recommendations. No pressure, no obligation.
+					</p>
+				</div>
+			</section>
 
-      <Hero
-        title="Contact Us"
-        subtitle="Get Your Free In-Home Consultation"
-        description="Ready to transform your windows? We bring the showroom to you with our convenient in-home consultation service."
-        mobileDescription="Ready to transform your windows? We come to you!"
-        ctaText="Schedule Consultation"
-        ctaHref="#contact-form"
-        height="lg"
-        backgroundImage={HeroContactImage}
-        showPhone={false}
-      />
+			{/* TWO-COLUMN LAYOUT */}
+			<section className="container mx-auto px-4 py-16 md:py-24">
+				<div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
+					{/* LEFT COLUMN: Contact Methods */}
+					<div className="flex flex-col gap-8">
+						<div>
+							<h2 className="mb-6 font-semibold text-2xl">
+								Prefer to Call or Text?
+							</h2>
+							<Link
+								className="mb-4 flex items-center gap-3 font-bold text-4xl hover:underline md:text-5xl"
+								href="tel:9252004521"
+							>
+								<PhoneIcon className="h-8 w-8 md:h-10 md:w-10" />
+								(925) 200-4521
+							</Link>
+							<p className="text-muted-foreground text-sm md:text-base">
+								Call or text for fastest service
+								<br />
+								Response within 24 hours
+							</p>
+						</div>
 
-      {/* Contact Information & Form */}
-      <section id="contact-form" className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4 sm:px-0">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Get In Touch
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We provide convenient in-home consultations throughout the East
-              Bay area
-            </p>
-          </motion.div>
+						<Separator />
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-            {/* Right Side - Contact Information */}
-            <div className="flex flex-col justify-center items-center space-y-12 h-full">
-              {/* Phone Contact */}
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                viewport={{ once: true }}
-                className="text-center"
-              >
-                <div className="mx-auto mb-4 p-4 bg-primary/10 rounded-full w-fit">
-                  <Phone className="h-8 w-8 text-primary" />
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">
-                  Call for Consultation
-                </h3>
-                <a
-                  href={`tel:${businessInfo.phone}`}
-                  className="text-2xl font-bold text-primary hover:text-primary/80 transition-colors block mb-2"
-                >
-                  {businessInfo.phone}
-                </a>
-                <p className="text-gray-600">Available by appointment only</p>
-              </motion.div>
+						<div>
+							<h3 className="mb-3 font-semibold text-lg">Business Hours</h3>
+							<div className="flex flex-col gap-1 text-sm md:text-base">
+								<p>Monday - Saturday: 9:00 AM - 6:00 PM</p>
+								<p>Sunday: Closed</p>
+							</div>
+						</div>
 
-              {/* Service Area */}
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                viewport={{ once: true }}
-                className="text-center"
-              >
-                <div className="mx-auto mb-4 p-4 bg-primary/10 rounded-full w-fit">
-                  <MapPin className="h-8 w-8 text-primary" />
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">
-                  Service Area
-                </h3>
-                <p className="font-semibold text-gray-900 text-lg mb-2">
-                  East Bay Communities
-                </p>
-                <p className="text-gray-600 max-w-sm mx-auto leading-relaxed">
-                  Lafayette, Orinda, Moraga, Danville, Alamo, Walnut Creek, and surrounding areas
-                </p>
-              </motion.div>
-            </div>
+						<Separator />
 
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <div className="bg-white rounded-lg shadow-lg p-8">
-                <div className="text-center mb-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                    Request Your Free Consultation
-                  </h3>
-                  <p className="text-gray-600">
-                    Fill out the form below and we'll schedule your in-home
-                    consultation within 24 hours.
-                  </p>
-                </div>
-                <ContactForm />
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+						<div>
+							<h3 className="mb-3 font-semibold text-lg">Email</h3>
+							<Link
+								className="flex items-center gap-2 text-sm hover:underline md:text-base"
+								href="mailto:larry@eastbayblinds.com"
+							>
+								<MailIcon className="h-5 w-5" />
+								larry@eastbayblinds.com
+							</Link>
+						</div>
 
-      {/* Why Choose Us */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 sm:px-0">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Why Choose East Bay Blinds?
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Experience the difference of professional service and quality
-              products
-            </p>
-          </motion.div>
+						<Separator />
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {whyChooseUs.map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <Card className="h-full text-center">
-                  <CardHeader>
-                    <div className="mx-auto mb-4 p-3 bg-primary/10 rounded-full w-fit">
-                      <item.icon className="h-8 w-8 text-primary" />
-                    </div>
-                    <CardTitle className="text-lg">{item.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-600">{item.description}</p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+						<div>
+							<h3 className="mb-4 font-semibold text-lg">Service Areas</h3>
+							<p className="mb-3 font-medium">Proudly Serving:</p>
+							<ul className="mb-4 flex flex-col gap-2 text-sm md:text-base">
+								{serviceAreas.map((area) => (
+									<li className="flex items-start gap-2" key={area}>
+										<span className="text-muted-foreground">•</span>
+										<span>{area}</span>
+									</li>
+								))}
+							</ul>
+							<p className="text-muted-foreground text-xs md:text-sm">
+								Not sure if we serve your area? Give us a call—we may be able to
+								help!
+							</p>
+						</div>
+					</div>
 
-      <CTA
-        title="Ready to Transform Your Windows?"
-        description="Schedule your free in-home consultation today and discover the perfect window treatments for your space"
-        primaryButtonText="Schedule Consultation"
-        primaryButtonHref="#contact-form"
-        secondaryButtonText="Call Now"
-        secondaryButtonHref={`tel:${businessInfo.phone}`}
-      />
+					{/* RIGHT COLUMN: Contact Form */}
+					<div className="rounded-lg border border-border bg-card p-6 shadow-sm md:p-8">
+						<ContactForm />
+					</div>
+				</div>
+			</section>
 
-      <Footer />
-    </div>
-  );
+			<Separator />
+
+			{/* WHAT TO EXPECT SECTION */}
+			<section className="container mx-auto px-4 py-16 md:py-24">
+				<h2 className="mb-12 text-center font-semibold text-2xl md:text-3xl">
+					What to Expect
+				</h2>
+				<div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+					<div className="flex flex-col items-center gap-4 text-center">
+						<div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary text-primary-foreground">
+							<CheckIcon className="h-6 w-6" />
+						</div>
+						<h3 className="font-semibold text-lg md:text-xl">
+							We'll Call Within 24 Hours
+						</h3>
+						<p className="text-muted-foreground text-sm md:text-base">
+							Larry will personally reach out to schedule your free in-home
+							consultation at a time that works for you.
+						</p>
+					</div>
+
+					<div className="flex flex-col items-center gap-4 text-center">
+						<div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary text-primary-foreground">
+							<CheckIcon className="h-6 w-6" />
+						</div>
+						<h3 className="font-semibold text-lg md:text-xl">
+							Free In-Home Consultation
+						</h3>
+						<p className="text-muted-foreground text-sm md:text-base">
+							Larry brings samples to your home, measures your windows, and
+							provides expert recommendations. Typically takes 30-45 minutes.
+						</p>
+					</div>
+
+					<div className="flex flex-col items-center gap-4 text-center">
+						<div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary text-primary-foreground">
+							<CheckIcon className="h-6 w-6" />
+						</div>
+						<h3 className="font-semibold text-lg md:text-xl">
+							No Pressure, Just Expertise
+						</h3>
+						<p className="text-muted-foreground text-sm md:text-base">
+							We'll provide a detailed quote and answer all your questions. Take
+							your time to decide—there's never any pressure.
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<Separator />
+
+			{/* FAQ SECTION */}
+			<section className="container mx-auto px-4 py-16 md:py-24">
+				<h2 className="mb-12 text-center font-semibold text-2xl md:text-3xl">
+					Common Questions
+				</h2>
+				<div className="mx-auto grid max-w-3xl grid-cols-1 gap-8">
+					{faqs.map((faq) => (
+						<div className="flex flex-col gap-2" key={faq.question}>
+							<h3 className="font-semibold text-lg">Q: {faq.question}</h3>
+							<p className="text-muted-foreground text-sm md:text-base">
+								A: {faq.answer}
+							</p>
+						</div>
+					))}
+				</div>
+			</section>
+
+			{/* FINAL CTA SECTION */}
+			<section className="w-full bg-[#181818] py-16 text-primary-foreground md:py-24">
+				<div className="container mx-auto flex w-full flex-col items-center gap-6 px-4 text-center md:gap-8">
+					<h2 className="text-2xl md:text-3xl lg:text-4xl">
+						Ready to Transform Your Windows?
+					</h2>
+					<p className="max-w-2xl text-sm md:text-base lg:text-lg">
+						Join hundreds of satisfied East Bay homeowners who've trusted Larry
+						with their window treatments.
+					</p>
+					<div className="flex flex-col items-center gap-3 md:flex-row md:gap-4">
+						<Link
+							className="font-semibold text-lg text-primary-foreground hover:underline md:text-xl"
+							href="tel:9252004521"
+						>
+							<Button size="lg" variant="secondary">
+								Call (925) 200-4521
+							</Button>
+						</Link>
+						<span className="text-sm md:text-base">or</span>
+						<ScrollToTopButton className="text-sm underline underline-offset-4 hover:text-primary-foreground/80 md:text-base">
+							scroll up to request a consultation
+						</ScrollToTopButton>
+					</div>
+				</div>
+			</section>
+
+			<Footer />
+		</div>
+	);
 }

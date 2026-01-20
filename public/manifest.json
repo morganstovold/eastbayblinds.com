@@ -21,7 +21,7 @@
     },
     {
       "name": "Our Products",
-      "short_name": "Products", 
+      "short_name": "Products",
       "description": "Browse shutters, blinds, and shades",
       "url": "/products",
       "icons": [{ "src": "/favicon.ico", "sizes": "any" }]
@@ -64,4 +64,4 @@
   ],
   "related_applications": [],
   "prefer_related_applications": false
-} 
+}
