@@ -151,7 +151,7 @@ export default function HomePage() {
 				<div className="container mx-auto px-4">
 					<div className="mx-auto mb-12 max-w-3xl text-center md:mb-16">
 						<p className="mb-3 font-medium text-primary text-sm uppercase tracking-wider md:text-base">
-							It's your home, Get inspired
+							It's your home. Get inspired
 						</p>
 						<h2 className="mb-4 font-bold text-3xl tracking-tight md:text-4xl lg:text-5xl">
 							Find Your Perfect Solution
