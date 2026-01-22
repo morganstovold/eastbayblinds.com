@@ -5,7 +5,9 @@ import { CloudflareStateStore, SQLiteStateStore } from "alchemy/state";
 
 const app = await alchemy("eastbayblinds-com", {
 	stateStore: (scope) =>
-		scope.local ? new SQLiteStateStore(scope) : new CloudflareStateStore(scope),
+		scope.local ? new SQLiteStateStore(scope) : new CloudflareStateStore(scope, {
+			scriptName: "eastbayblinds-com-state",
+		}),
 });
 
 const r2 = await R2Bucket("r2");

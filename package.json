@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "alchemy dev",
+    "build": "next build",
+    "start": "next start",
     "lint": "biome lint",
     "format": "biome format"
   },

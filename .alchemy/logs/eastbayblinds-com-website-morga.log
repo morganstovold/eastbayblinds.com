@@ -1,24 +1,8 @@
+[33m[1m⚠[22m[39m Port 3000 is in use by process 45352, using available port 3001 instead.
 [1m[38;2;173;127;168m▲ Next.js 16.1.2[39m[22m (Turbopack)
-- Local:         http://localhost:3000
-- Network:       http://172.25.112.1:3000
+- Local:         http://localhost:3001
+- Network:       http://172.25.112.1:3001
 - Environments: .env
 
 [32m[1m✓[22m[39m Starting...
-[32m[1m✓[22m[39m Ready in 1039ms
- GET / [32m200[39m in 955ms[2m (compile: 582ms, render: 373ms)[22m
- GET / [32m200[39m in 137ms[2m (compile: 2ms, render: 135ms)[22m
- GET /contact [32m200[39m in 209ms[2m (compile: 179ms, render: 30ms)[22m
- GET /contact [32m200[39m in 63ms[2m (compile: 31ms, render: 32ms)[22m
- GET /contact [32m200[39m in 58ms[2m (compile: 28ms, render: 30ms)[22m
- GET /contact [32m200[39m in 55ms[2m (compile: 29ms, render: 26ms)[22m
-Contact notification email sent successfully: { id: [32m'a0cbab67-9b43-4e6e-9c6d-8ed18960128e'[39m }
- POST /contact [32m200[39m in 450ms[2m (compile: 2ms, render: 448ms)[22m
- GET /thank-you [32m200[39m in 74ms[2m (compile: 22ms, render: 52ms)[22m
- GET /thank-you [32m200[39m in 14ms[2m (compile: 2ms, render: 12ms)[22m
-[32m[1m✓[22m[39m Compiled in 40ms
- GET /thank-you [32m200[39m in 13ms[2m (compile: 2ms, render: 11ms)[22m
-[32m[1m✓[22m[39m Compiled in 41ms
- GET /thank-you [32m200[39m in 12ms[2m (compile: 1846µs, render: 11ms)[22m
-[32m[1m✓[22m[39m Compiled in 42ms
-[32m[1m✓[22m[39m Compiled in 44ms
-[32m[1m✓[22m[39m Compiled in 53ms
+[?25h
