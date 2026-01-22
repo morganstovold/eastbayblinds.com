@@ -1,4 +1,3 @@
-import { getCloudflareContext } from "@opennextjs/cloudflare";
 import { Resend } from "resend";
 import ContactEmail from "@/components/contactEmail";
 
@@ -13,9 +12,7 @@ export async function sendContactNotification({
 	phone: string;
 	submittedAt: string;
 }) {
-	const { env } = getCloudflareContext();
-	// @ts-expect-error: type mismatch
-	const resend = new Resend(env.RESEND_API_KEY);
+	const resend = new Resend(process.env.RESEND_API_KEY);
 
 	try {
 		const { data, error } = await resend.emails.send({

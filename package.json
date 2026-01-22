@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "alchemy dev",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "biome lint",
@@ -11,7 +11,6 @@
   },
   "dependencies": {
     "@base-ui/react": "^1.1.0",
-    "@opennextjs/cloudflare": "^1.15.0",
     "@react-email/components": "^1.0.6",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -29,12 +28,10 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.3.11",
-    "@cloudflare/workers-types": "^4.20260122.0",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "19.2.8",
     "@types/react-dom": "19.2.3",
-    "alchemy": "^0.83.1",
     "tailwindcss": "^4",
     "typescript": "^5",
     "ultracite": "7.0.11"
