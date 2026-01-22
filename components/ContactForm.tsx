@@ -3,9 +3,10 @@
 import { ChevronRight } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Field, FieldDescription, FieldError } from "@/components/ui/field";
+import { Field, FieldError } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { submitContactForm } from "@/lib/contact-actions";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -13,16 +14,12 @@ interface FormData {
 	fullName: string;
 	phone: string;
 	email: string;
-	zipCode: string;
-	lookingFor: string[];
-	projectDetails: string;
 }
 
 interface FormErrors {
 	fullName?: string;
 	phone?: string;
 	email?: string;
-	zipCode?: string;
 }
 
 export default function ContactForm() {
@@ -30,9 +27,6 @@ export default function ContactForm() {
 		fullName: "",
 		phone: "",
 		email: "",
-		zipCode: "",
-		lookingFor: [],
-		projectDetails: "",
 	});
 
 	const [errors, setErrors] = useState<FormErrors>({});
@@ -55,9 +49,6 @@ export default function ContactForm() {
 		} else if (!EMAIL_REGEX.test(formData.email)) {
 			newErrors.email = "Please enter a valid email address";
 		}
-		if (!formData.zipCode.trim()) {
-			newErrors.zipCode = "Zip code is required";
-		}
 
 		setErrors(newErrors);
 		return Object.keys(newErrors).length === 0;
@@ -74,31 +65,22 @@ export default function ContactForm() {
 		setSubmitStatus("idle");
 
 		try {
-			// TODO: Implement actual form submission
-			await new Promise((resolve) => setTimeout(resolve, 1000));
-			setSubmitStatus("success");
-			setFormData({
-				fullName: "",
-				phone: "",
-				email: "",
-				zipCode: "",
-				lookingFor: [],
-				projectDetails: "",
-			});
+			const result = await submitContactForm(formData);
+
+			if (result.success) {
+				setSubmitStatus("success");
+				// Redirect to thank you page after 1 second
+				setTimeout(() => {
+					window.location.href = "/thank-you";
+				}, 1000);
+			} else {
+				setSubmitStatus("error");
+			}
 		} catch (_error) {
 			setSubmitStatus("error");
 		} finally {
 			setIsSubmitting(false);
 		}
-	};
-
-	const handleCheckboxChange = (value: string) => {
-		setFormData((prev) => ({
-			...prev,
-			lookingFor: prev.lookingFor.includes(value)
-				? prev.lookingFor.filter((item) => item !== value)
-				: [...prev.lookingFor, value],
-		}));
 	};
 
 	return (
@@ -154,73 +136,15 @@ export default function ContactForm() {
 				{errors.email && <FieldError>{errors.email}</FieldError>}
 			</Field>
 
-			<Field>
-				<Label htmlFor="zipCode">
-					Zip Code <span className="text-destructive">*</span>
-				</Label>
-				<Input
-					aria-invalid={!!errors.zipCode}
-					id="zipCode"
-					onChange={(e) =>
-						setFormData({ ...formData, zipCode: e.target.value })
-					}
-					placeholder="94549"
-					required
-					value={formData.zipCode}
-				/>
-				<FieldDescription>To confirm we serve your area</FieldDescription>
-				{errors.zipCode && <FieldError>{errors.zipCode}</FieldError>}
-			</Field>
-
-			<Field>
-				<Label>What are you looking for?</Label>
-				<div className="flex flex-col gap-2">
-					{[
-						"Shades",
-						"Blinds",
-						"Shutters",
-						"Motorized Options",
-						"Not Sure Yet",
-					].map((option) => (
-						<label className="flex items-center gap-2" key={option}>
-							<input
-								checked={formData.lookingFor.includes(option)}
-								className="h-4 w-4"
-								onChange={() => handleCheckboxChange(option)}
-								type="checkbox"
-							/>
-							<span className="text-sm">{option}</span>
-						</label>
-					))}
-				</div>
-			</Field>
-
-			<Field>
-				<Label htmlFor="projectDetails">Tell us about your project</Label>
-				<textarea
-					className="min-h-[100px] w-full rounded-md border border-input bg-transparent px-2.5 py-2 text-sm shadow-xs outline-none transition-[color,box-shadow] placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 dark:bg-input/30"
-					id="projectDetails"
-					maxLength={500}
-					onChange={(e) =>
-						setFormData({ ...formData, projectDetails: e.target.value })
-					}
-					placeholder="How many windows? Any specific concerns or preferences?"
-					value={formData.projectDetails}
-				/>
-				<FieldDescription>
-					Optional - helps Larry prepare for your consultation
-				</FieldDescription>
-			</Field>
-
 			{submitStatus === "success" && (
 				<div className="rounded-md bg-green-50 p-4 text-green-800 text-sm">
-					Thank you for your submission! We'll get back to you within 24 hours.
+					Thank you! Redirecting to confirmation page...
 				</div>
 			)}
 
 			{submitStatus === "error" && (
 				<div className="rounded-md bg-red-50 p-4 text-red-800 text-sm">
-					Something went wrong. Please try again or call us directly.
+					Something went wrong. Please try again or call us at (925) 200-4521.
 				</div>
 			)}
 
@@ -230,7 +154,7 @@ export default function ContactForm() {
 				size="lg"
 				type="submit"
 			>
-				{isSubmitting ? "Submitting..." : "Schedule Free Consultation"}
+				{isSubmitting ? "Submitting..." : "Get My Free Quote"}
 				<ChevronRight className="ml-2" />
 			</Button>
 

@@ -6,13 +6,21 @@ import { useState } from "react";
 import Logo from "./logo";
 import { buttonVariants } from "./ui/button";
 
-export default function Header() {
+interface HeaderProps {
+	variant?: "default" | "dark";
+}
+
+export default function Header({ variant = "default" }: HeaderProps) {
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+	const isDark = variant === "dark";
 
 	return (
 		<>
-			<header className="absolute top-0 left-0 z-50 flex w-full items-center justify-between px-4 py-4 text-primary-foreground md:px-6 md:py-6 lg:px-8">
-				<Logo />
+			<header
+				className={`z-50 flex w-full items-center justify-between px-4 py-4 md:px-6 md:py-6 lg:px-12 lg:py-8 ${isDark ? "relative border-gray-200 border-b bg-white text-gray-900" : "absolute top-0 left-0 text-primary-foreground"}`}
+			>
+				<Logo variant={variant} />
 
 				{/* Desktop Navigation */}
 				<div className="hidden items-center space-x-6 md:flex lg:space-x-8">
@@ -39,7 +47,10 @@ export default function Header() {
 						(925) 200-4521
 					</Link>
 					<Link
-						className={buttonVariants({ variant: "secondary", size: "lg" })}
+						className={buttonVariants({
+							variant: isDark ? "default" : "secondary",
+							size: "lg",
+						})}
 						href="/contact"
 					>
 						CONTACT US

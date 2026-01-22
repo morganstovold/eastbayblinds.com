@@ -1,74 +1,51 @@
 "use server";
 
-// import { sendContactNotification } from "@/lib/email";
-import type { ContactFormData } from "./types";
+import { sendContactNotification } from "@/lib/email";
+
+interface ContactFormData {
+	fullName: string;
+	phone: string;
+	email: string;
+}
 
 export async function submitContactForm(data: ContactFormData) {
-	// try {
-	//   if (
-	//     !data.firstName ||
-	//     !data.lastName ||
-	//     !data.zipCode ||
-	//     !data.serviceType
-	//   ) {
-	//     return {
-	//       success: false,
-	//       error: "Missing required fields",
-	//     };
-	//   }
-	//   if (!data.email && !data.phone) {
-	//     return {
-	//       success: false,
-	//       error: "Email or phone number is required",
-	//     };
-	//   }
-	//   const submission = await db
-	//     .insert(contactSubmission)
-	//     .values({
-	//       id: nanoid(),
-	//       firstName: data.firstName,
-	//       lastName: data.lastName,
-	//       email: data.email || null,
-	//       phone: data.phone || null,
-	//       zipCode: data.zipCode,
-	//       serviceType: data.serviceType,
-	//       message: data.message || null,
-	//       status: "new",
-	//     })
-	//     .returning();
-	//   // Send email notification
-	//   const fullName = `${data.firstName} ${data.lastName}`;
-	//   const submittedAt = new Date().toLocaleString('en-US', {
-	//     year: 'numeric',
-	//     month: 'long',
-	//     day: 'numeric',
-	//     hour: '2-digit',
-	//     minute: '2-digit',
-	//     timeZoneName: 'short'
-	//   });
-	//   // Send email notification (don't await to avoid blocking the response)
-	//   sendContactNotification({
-	//     name: fullName,
-	//     email: data.email || 'No email provided',
-	//     phone: data.phone || 'No phone provided',
-	//     zipCode: data.zipCode,
-	//     serviceType: data.serviceType,
-	//     message: data.message || 'No message provided',
-	//     submittedAt,
-	//   }).catch(error => {
-	//     console.error('Failed to send contact notification email:', error);
-	//   });
-	//   return {
-	//     success: true,
-	//     message:
-	//       "Thank you for your submission! We'll get back to you within 24 hours.",
-	//     submissionId: submission[0].id,
-	//   };
-	// } catch (error) {
-	//   console.error("Contact form submission error:", error);
-	//   return {
-	//     success: false,
-	//     error: "Failed to submit form. Please try again.",
-	//   };
-	// }
+	try {
+		if (!(data.fullName && data.phone && data.email)) {
+			return {
+				success: false,
+				error: "Missing required fields",
+			};
+		}
+
+		const submittedAt = new Date().toLocaleString("en-US", {
+			year: "numeric",
+			month: "long",
+			day: "numeric",
+			hour: "2-digit",
+			minute: "2-digit",
+			timeZoneName: "short",
+		});
+
+		const emailResult = await sendContactNotification({
+			name: data.fullName,
+			email: data.email,
+			phone: data.phone,
+			submittedAt,
+		});
+
+		if (!emailResult.success) {
+			console.error("Failed to send contact notification email");
+			// Still return success to user even if email fails
+		}
+
+		return {
+			success: true,
+		};
+	} catch (error) {
+		console.error("Contact form submission error:", error);
+		return {
+			success: false,
+			error: "Failed to submit form. Please try again.",
+		};
+	}
 }

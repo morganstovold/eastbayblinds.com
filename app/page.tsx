@@ -1,4 +1,4 @@
-import { ChevronRight } from "lucide-react";
+import { CheckCircle, ChevronRight, Phone, Star } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -6,8 +6,7 @@ import Footer from "@/components/footer";
 import Header from "@/components/header";
 import Stars from "@/components/stars";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Button, buttonVariants } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
+import { buttonVariants } from "@/components/ui/button";
 import PSImage from "@/public/new/HD/illuminated-shades.jpg";
 import MOImage from "@/public/new/HD/motorized.png";
 import ORSImage from "@/public/new/HD/office.webp";
@@ -29,7 +28,7 @@ export default function HomePage() {
 			<Header />
 
 			{/* HERO SECTION */}
-			<section className="relative flex h-[60vh] min-h-[400px] w-full md:h-[70vh]">
+			<section className="relative flex min-h-[100svh] w-full items-center md:min-h-[600px] lg:min-h-[80vh]">
 				<Image
 					alt="Expert Window Treatment Solutions for Your Home"
 					className="absolute inset-0 z-0 object-cover"
@@ -37,234 +36,439 @@ export default function HomePage() {
 					priority
 					src={HeroImage}
 				/>
-				<div className="absolute inset-0 z-1 bg-black/60" />
-				<div className="z-2 flex h-full w-full flex-col items-center justify-center gap-4 px-4 text-center text-primary-foreground md:gap-6">
-					<p className="text-xs md:text-sm">
-						Lafayette • Orinda • Moraga • Danville • Alamo • Walnut Creek
-					</p>
-					<h1 className="max-w-3xl font-bold text-3xl tracking-tighter md:text-4xl lg:text-5xl">
-						Expert Window Treatment Solutions for Your Home
-					</h1>
-					<p className="max-w-2xl text-sm md:text-base lg:text-lg">
-						Family-owned. Locally trusted. Hunter Douglas & Norman USA
-						Authorized Dealer.
-					</p>
-					<div className="flex flex-col items-center gap-3 md:flex-row md:gap-4">
-						<Link
-							className={buttonVariants({
-								className: "flex w-full items-center gap-2 md:w-auto",
-								size: "lg",
-								variant: "secondary",
-							})}
-							href="/contact"
-						>
-							Schedule Your Free Consultation
-							<ChevronRight />
-						</Link>
-						<span className="text-sm md:text-base">or call</span>
-						<Link
-							className="font-semibold text-lg text-primary-foreground hover:underline md:text-xl"
-							href="tel:9252004521"
-						>
-							(925) 200-4521
-						</Link>
-					</div>
-					<div className="mt-4 flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 backdrop-blur-sm md:mt-6">
-						<Stars size={14} />
-						<span className="text-primary-foreground/90 text-xs md:text-sm">
-							100+ Five-Star Reviews
-						</span>
+				{/* Stronger gradient for better text readability */}
+				<div className="absolute inset-0 z-1 bg-gradient-to-b from-black/80 via-black/60 to-black/80" />
+
+				<div className="container relative z-2 mx-auto px-4 py-24 md:py-20">
+					{/* Max-width container so it doesn't look lost on 4K */}
+					<div className="mx-auto max-w-4xl text-center">
+						{/* Top badge - single on mobile, all three on desktop */}
+						<div className="mb-4 flex flex-wrap items-center justify-center gap-2 md:mb-6 md:gap-3">
+							<div className="inline-flex items-center gap-1.5 rounded-full border border-white/30 bg-black/40 px-2.5 py-1 backdrop-blur-md md:gap-2 md:px-4 md:py-2">
+								<span className="font-medium text-[11px] text-white md:text-xs">
+									Family-Owned Since 2006
+								</span>
+							</div>
+							<div className="hidden items-center gap-2 rounded-full border border-white/30 bg-black/40 px-4 py-2 backdrop-blur-md sm:inline-flex">
+								<Stars size={12} />
+								<span className="font-semibold text-white text-xs">
+									100+ Reviews
+								</span>
+							</div>
+							<div className="hidden items-center gap-2 rounded-full border border-white/30 bg-black/40 px-4 py-2 backdrop-blur-md md:inline-flex">
+								<CheckCircle className="h-3 w-3" />
+								<span className="font-semibold text-white text-xs">
+									Licensed & Insured
+								</span>
+							</div>
+						</div>
+
+						{/* Headline with text shadow for better readability */}
+						<h1 className="mb-3 font-bold text-2xl text-white tracking-tight drop-shadow-2xl [text-shadow:_0_2px_10px_rgb(0_0_0_/_80%)] md:mb-6 md:text-5xl lg:text-6xl">
+							Expert Window Treatments for Your Home
+						</h1>
+
+						{/* Subheadline - shorter on mobile */}
+						<p className="mb-5 text-sm text-white/90 drop-shadow-lg [text-shadow:_0_1px_8px_rgb(0_0_0_/_70%)] md:mb-8 md:text-xl">
+							<span className="hidden md:inline">
+								Authorized Hunter Douglas & Norman USA dealer serving Lafayette,
+								Walnut Creek, Orinda, and the East Bay with personal service and
+								expert guidance.
+							</span>
+							<span className="md:hidden">
+								Hunter Douglas & Norman dealer serving the East Bay.
+							</span>
+						</p>
+
+						{/* CTAs - side by side on desktop, stacked on mobile */}
+						<div className="mb-6 flex flex-col items-center gap-2.5 sm:flex-row sm:justify-center md:mb-8 md:gap-4">
+							<Link
+								className={buttonVariants({
+									size: "default",
+									variant: "secondary",
+									className:
+										"flex w-full items-center justify-center gap-2 text-sm shadow-xl sm:w-auto md:text-base",
+								})}
+								href="/contact"
+							>
+								Schedule Free Consultation
+								<ChevronRight className="h-4 w-4 md:h-5 md:w-5" />
+							</Link>
+							<Link
+								className={buttonVariants({
+									size: "default",
+									variant: "outline",
+									className:
+										"flex w-full items-center justify-center gap-2 border-white bg-white/10 text-sm text-white shadow-xl backdrop-blur-md hover:bg-white/20 sm:w-auto md:text-base",
+								})}
+								href="tel:9252004521"
+							>
+								<Phone className="h-4 w-4 md:h-5 md:w-5" />
+								(925) 200-4521
+							</Link>
+						</div>
+
+						{/* Bottom trust signals - hidden on mobile */}
+						<div className="hidden flex-wrap items-center justify-center gap-6 text-sm text-white drop-shadow-lg sm:flex">
+							<div className="flex items-center gap-2">
+								<CheckCircle className="h-4 w-4" />
+								<span>No Pressure Consultations</span>
+							</div>
+							<div className="flex items-center gap-2">
+								<CheckCircle className="h-4 w-4" />
+								<span>Free In-Home Estimates</span>
+							</div>
+							<div className="flex items-center gap-2">
+								<CheckCircle className="h-4 w-4" />
+								<span>Same-Day Response</span>
+							</div>
+						</div>
 					</div>
 				</div>
 			</section>
 
-			{/* FIND YOUR SOLUTION */}
-			<section className="container mx-auto flex w-full flex-col items-center gap-6 px-4 py-16 md:gap-8 md:py-24 lg:py-32">
-				<h1 className="text-center text-2xl md:text-3xl lg:text-4xl">
-					FIND YOUR PERFECT SOLUTION
-				</h1>
-				<p className="text-center text-sm md:text-base">
-					ONLY THE BEST FROM THE INDUSTRY'S LEADING BRANDS
-				</p>
-				<Separator className="max-w-xl" />
-				<div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 lg:gap-8">
-					{/* Large featured card */}
-					<div className="relative col-span-1 flex aspect-[3/2] h-full w-full items-end overflow-hidden rounded-lg p-6 md:col-span-2 md:aspect-[3/1] md:p-8">
-						<Image
-							alt="Light & Privacy Control"
-							className="absolute z-0 h-full object-cover"
-							fill
-							src={LPCImage}
-						/>
-						<div className="absolute inset-0 z-1 bg-black/60" />
-						<div className="z-2 flex flex-col gap-2 text-primary-foreground">
-							<h3 className="text-xl md:text-2xl">LIGHT & PRIVACY CONTROL</h3>
+			{/* FIND YOUR SOLUTION - REDESIGNED */}
+			<section className="bg-gray-50 py-16 md:py-24 lg:py-32">
+				<div className="container mx-auto px-4">
+					<div className="mx-auto mb-12 max-w-3xl text-center md:mb-16">
+						<h2 className="mb-4 font-bold text-3xl tracking-tight md:text-4xl lg:text-5xl">
+							Find Your Perfect Solution
+						</h2>
+						<p className="text-base text-gray-600 md:text-lg">
+							Whether you need light control, privacy, energy efficiency, or
+							smart home integration, we have the perfect window treatment
+							solution for your home.
+						</p>
+					</div>
+
+					{/* Equal-sized grid - all same size */}
+					<div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+						{[
+							{
+								title: "Light & Privacy Control",
+								desc: "Manage natural light throughout the day while maintaining privacy",
+								image: LPCImage,
+							},
+							{
+								title: "Privacy & Sleep",
+								desc: "Complete blackout solutions for bedrooms and media rooms",
+								image: PSImage,
+							},
+							{
+								title: "Energy Efficient",
+								desc: "Reduce heating and cooling costs with insulating window treatments",
+								image: EEImage,
+							},
+							{
+								title: "Motorized Options",
+								desc: "Smart home integration with voice and app control",
+								image: MOImage,
+							},
+							{
+								title: "Office & Retail",
+								desc: "Professional solutions for commercial spaces",
+								image: ORSImage,
+							},
+							{
+								title: "Specialty Windows",
+								desc: "Custom solutions for unique shapes and hard-to-reach windows",
+								image: LPCImage,
+							},
+						].map((item) => (
 							<Link
-								className="flex items-center gap-2 text-primary-foreground text-sm hover:underline md:text-base"
+								className="group relative overflow-hidden rounded-xl bg-white shadow-md transition hover:shadow-xl"
+								href="/contact"
+								key={item.title}
+							>
+								<div className="relative h-48 w-full overflow-hidden md:h-56">
+									<Image
+										alt={item.title}
+										className="absolute inset-0 object-cover transition duration-300 group-hover:scale-105"
+										fill
+										src={item.image}
+									/>
+									<div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+								</div>
+								<div className="flex flex-1 flex-col p-6">
+									<h3 className="mb-2 font-semibold text-xl">{item.title}</h3>
+									<p className="mb-4 text-gray-600 text-sm">{item.desc}</p>
+									<div className="mt-auto flex items-center gap-2 font-medium text-primary text-sm transition-all group-hover:gap-3">
+										Schedule Consultation
+										<ChevronRight className="h-4 w-4" />
+									</div>
+								</div>
+							</Link>
+						))}
+					</div>
+				</div>
+			</section>
+
+			{/* FEATURED BRANDS - REDESIGNED */}
+			<section className="bg-white py-16 md:py-24 lg:py-32">
+				<div className="container mx-auto px-4">
+					<div className="mx-auto mb-12 max-w-3xl text-center md:mb-16">
+						<h2 className="mb-4 font-bold text-3xl tracking-tight md:text-4xl lg:text-5xl">
+							Trusted Partners
+						</h2>
+						<p className="text-base text-gray-600 md:text-lg">
+							We partner with Hunter Douglas and Norman USA, the most trusted
+							names in window treatments to bring you proven quality,
+							innovation, and lasting value.
+						</p>
+					</div>
+
+					{/* Brand Cards */}
+					<div className="mx-auto mb-16 grid max-w-5xl grid-cols-1 gap-8 md:grid-cols-2">
+						{/* Hunter Douglas Card */}
+						<div className="group overflow-hidden rounded-2xl bg-background-alt shadow-xl transition hover:shadow-2xl">
+							<div className="relative h-48 overflow-hidden">
+								<Image
+									alt="Hunter Douglas Window Treatments"
+									className="absolute inset-0 object-cover opacity-70 transition duration-500 group-hover:scale-110 group-hover:opacity-60"
+									fill
+									src={EEImage}
+								/>
+							</div>
+							<div className="p-8">
+								<div className="mb-3 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1">
+									<CheckCircle className="h-4 w-4 text-white" />
+									<span className="font-semibold text-white text-xs uppercase tracking-wider">
+										Authorized Dealer
+									</span>
+								</div>
+								<h3 className="mb-4 font-bold text-3xl text-white">
+									Hunter Douglas
+								</h3>
+								<p className="mb-6 text-gray-300 text-sm leading-relaxed">
+									Industry leader in innovation, style, and performance. From
+									PowerView® automation to energy-efficient cellular shades,
+									Hunter Douglas sets the standard for premium window
+									treatments.
+								</p>
+								<Link
+									className="inline-flex items-center gap-2 font-medium text-sm text-white transition hover:gap-3"
+									href="https://www.hunterdouglas.com/"
+									target="_blank"
+								>
+									Explore Products
+									<ChevronRight className="h-4 w-4" />
+								</Link>
+							</div>
+						</div>
+
+						{/* Norman USA Card */}
+						<div className="group overflow-hidden rounded-2xl bg-background-alt shadow-xl transition hover:shadow-2xl">
+							<div className="relative h-48 overflow-hidden">
+								<Image
+									alt="Norman USA Window Treatments"
+									className="absolute inset-0 object-cover opacity-70 transition duration-500 group-hover:scale-110 group-hover:opacity-60"
+									fill
+									src={NORMANImage}
+								/>
+							</div>
+							<div className="p-8">
+								<div className="mb-3 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1">
+									<CheckCircle className="h-4 w-4 text-white" />
+									<span className="font-semibold text-white text-xs uppercase tracking-wider">
+										Authorized Dealer
+									</span>
+								</div>
+								<h3 className="mb-4 font-bold text-3xl text-white">
+									Norman USA
+								</h3>
+								<p className="mb-6 text-gray-300 text-sm leading-relaxed">
+									American-made quality and craftsmanship since 1976. Norman
+									specializes in premium shutters, shades, and blinds built to
+									last a lifetime with superior materials and construction.
+								</p>
+								<Link
+									className="inline-flex items-center gap-2 font-medium text-sm text-white transition hover:gap-3"
+									href="https://normanusa.com/"
+									target="_blank"
+								>
+									Explore Products
+									<ChevronRight className="h-4 w-4" />
+								</Link>
+							</div>
+						</div>
+					</div>
+
+					{/* Benefits Grid */}
+					<div className="mx-auto grid max-w-4xl grid-cols-1 gap-6 md:grid-cols-3">
+						<div className="rounded-xl border border-gray-200 bg-gray-50 p-6 text-center transition hover:shadow-md">
+							<div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
+								<CheckCircle className="h-6 w-6 text-primary" />
+							</div>
+							<h4 className="mb-2 font-semibold text-lg">Full Warranties</h4>
+							<p className="text-gray-600 text-sm">
+								Comprehensive manufacturer warranties on all products
+							</p>
+						</div>
+
+						<div className="rounded-xl border border-gray-200 bg-gray-50 p-6 text-center transition hover:shadow-md">
+							<div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
+								<CheckCircle className="h-6 w-6 text-primary" />
+							</div>
+							<h4 className="mb-2 font-semibold text-lg">
+								Expert Installation
+							</h4>
+							<p className="text-gray-600 text-sm">
+								Certified installation by Larry, ensuring perfect results
+							</p>
+						</div>
+
+						<div className="rounded-xl border border-gray-200 bg-gray-50 p-6 text-center transition hover:shadow-md">
+							<div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
+								<CheckCircle className="h-6 w-6 text-primary" />
+							</div>
+							<h4 className="mb-2 font-semibold text-lg">Premium Quality</h4>
+							<p className="text-gray-600 text-sm">
+								Only the best materials and craftsmanship
+							</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			{/* WHY CHOOSE US - REDESIGNED */}
+			<section className="bg-gradient-to-b from-gray-50 to-white py-16 md:py-24 lg:py-32">
+				<div className="container mx-auto px-4">
+					<div className="mx-auto mb-12 max-w-3xl text-center md:mb-16">
+						<h2 className="mb-4 font-bold text-3xl tracking-tight md:text-4xl lg:text-5xl">
+							Why Homeowners Choose Us
+						</h2>
+					</div>
+
+					{/* Larry's Story - Integrated Design */}
+					<div className="mx-auto mb-16 max-w-4xl">
+						<div className="overflow-hidden rounded-2xl bg-white shadow-xl">
+							{/* Mobile: Avatar + Quote layout */}
+							<div className="p-6 md:hidden">
+								<div className="mb-6 flex items-center gap-4">
+									<div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-full">
+										<Image
+											alt="Larry Collins, Owner of East Bay Blinds"
+											className="object-cover object-[20%_center]"
+											fill
+											src={LARRYHeadshot}
+										/>
+									</div>
+									<div>
+										<p className="font-semibold text-lg">Larry Collins</p>
+										<p className="text-gray-600 text-sm">Owner & Founder</p>
+									</div>
+								</div>
+
+								<blockquote className="space-y-4 text-gray-700">
+									<p className="text-base leading-relaxed">
+										"I've been helping East Bay homeowners find the perfect
+										window treatments for over 20 years. As a family-owned
+										business, I personally oversee every consultation and
+										installation. Your satisfaction isn't just good for
+										business.it's personal."
+									</p>
+								</blockquote>
+
+								<div className="mt-6 flex items-center gap-2">
+									<div className="flex">
+										{[...new Array(5)].map((_, i) => (
+											<Star
+												className="h-5 w-5 fill-yellow-400 text-yellow-400"
+												key={i}
+											/>
+										))}
+									</div>
+									<span className="text-gray-600 text-sm">
+										100+ Five Star Reviews
+									</span>
+								</div>
+							</div>
+
+							{/* Desktop: Side-by-side layout */}
+							<div className="hidden md:grid md:grid-cols-5">
+								{/* Larry's Photo */}
+								<div className="relative md:col-span-2 md:min-h-[350px]">
+									<Image
+										alt="Larry Collins, Owner of East Bay Blinds"
+										className="absolute inset-0 h-full w-full object-cover object-[20%_center]"
+										fill
+										src={LARRYHeadshot}
+									/>
+								</div>
+
+								{/* Larry's Quote */}
+								<div className="flex flex-col justify-center p-10 md:col-span-3 lg:p-12">
+									<div className="mb-6">
+										<p className="mb-1 font-semibold text-xl">Larry Collins</p>
+										<p className="text-gray-600 text-sm">Owner & Founder</p>
+									</div>
+
+									<blockquote className="space-y-4 text-gray-700">
+										<p className="text-lg leading-relaxed">
+											"I've been helping East Bay homeowners find the perfect
+											window treatments for over 20 years. As a family-owned
+											business, I personally oversee every consultation and
+											installation.
+										</p>
+										<p className="text-lg leading-relaxed">
+											Your satisfaction isn't just good for business.it's
+											personal."
+										</p>
+									</blockquote>
+
+									<div className="mt-6 flex items-center gap-2">
+										<div className="flex">
+											{[...new Array(5)].map((_, i) => (
+												<Star
+													className="h-5 w-5 fill-yellow-400 text-yellow-400"
+													key={i}
+												/>
+											))}
+										</div>
+										<span className="text-gray-600 text-sm">
+											100+ Five Star Reviews
+										</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div className="mt-8 text-center">
+							<Link
+								className="inline-flex items-center gap-2 font-medium text-primary hover:underline"
 								href="/contact"
 							>
-								LEARN MORE
+								Schedule Your Free Consultation with Larry
 								<ChevronRight className="h-4 w-4" />
 							</Link>
 						</div>
 					</div>
 
-					{/* Smaller cards */}
-					{[
-						{ title: "PRIVACY & SLEEP", image: PSImage },
-						{ title: "ENERGY EFFICIENT", image: EEImage },
-						{ title: "OFFICE & RETAIL SPACES", image: ORSImage },
-						{ title: "MOTORIZED OPTIONS", image: MOImage },
-					].map((item) => (
-						<div
-							className="relative flex aspect-[3/2] h-full items-end overflow-hidden rounded-lg p-6 md:aspect-[2/1] md:p-8"
-							key={item.title}
-						>
-							<Image
-								alt={item.title}
-								className="absolute z-0 h-full object-cover"
-								fill
-								src={item.image}
-							/>
-							<div className="absolute inset-0 z-1 bg-black/60" />
-							<div className="z-2 flex flex-col gap-2 text-primary-foreground">
-								<h3 className="text-lg md:text-xl">{item.title}</h3>
-								<Link
-									className="flex items-center gap-2 text-primary-foreground text-sm hover:underline"
-									href="/contact"
-								>
-									LEARN MORE
-									<ChevronRight className="h-4 w-4" />
-								</Link>
-							</div>
-						</div>
-					))}
-				</div>
-			</section>
-
-			<Separator />
-
-			{/* FEATURED BRANDS */}
-			<section className="w-full bg-[#181818] py-16 text-primary-foreground md:py-24 lg:py-32">
-				<div className="container mx-auto flex w-full flex-col items-center gap-6 px-4 md:gap-8">
-					<h1 className="text-center text-2xl md:text-3xl lg:text-4xl">
-						FEATURED BRANDS
-					</h1>
-					<p className="max-w-3xl text-center text-sm md:text-base">
-						WE PARTNER WITH THE MOST TRUSTED NAMES IN WINDOW TREATMENTS
-					</p>
-					<Separator className="max-w-xl" />
-					<div className="grid w-full grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
-						<div className="relative flex aspect-[3/2] h-full items-end overflow-hidden rounded-lg p-6 md:aspect-[2/1] md:p-8">
-							<Image
-								alt="Hunter Douglas"
-								className="absolute z-0 h-full object-cover"
-								fill
-								src={EEImage}
-							/>
-							<div className="absolute inset-0 z-1 bg-black/60" />
-							<div className="z-2 flex w-full flex-col gap-2 text-primary-foreground">
-								<p className="text-xs md:text-sm">AUTHORIZED DEALER</p>
-								<h3 className="text-xl md:text-2xl">HUNTER DOUGLAS</h3>
-								<Link
-									className="flex items-center gap-2 text-primary-foreground text-sm hover:underline"
-									href="https://www.hunterdouglas.com/"
-									target="_blank"
-								>
-									LEARN MORE
-									<ChevronRight className="h-4 w-4" />
-								</Link>
-							</div>
-						</div>
-						<div className="relative flex aspect-[3/2] h-full items-end overflow-hidden rounded-lg p-6 md:aspect-[2/1] md:p-8">
-							<Image
-								alt="Norman USA"
-								className="absolute z-0 h-full object-cover"
-								fill
-								src={NORMANImage}
-							/>
-							<div className="absolute inset-0 z-1 bg-black/60" />
-							<div className="z-2 flex w-full flex-col gap-2 text-primary-foreground">
-								<p className="text-xs md:text-sm">AUTHORIZED DEALER</p>
-								<h3 className="text-xl md:text-2xl">NORMAN USA</h3>
-								<Link
-									className="flex items-center gap-2 text-primary-foreground text-sm hover:underline"
-									href="https://normanusa.com/"
-									target="_blank"
-								>
-									LEARN MORE
-									<ChevronRight className="h-4 w-4" />
-								</Link>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-
-			{/* WHY CHOOSE US */}
-			<section className="flex w-full flex-col items-center gap-6 px-4 py-16 md:gap-8 md:py-24 lg:py-32">
-				<h1 className="text-center text-2xl md:text-3xl lg:text-4xl">
-					WHY HOMEOWNERS CHOOSE US
-				</h1>
-				<div className="flex max-w-[900px] flex-col items-center gap-6 md:gap-8">
-					<Separator />
-					<div className="flex flex-col items-center gap-8 md:flex-row md:gap-12">
-						<div className="relative aspect-square w-48 flex-shrink-0 overflow-hidden rounded-lg md:w-64">
-							<Image
-								alt="Larry Collins, Owner of East Bay Blinds"
-								className="absolute z-0 h-full object-cover object-[20%_center]"
-								fill
-								src={LARRYHeadshot}
-							/>
-							<div className="absolute inset-0 z-1 bg-black/20" />
-							<div className="absolute bottom-0 z-10 flex w-full flex-col gap-2 p-4 text-primary-foreground">
-								<p className="font-semibold text-shadow-lg">LARRY COLLINS</p>
-							</div>
-						</div>
-						<div className="flex flex-col gap-4 text-center md:gap-6 md:text-left">
-							<p className="text-base leading-relaxed md:text-lg">
-								"I'm Larry Collins, and I've been helping East Bay homeowners
-								find the perfect window treatments for over 20 years.
-							</p>
-							<p className="text-base leading-relaxed md:text-lg">
-								As a family-owned business, I personally oversee every
-								consultation and installation. Your satisfaction isn't just good
-								for business, it's personal."
-							</p>
-							<p className="mt-2 font-semibold md:mt-4">
-								- Larry Collins, Owner
-							</p>
-						</div>
-					</div>
-					<div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 lg:gap-8">
+					{/* Four Pillars */}
+					<div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
 						{[
 							{
 								title: "Expert Guidance",
-								desc: "Throughout every decision, from initial consultation to final installation",
+								desc: "Personal consultation from initial meeting to final installation",
 							},
 							{
 								title: "Family Owned",
-								desc: "We stand behind every job with personal accountability and care",
+								desc: "Personal accountability and care in every project",
 							},
 							{
 								title: "Authorized Dealer",
-								desc: "Hunter Douglas & Norman USA premium products with full warranties",
+								desc: "Hunter Douglas & Norman USA premium products",
 							},
 							{
 								title: "Professional Installation",
-								desc: "Precision measurement and expert installation with attention to detail",
+								desc: "Precision measurement and expert craftsmanship",
 							},
 						].map((item) => (
 							<div
-								className="flex flex-col gap-3 rounded-lg border border-border bg-card p-6 md:gap-4 md:p-8"
+								className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-md"
 								key={item.title}
 							>
-								<h2 className="font-semibold text-xl md:text-2xl">
-									{item.title}
-								</h2>
-								<p className="text-muted-foreground text-sm md:text-base">
-									{item.desc}
-								</p>
+								<h3 className="mb-2 font-semibold text-lg">{item.title}</h3>
+								<p className="text-gray-600 text-sm">{item.desc}</p>
 							</div>
 						))}
 					</div>
@@ -272,37 +476,53 @@ export default function HomePage() {
 			</section>
 
 			{/* HOW WE WORK TOGETHER */}
-			<section className="w-full bg-[#181818] py-16 text-primary-foreground md:py-24 lg:py-32">
-				<div className="container mx-auto flex w-full flex-col items-center gap-8 px-4 md:gap-12 lg:gap-16">
-					<h1 className="text-center text-2xl md:text-3xl lg:text-4xl">
-						HOW WE WORK TOGETHER
-					</h1>
-					<Separator className="max-w-xl" />
-					<div className="grid w-full grid-cols-1 gap-8 md:grid-cols-3 md:gap-12">
+			<section className="bg-background-alt py-16 text-white md:py-24 lg:py-32">
+				<div className="container mx-auto px-4">
+					<div className="mx-auto mb-12 max-w-3xl text-center md:mb-16">
+						<h2 className="mb-4 font-bold text-3xl tracking-tight md:text-4xl lg:text-5xl">
+							How We Work Together
+						</h2>
+						<p className="text-base text-gray-300 md:text-lg">
+							From first contact to final installation, we make the process
+							simple, transparent, and stress-free.
+						</p>
+					</div>
+
+					<div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 md:grid-cols-3 md:gap-12">
 						{[
 							{
-								num: "1.",
+								num: "1",
 								title: "Schedule Consultation",
-								desc: "Book a time that works for you, no pressure",
+								desc: "Book a free in-home consultation at your convenience. No pressure, no obligation.",
 							},
 							{
-								num: "2.",
+								num: "2",
 								title: "In-Home Design Visit",
-								desc: "Larry brings samples and provides expert guidance",
+								desc: "Larry brings samples, measures your windows, and provides expert recommendations.",
 							},
 							{
-								num: "3.",
+								num: "3",
 								title: "Professional Installation",
-								desc: "Precision measurement and expert installation",
+								desc: "Larry personally oversees installation with precision and attention to detail.",
 							},
 						].map((step) => (
 							<div
-								className="flex flex-col items-center gap-3 text-center md:gap-4"
+								className="relative flex flex-col items-center text-center"
 								key={step.num}
 							>
-								<h1 className="font-bold text-5xl md:text-6xl">{step.num}</h1>
-								<h3 className="text-xl md:text-2xl">{step.title}</h3>
-								<p className="text-sm md:text-base">{step.desc}</p>
+								<div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-white/10 font-bold text-3xl">
+									{step.num}
+								</div>
+								<h3 className="mb-3 font-semibold text-xl">{step.title}</h3>
+								<p className="text-gray-300 text-sm leading-relaxed">
+									{step.desc}
+								</p>
+								<Link
+									className="mt-4 inline-flex items-center gap-1 text-sm text-white/80 underline-offset-4 hover:underline"
+									href="/contact"
+								>
+									Start here <ChevronRight className="h-3 w-3" />
+								</Link>
 							</div>
 						))}
 					</div>
@@ -310,108 +530,141 @@ export default function HomePage() {
 			</section>
 
 			{/* TESTIMONIALS */}
-			<section className="container mx-auto flex w-full flex-col items-center gap-6 px-4 py-16 md:gap-8 md:py-24 lg:py-32">
-				<h1 className="text-center text-2xl md:text-3xl lg:text-4xl">
-					WHAT YOUR NEIGHBORS SAY
-				</h1>
-				<Separator className="max-w-xl" />
-				<div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-3 lg:gap-8">
-					{[
-						{
-							quote:
-								"We loved this guy so much we kept his contact info—Fast forward ten years, I call him, hoping he's still around... Not only did he respond quickly, he again listened carefully to what we wanted... with no fuss no pressure, gave us exactly what we were wishing for—all at a very fair and reasonable price point.",
-							name: "Joan S.",
-							location: "Lafayette, CA",
-							initial: "J",
-						},
-						{
-							quote:
-								"Larry is the owner of this small business - he is knowledgeable, experienced and easy to work with. He delivered the products on schedule and installed everything himself. His prices were very reasonable (much less than the Costco window covering service). Highly recommended.",
-							name: "Safa T.",
-							location: "Concord, CA",
-							initial: "S",
-						},
-						{
-							quote:
-								"There's a reason I'm drawn to work with small businesses that are owner-operated... Larry was very patient with us, listened to our needs, and was never pushy. He came himself to do it and made sure everything was 100% to our liking. He's respectful, and left the space sparkling clean.",
-							name: "Isabelle L.",
-							location: "Walnut Creek, CA",
-							initial: "I",
-						},
-						{
-							quote:
-								"I bought my blinds from him seven years ago. Some Hunter Douglas blinds. And last month, I noticed that the honeycombs on one of the blinds were coming apart. I contacted him and he replaced the blind for free. So easy. So friendly.",
-							name: "Natalie C.",
-							location: "El Cerrito, CA",
-							initial: "N",
-						},
-						{
-							quote:
-								"What set Larry apart was how he really cares about his product... his quiet installation when I returned from hospital post delivery. Larry and his son didn't leave any mess, and were super quiet when they exited our home.",
-							name: "Lisa H.",
-							location: "Lafayette, CA",
-							initial: "L",
-						},
-						{
-							quote:
-								"Larry and his son installed the shutters with expert workmanship, very minimal noise and the best part? My bedrooms were left clean!!! The shutters transforms the house and are great quality.",
-							name: "Cindy T.",
-							location: "San Francisco, CA",
-							initial: "C",
-						},
-					].map((testimonial) => (
-						<div
-							className="flex flex-col justify-between gap-4 rounded-lg border border-border bg-card p-6"
-							key={testimonial.name}
-						>
-							<p className="text-sm leading-relaxed md:text-base">
-								"{testimonial.quote}"
-							</p>
-							<div className="flex items-center justify-between">
-								<div className="flex items-center gap-3 md:gap-4">
+			<section className="bg-white py-16 md:py-24 lg:py-32">
+				<div className="container mx-auto px-4">
+					<div className="mx-auto mb-12 max-w-3xl text-center md:mb-16">
+						<h2 className="mb-4 font-bold text-3xl tracking-tight md:text-4xl lg:text-5xl">
+							What Your Neighbors Say
+						</h2>
+						<p className="text-base text-gray-600 md:text-lg">
+							Don't just take our word for it.hear from East Bay homeowners
+							who've trusted us with their window treatments.
+						</p>
+					</div>
+
+					<div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+						{[
+							{
+								quote:
+									"We loved this guy so much we kept his contact info.Fast forward ten years, I call him, hoping he's still around... Not only did he respond quickly, he again listened carefully to what we wanted... with no fuss no pressure, gave us exactly what we were wishing for.all at a very fair and reasonable price point.",
+								name: "Joan S.",
+								location: "Lafayette, CA",
+								initial: "J",
+							},
+							{
+								quote:
+									"Larry is the owner of this small business - he is knowledgeable, experienced and easy to work with. He delivered the products on schedule and installed everything himself. His prices were very reasonable (much less than the Costco window covering service). Highly recommended.",
+								name: "Safa T.",
+								location: "Concord, CA",
+								initial: "S",
+							},
+							{
+								quote:
+									"There's a reason I'm drawn to work with small businesses that are owner-operated... Larry was very patient with us, listened to our needs, and was never pushy. He came himself to do it and made sure everything was 100% to our liking. He's respectful, and left the space sparkling clean.",
+								name: "Isabelle L.",
+								location: "Walnut Creek, CA",
+								initial: "I",
+							},
+							{
+								quote:
+									"I bought my blinds from him seven years ago. Some Hunter Douglas blinds. And last month, I noticed that the honeycombs on one of the blinds were coming apart. I contacted him and he replaced the blind for free. So easy. So friendly.",
+								name: "Natalie C.",
+								location: "El Cerrito, CA",
+								initial: "N",
+							},
+							{
+								quote:
+									"What set Larry apart was how he really cares about his product... his quiet installation when I returned from hospital post delivery. Larry and his son didn't leave any mess, and were super quiet when they exited our home.",
+								name: "Lisa H.",
+								location: "Lafayette, CA",
+								initial: "L",
+							},
+							{
+								quote:
+									"Larry and his son installed the shutters with expert workmanship, very minimal noise and the best part? My bedrooms were left clean!!! The shutters transforms the house and are great quality.",
+								name: "Cindy T.",
+								location: "San Francisco, CA",
+								initial: "C",
+							},
+						].map((testimonial) => (
+							<div
+								className="flex flex-col rounded-xl border border-gray-200 bg-gray-50 p-6 shadow-sm transition hover:shadow-md"
+								key={testimonial.name}
+							>
+								<div className="mb-4 flex">
+									{[...new Array(5)].map((_, i) => (
+										<Star
+											className="h-4 w-4 fill-yellow-400 text-yellow-400"
+											key={i}
+										/>
+									))}
+								</div>
+								<p className="mb-6 flex-grow text-gray-700 text-sm leading-relaxed">
+									"{testimonial.quote}"
+								</p>
+								<div className="flex items-center gap-3">
 									<Avatar className="h-10 w-10">
-										<AvatarFallback>{testimonial.initial}</AvatarFallback>
+										<AvatarFallback className="bg-primary text-primary-foreground">
+											{testimonial.initial}
+										</AvatarFallback>
 									</Avatar>
-									<div className="flex flex-col">
-										<p className="font-semibold text-sm md:text-base">
-											{testimonial.name}
-										</p>
-										<small className="text-muted-foreground text-xs md:text-sm">
+									<div>
+										<p className="font-semibold text-sm">{testimonial.name}</p>
+										<p className="text-gray-600 text-xs">
 											{testimonial.location}
-										</small>
+										</p>
 									</div>
 								</div>
-								<div className="scale-75 md:scale-100">
-									<Stars />
-								</div>
 							</div>
-						</div>
-					))}
+						))}
+					</div>
+
+					<div className="mt-12 text-center">
+						<Link
+							className="inline-flex items-center gap-2 font-medium text-primary hover:underline"
+							href="https://www.yelp.com/biz/east-bay-blinds-benicia-2"
+							target="_blank"
+						>
+							Read All 100+ Reviews on Yelp
+							<ChevronRight className="h-4 w-4" />
+						</Link>
+					</div>
 				</div>
 			</section>
 
 			{/* FINAL CTA */}
-			<section className="w-full bg-[#181818] py-16 text-primary-foreground md:py-24 lg:py-32">
-				<div className="container mx-auto flex w-full flex-col items-center gap-6 px-4 text-center md:gap-8">
-					<h1 className="text-2xl md:text-3xl lg:text-4xl">
-						Ready to Explore Your Options?
-					</h1>
-					<p className="max-w-2xl text-sm leading-relaxed md:text-base lg:text-lg">
-						Schedule a free, no-pressure consultation. We will bring samples,
-						discuss your needs, and provide expert recommendations.
-					</p>
-					<div className="flex flex-col items-center gap-3 md:flex-row md:gap-4">
-						<Button className="w-full md:w-auto" size="lg" variant="secondary">
-							Schedule Free Consultation
-							<ChevronRight className="ml-2" />
-						</Button>
-						<span className="text-sm md:text-base">or call</span>
-						<Link
-							className="font-semibold text-lg text-primary-foreground hover:underline md:text-xl"
-							href="tel:9252004521"
-						>
-							(925) 200-4521
-						</Link>
+			<section className="bg-background-alt py-16 text-white md:py-24 lg:py-32">
+				<div className="container mx-auto px-4 text-center">
+					<div className="mx-auto max-w-3xl">
+						<h2 className="mb-6 font-bold text-3xl tracking-tight md:text-4xl lg:text-5xl">
+							Ready to Transform Your Windows?
+						</h2>
+						<p className="mb-8 text-base text-gray-300 md:mb-10 md:text-lg">
+							Schedule a free, no-pressure consultation. Larry will bring
+							samples, measure your windows, and provide expert recommendations
+							tailored to your home.
+						</p>
+						<div className="flex flex-col items-center gap-4 md:flex-row md:justify-center">
+							<Link
+								className={buttonVariants({
+									size: "lg",
+									variant: "secondary",
+									className: "w-full md:w-auto",
+								})}
+								href="/contact"
+							>
+								Schedule Free Consultation
+								<ChevronRight className="ml-2" />
+							</Link>
+							<span className="text-gray-300 text-sm">or</span>
+							<Link
+								className="inline-flex items-center gap-2 font-semibold text-lg hover:underline"
+								href="tel:9252004521"
+							>
+								<Phone className="h-5 w-5" />
+								(925) 200-4521
+							</Link>
+						</div>
 					</div>
 				</div>
 			</section>

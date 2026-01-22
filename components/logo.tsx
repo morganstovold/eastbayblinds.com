@@ -1,3 +1,11 @@
-export default function Logo() {
-	return <h3>EAST BAY BLINDS</h3>;
+interface LogoProps {
+	variant?: "default" | "dark";
+}
+
+export default function Logo({ variant = "default" }: LogoProps) {
+	return (
+		<h3 className={variant === "dark" ? "text-gray-900" : ""}>
+			EAST BAY BLINDS
+		</h3>
+	);
 }

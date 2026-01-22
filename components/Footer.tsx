@@ -37,12 +37,6 @@ export default function Footer() {
 					</Link>
 					<Link
 						className="text-muted-foreground text-sm hover:underline"
-						href="/contact"
-					>
-						PRODUCTS
-					</Link>
-					<Link
-						className="text-muted-foreground text-sm hover:underline"
 						href="/gallery"
 					>
 						GALLERY
