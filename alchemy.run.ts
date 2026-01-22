@@ -5,12 +5,16 @@ import { CloudflareStateStore, SQLiteStateStore } from "alchemy/state";
 
 const app = await alchemy("eastbayblinds-com", {
 	stateStore: (scope) =>
-		scope.local ? new SQLiteStateStore(scope) : new CloudflareStateStore(scope, {
-			scriptName: "eastbayblinds-com-state",
-		}),
+		scope.local
+			? new SQLiteStateStore(scope)
+			: new CloudflareStateStore(scope, {
+					scriptName: "eastbayblinds-com-state",
+				}),
 });
 
-const r2 = await R2Bucket("r2");
+const r2 = await R2Bucket("r2", {
+	adopt: true,
+});
 
 export const website = await Nextjs("website", {
 	adopt: true,
