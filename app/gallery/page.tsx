@@ -2,16 +2,14 @@ import { ChevronRight, Phone } from "lucide-react";
 import type { Metadata } from "next";
 import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
-// Gallery images - add new project photos here
-import Image1 from "@/assets/new/HD/illuminated-shades.jpg";
-import Image2 from "@/assets/new/HD/motorized.png";
-import Image3 from "@/assets/new/HD/office.webp";
-import Image4 from "@/assets/new/HD/roller-shades.webp";
-import Image5 from "@/assets/new/HD/soft-blinds.webp";
-import Image6 from "@/assets/new/NORMAN/1844-x-1038_Photo_Shutters_06.jpg";
-import Image7 from "@/assets/new/NORMAN/1844-x-1038_Photo_Shutters_14.jpg";
-import Footer from "@/components/footer";
-import Header from "@/components/header";
+import Image1 from "@/assets/new/HD/motorized.png";
+import Image2 from "@/assets/new/HD/roller-shades.webp";
+import Image3 from "@/assets/new/HD/shades.webp";
+import Image4 from "@/assets/new/HD/soft-blinds.webp";
+import Image5 from "@/assets/new/NORMAN/1844-x-1038_Photo_Shutters_06.jpg";
+import Image6 from "@/assets/new/NORMAN/1844-x-1038_Photo_Shutters_14.jpg";
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 import { buttonVariants } from "@/components/ui/button";
 
 export const metadata: Metadata = {
@@ -29,49 +27,14 @@ export const metadata: Metadata = {
 	},
 };
 
-interface GalleryImage {
-	src: StaticImageData;
-	alt: string;
-	caption?: string;
-}
-
 // Add new gallery images here
-const galleryImages: GalleryImage[] = [
-	{
-		src: Image1,
-		alt: "Illuminated shades installation",
-		caption: "Illuminated Shades",
-	},
-	{
-		src: Image2,
-		alt: "Motorized window treatments",
-		caption: "Motorized Shades",
-	},
-	{
-		src: Image3,
-		alt: "Office window treatments",
-		caption: "Commercial Installation",
-	},
-	{
-		src: Image4,
-		alt: "Roller shades installation",
-		caption: "Roller Shades",
-	},
-	{
-		src: Image5,
-		alt: "Soft blinds installation",
-		caption: "Soft Blinds",
-	},
-	{
-		src: Image6,
-		alt: "Norman shutters installation",
-		caption: "Norman Shutters",
-	},
-	{
-		src: Image7,
-		alt: "Norman plantation shutters",
-		caption: "Plantation Shutters",
-	},
+const galleryImages: StaticImageData[] = [
+	Image1,
+	Image2,
+	Image3,
+	Image4,
+	Image5,
+	Image6,
 ];
 
 export default function GalleryPage() {
@@ -84,34 +47,27 @@ export default function GalleryPage() {
 				<div className="container mx-auto px-4">
 					<div className="mb-12 text-center">
 						<h1 className="mb-4 font-bold text-3xl tracking-tight md:text-4xl lg:text-5xl">
-							Recent Installations
+							Gallery
 						</h1>
 						<p className="mx-auto max-w-2xl text-gray-600 md:text-lg">
-							Browse recent projects from homes throughout the East Bay.
+							Our collection of window treatment solutions.
 						</p>
 					</div>
 
 					{/* GALLERY GRID */}
 					<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-						{galleryImages.map((image) => (
+						{galleryImages.map((image, index) => (
 							<div
 								className="group relative aspect-[4/3] overflow-hidden rounded-lg bg-gray-100"
-								key={image.alt}
+								key={index}
 							>
 								<Image
-									alt={image.alt}
+									alt={`Gallery image ${index + 1}`}
 									className="object-cover transition duration-300 group-hover:scale-105"
 									fill
 									sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
 									src={image.src}
 								/>
-								{image.caption && (
-									<div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-4 pt-8">
-										<p className="font-medium text-sm text-white">
-											{image.caption}
-										</p>
-									</div>
-								)}
 							</div>
 						))}
 					</div>

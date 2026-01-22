@@ -2,17 +2,16 @@ import { CheckCircle, ChevronRight, Phone, Star } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import PSImage from "@/assets/new/HD/illuminated-shades.jpg";
+import SWImage from "@/assets/Hero-Shades.webp";
 import MOImage from "@/assets/new/HD/motorized.png";
-import ORSImage from "@/assets/new/HD/office.webp";
 import LPCImage from "@/assets/new/HD/roller-shades.webp";
 import HeroImage from "@/assets/new/HD/shades.webp";
 import EEImage from "@/assets/new/HD/soft-blinds.webp";
 import LARRYHeadshot from "@/assets/new/larry.jpg";
 import NORMANImage from "@/assets/new/NORMAN/1844-x-1038_Photo_Shutters_06.jpg";
-import Footer from "@/components/footer";
-import Header from "@/components/header";
-import Stars from "@/components/stars";
+import PSImage from "@/assets/new/NORMAN/1844-x-1038_Photo_Shutters_14.jpg";
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { buttonVariants } from "@/components/ui/button";
 
@@ -66,12 +65,15 @@ export default function HomePage() {
 									Family-Owned Since 2006
 								</span>
 							</div>
-							<div className="hidden items-center gap-2 rounded-full border border-white/30 bg-black/40 px-4 py-2 backdrop-blur-md sm:inline-flex">
-								<Stars size={12} />
+							<Link
+								className="hidden items-center gap-2 rounded-full border border-white/30 bg-black/40 px-4 py-2 backdrop-blur-md transition hover:border-white/50 hover:bg-black/50 sm:inline-flex"
+								href="https://www.yelp.com/biz/east-bay-blinds-benicia-2"
+								target="_blank"
+							>
 								<span className="font-semibold text-white text-xs">
 									100+ Reviews
 								</span>
-							</div>
+							</Link>
 							<div className="hidden items-center gap-2 rounded-full border border-white/30 bg-black/40 px-4 py-2 backdrop-blur-md md:inline-flex">
 								<CheckCircle className="h-3 w-3" />
 								<span className="font-semibold text-white text-xs">
@@ -148,6 +150,9 @@ export default function HomePage() {
 			<section className="bg-gray-50 py-16 md:py-24 lg:py-32">
 				<div className="container mx-auto px-4">
 					<div className="mx-auto mb-12 max-w-3xl text-center md:mb-16">
+						<p className="mb-3 font-medium text-primary text-sm uppercase tracking-wider md:text-base">
+							It's your home, Get inspired
+						</p>
 						<h2 className="mb-4 font-bold text-3xl tracking-tight md:text-4xl lg:text-5xl">
 							Find Your Perfect Solution
 						</h2>
@@ -158,18 +163,18 @@ export default function HomePage() {
 						</p>
 					</div>
 
-					{/* Equal-sized grid - all same size */}
-					<div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+					{/* Equal-sized flex grid - all same size */}
+					<div className="flex flex-wrap justify-center gap-6 lg:gap-8">
 						{[
 							{
 								title: "Light & Privacy Control",
 								desc: "Manage natural light throughout the day while maintaining privacy",
-								image: LPCImage,
+								image: PSImage,
 							},
 							{
 								title: "Privacy & Sleep",
 								desc: "Complete blackout solutions for bedrooms and media rooms",
-								image: PSImage,
+								image: LPCImage,
 							},
 							{
 								title: "Energy Efficient",
@@ -182,18 +187,13 @@ export default function HomePage() {
 								image: MOImage,
 							},
 							{
-								title: "Office & Retail",
-								desc: "Professional solutions for commercial spaces",
-								image: ORSImage,
-							},
-							{
 								title: "Specialty Windows",
 								desc: "Custom solutions for unique shapes and hard-to-reach windows",
-								image: LPCImage,
+								image: SWImage,
 							},
 						].map((item) => (
 							<Link
-								className="group relative overflow-hidden rounded-xl bg-white shadow-md transition hover:shadow-xl"
+								className="group relative flex w-full flex-col overflow-hidden rounded-xl bg-white shadow-md transition hover:shadow-xl md:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1.334rem)]"
 								href="/contact"
 								key={item.title}
 							>

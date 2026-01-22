@@ -8,8 +8,8 @@ import {
 import type { Metadata } from "next";
 import Link from "next/link";
 import ContactForm from "@/components/contactForm";
-import Footer from "@/components/footer";
-import Header from "@/components/header";
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 import { buttonVariants } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 

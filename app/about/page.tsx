@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import LARRYHeadshot from "@/assets/new/Larry-Collins.jpg";
-import Footer from "@/components/footer";
-import Header from "@/components/header";
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 import { buttonVariants } from "@/components/ui/button";
 
 export const metadata: Metadata = {

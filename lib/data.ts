@@ -16,7 +16,7 @@ import type { BusinessInfo, NavigationItem, Review, Service } from "./types";
 
 export const businessInfo: BusinessInfo = {
 	name: "East Bay Blinds",
-	tagline: "Its your home, Get inspired.",
+	tagline: "Its your home. Get inspired.",
 	phone: "(925) 200-4521",
 	email: "",
 	address: "Benicia, CA 94510-3980",
