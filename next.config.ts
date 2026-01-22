@@ -2,11 +2,6 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
 	poweredByHeader: false,
-	turbopack: {
-		resolveAlias: {
-			"@/*": "./*",
-		},
-	},
 	redirects: async () => {
 		return [
 			{
@@ -15,9 +10,6 @@ const nextConfig: NextConfig = {
 				permanent: true,
 			},
 		];
-	},
-	typescript: {
-		ignoreBuildErrors: true,
 	},
 };
 
