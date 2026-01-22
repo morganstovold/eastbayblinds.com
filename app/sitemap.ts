@@ -1,66 +1,33 @@
 import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-	const baseUrl = "https://www.eastbayblinds.com/";
+	const baseUrl = "https://www.eastbayblinds.com";
 	const currentDate = new Date();
 
-	const staticPages = [
+	return [
 		{
 			url: baseUrl,
 			lastModified: currentDate,
-			changeFrequency: "weekly" as const,
+			changeFrequency: "weekly",
 			priority: 1.0,
 		},
 		{
-			url: `${baseUrl}about`,
+			url: `${baseUrl}/about`,
 			lastModified: currentDate,
-			changeFrequency: "monthly" as const,
+			changeFrequency: "monthly",
 			priority: 0.8,
 		},
 		{
-			url: `${baseUrl}contact`,
+			url: `${baseUrl}/contact`,
 			lastModified: currentDate,
-			changeFrequency: "monthly" as const,
+			changeFrequency: "monthly",
 			priority: 0.9,
 		},
 		{
-			url: `${baseUrl}services`,
+			url: `${baseUrl}/gallery`,
 			lastModified: currentDate,
-			changeFrequency: "monthly" as const,
-			priority: 0.8,
-		},
-		{
-			url: `${baseUrl}products/shutters`,
-			lastModified: currentDate,
-			changeFrequency: "monthly" as const,
-			priority: 0.8,
-		},
-		{
-			url: `${baseUrl}products/blinds`,
-			lastModified: currentDate,
-			changeFrequency: "monthly" as const,
-			priority: 0.8,
-		},
-		{
-			url: `${baseUrl}products/shades`,
-			lastModified: currentDate,
-			changeFrequency: "monthly" as const,
-			priority: 0.8,
-		},
-		// Legal pages
-		{
-			url: `${baseUrl}privacy`,
-			lastModified: currentDate,
-			changeFrequency: "yearly" as const,
-			priority: 0.3,
-		},
-		{
-			url: `${baseUrl}terms`,
-			lastModified: currentDate,
-			changeFrequency: "yearly" as const,
-			priority: 0.3,
+			changeFrequency: "weekly",
+			priority: 0.7,
 		},
 	];
-
-	return staticPages;
 }

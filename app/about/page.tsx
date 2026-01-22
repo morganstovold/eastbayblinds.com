@@ -8,10 +8,20 @@ import { buttonVariants } from "@/components/ui/button";
 import LARRYHeadshot from "@/public/new/Larry-Collins.jpg";
 
 export const metadata: Metadata = {
-	title: "About East Bay Blinds | Family-Owned Since 2006 | Lafayette, CA",
+	title: "About Larry Collins | Family-Owned Since 2006 | East Bay Blinds",
 	description:
-		"Meet Larry Collins, owner of East Bay Blinds. Family-owned since 2006, serving Lafayette, Walnut Creek, Orinda and the East Bay with expert window treatment solutions.",
+		"Meet Larry Collins, owner of East Bay Blinds. 20+ years experience, 100+ 5-star reviews. Hunter Douglas & Norman authorized dealer. Personally handles every consultation and installation in Lafayette, Walnut Creek, Orinda.",
+	alternates: {
+		canonical: "https://www.eastbayblinds.com/about",
+	},
+	openGraph: {
+		title: "About Larry Collins | Family-Owned Since 2006 | East Bay Blinds",
+		description:
+			"Meet Larry Collins, owner of East Bay Blinds. 20+ years experience, 100+ 5-star reviews.",
+		url: "https://www.eastbayblinds.com/about",
+	},
 };
+
 
 const values = [
 	{

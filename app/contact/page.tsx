@@ -14,9 +14,18 @@ import { buttonVariants } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 
 export const metadata: Metadata = {
-	title: "Schedule Free Consultation | East Bay Blinds | Lafayette, CA",
+	title: "Free Consultation | Window Treatments Lafayette | (925) 200-4521",
 	description:
-		"Schedule your free, no-pressure in-home consultation with Larry Collins. Serving Lafayette, Walnut Creek, Orinda, Moraga, Danville, and East Bay. Call (925) 200-4521.",
+		"Schedule your free, no-pressure consultation with Larry Collins. Serving Lafayette, Walnut Creek, Orinda, Moraga, Danville, Alamo. Same-day response. Call (925) 200-4521 or fill out our quick form.",
+	alternates: {
+		canonical: "https://www.eastbayblinds.com/contact",
+	},
+	openGraph: {
+		title: "Free Consultation | Window Treatments Lafayette | (925) 200-4521",
+		description:
+			"Schedule your free consultation. Same-day response. Serving Lafayette, Walnut Creek, Orinda.",
+		url: "https://www.eastbayblinds.com/contact",
+	},
 };
 
 const serviceAreas = [

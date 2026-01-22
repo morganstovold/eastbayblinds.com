@@ -16,9 +16,18 @@ import Image6 from "@/public/new/NORMAN/1844-x-1038_Photo_Shutters_06.jpg";
 import Image7 from "@/public/new/NORMAN/1844-x-1038_Photo_Shutters_14.jpg";
 
 export const metadata: Metadata = {
-	title: "Project Gallery | East Bay Blinds | Lafayette, CA",
+	title: "Window Treatment Gallery | Before & After | East Bay Blinds",
 	description:
-		"Browse our gallery of window treatment installations in Lafayette, Walnut Creek, Orinda and throughout the East Bay. See real projects by East Bay Blinds.",
+		"Browse our gallery of custom blinds, shutters, and shades installations in Lafayette, Walnut Creek, Orinda. Real projects by East Bay Blinds. Hunter Douglas & Norman products.",
+	alternates: {
+		canonical: "https://www.eastbayblinds.com/gallery",
+	},
+	openGraph: {
+		title: "Window Treatment Gallery | Before & After | East Bay Blinds",
+		description:
+			"Browse our gallery of custom installations in Lafayette, Walnut Creek, Orinda.",
+		url: "https://www.eastbayblinds.com/gallery",
+	},
 };
 
 interface GalleryImage {

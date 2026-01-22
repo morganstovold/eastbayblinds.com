@@ -1,4 +1,5 @@
 name: Deploy Application
+# allow manual deployment on main and prs
 on:
   push:
     branches:

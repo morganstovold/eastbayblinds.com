@@ -17,9 +17,26 @@ import LARRYHeadshot from "@/public/new/larry.jpg";
 import NORMANImage from "@/public/new/NORMAN/1844-x-1038_Photo_Shutters_06.jpg";
 
 export const metadata: Metadata = {
-	title: "Custom Shutters, Blinds & Shades | Lafayette, Orinda, Walnut Creek",
+	title: "Custom Blinds, Shutters & Shades Lafayette | East Bay Blinds",
 	description:
-		"Premium window treatments from $500 to $5,000+ per room. Authorized Hunter Douglas & Norman dealer. Free consultation. Call (925) 200-4521.",
+		"Lafayette's trusted window treatment specialist since 2006. Hunter Douglas & Norman authorized dealer. 100+ 5-star reviews. Free consultation. Serving Lafayette, Walnut Creek, Orinda, Moraga. Call (925) 200-4521.",
+	alternates: {
+		canonical: "https://www.eastbayblinds.com",
+	},
+	openGraph: {
+		title: "Custom Blinds, Shutters & Shades Lafayette | East Bay Blinds",
+		description:
+			"Family-owned since 2006. Hunter Douglas & Norman authorized dealer. 100+ 5-star reviews. Free consultation.",
+		url: "https://www.eastbayblinds.com",
+		images: [
+			{
+				url: "/og-image.jpg",
+				width: 1200,
+				height: 630,
+				alt: "East Bay Blinds - Custom Window Treatments",
+			},
+		],
+	},
 };
 
 export default function HomePage() {
