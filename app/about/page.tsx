@@ -22,7 +22,6 @@ export const metadata: Metadata = {
 	},
 };
 
-
 const values = [
 	{
 		title: "Personal Service",
