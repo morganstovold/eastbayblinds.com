@@ -1,4 +1,3 @@
-import path from "node:path";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
@@ -11,11 +10,6 @@ const nextConfig: NextConfig = {
 				permanent: true,
 			},
 		];
-	},
-	turbopack: {
-		resolveAlias: {
-			"@/*": [path.resolve(__dirname, "./*")],
-		},
 	},
 };
 

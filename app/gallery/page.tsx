@@ -2,18 +2,17 @@ import { ChevronRight, Phone } from "lucide-react";
 import type { Metadata } from "next";
 import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
+// Gallery images - add new project photos here
+import Image1 from "@/assets/new/HD/illuminated-shades.jpg";
+import Image2 from "@/assets/new/HD/motorized.png";
+import Image3 from "@/assets/new/HD/office.webp";
+import Image4 from "@/assets/new/HD/roller-shades.webp";
+import Image5 from "@/assets/new/HD/soft-blinds.webp";
+import Image6 from "@/assets/new/NORMAN/1844-x-1038_Photo_Shutters_06.jpg";
+import Image7 from "@/assets/new/NORMAN/1844-x-1038_Photo_Shutters_14.jpg";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
 import { buttonVariants } from "@/components/ui/button";
-
-// Gallery images - add new project photos here
-import Image1 from "@/public/new/HD/illuminated-shades.jpg";
-import Image2 from "@/public/new/HD/motorized.png";
-import Image3 from "@/public/new/HD/office.webp";
-import Image4 from "@/public/new/HD/roller-shades.webp";
-import Image5 from "@/public/new/HD/soft-blinds.webp";
-import Image6 from "@/public/new/NORMAN/1844-x-1038_Photo_Shutters_06.jpg";
-import Image7 from "@/public/new/NORMAN/1844-x-1038_Photo_Shutters_14.jpg";
 
 export const metadata: Metadata = {
 	title: "Window Treatment Gallery | Before & After | East Bay Blinds",

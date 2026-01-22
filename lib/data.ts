@@ -1,17 +1,17 @@
-import BrightwoodShutters from "@/public/Brightwood-Shutters.webp";
-import BlackoutShades from "@/public/blackout-shades.webp";
-import CenterpieceRomanShades from "@/public/Centerpiece-Roman-Shades.webp";
-import CityLightsAluminumBlinds from "@/public/CityLights-Aluminum-Blinds.webp";
-import NormandyShutters from "@/public/Normandy-Shutters.webp";
-import PerfectSheerShades from "@/public/PerfectSheer-Shades.webp";
-import PortraitHoneycombShades from "@/public/Portrait-Honecomb-Shades.webp";
-import SmartDrapeShades from "@/public/Smart-Drape-Shades.webp";
-import SolunaRollerShades from "@/public/Soluna-Roller-Shades.webp";
-import SynchronyVerticalBlinds from "@/public/Synchrony-Vertical-Blinds.webp";
-import UltimateFauxWoodBlinds from "@/public/Ultimate-Faux-Wood-Blinds.webp";
-import UltimateNormandyWoodBlinds from "@/public/Ultimate-Normandy-Wood-Blinds.webp";
-import WoodlorePlusShutters from "@/public/Woodlore-Plus-Shutters.webp";
-import WoodloreShutters from "@/public/Woodlore-Shutters.webp";
+import BrightwoodShutters from "@/assets/Brightwood-Shutters.webp";
+import BlackoutShades from "@/assets/blackout-shades.webp";
+import CenterpieceRomanShades from "@/assets/Centerpiece-Roman-Shades.webp";
+import CityLightsAluminumBlinds from "@/assets/CityLights-Aluminum-Blinds.webp";
+import NormandyShutters from "@/assets/Normandy-Shutters.webp";
+import PerfectSheerShades from "@/assets/PerfectSheer-Shades.webp";
+import PortraitHoneycombShades from "@/assets/Portrait-Honecomb-Shades.webp";
+import SmartDrapeShades from "@/assets/Smart-Drape-Shades.webp";
+import SolunaRollerShades from "@/assets/Soluna-Roller-Shades.webp";
+import SynchronyVerticalBlinds from "@/assets/Synchrony-Vertical-Blinds.webp";
+import UltimateFauxWoodBlinds from "@/assets/Ultimate-Faux-Wood-Blinds.webp";
+import UltimateNormandyWoodBlinds from "@/assets/Ultimate-Normandy-Wood-Blinds.webp";
+import WoodlorePlusShutters from "@/assets/Woodlore-Plus-Shutters.webp";
+import WoodloreShutters from "@/assets/Woodlore-Shutters.webp";
 import type { BusinessInfo, NavigationItem, Review, Service } from "./types";
 
 export const businessInfo: BusinessInfo = {

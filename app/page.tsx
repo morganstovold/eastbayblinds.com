@@ -2,19 +2,19 @@ import { CheckCircle, ChevronRight, Phone, Star } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import PSImage from "@/assets/new/HD/illuminated-shades.jpg";
+import MOImage from "@/assets/new/HD/motorized.png";
+import ORSImage from "@/assets/new/HD/office.webp";
+import LPCImage from "@/assets/new/HD/roller-shades.webp";
+import HeroImage from "@/assets/new/HD/shades.webp";
+import EEImage from "@/assets/new/HD/soft-blinds.webp";
+import LARRYHeadshot from "@/assets/new/larry.jpg";
+import NORMANImage from "@/assets/new/NORMAN/1844-x-1038_Photo_Shutters_06.jpg";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
 import Stars from "@/components/stars";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { buttonVariants } from "@/components/ui/button";
-import PSImage from "@/public/new/HD/illuminated-shades.jpg";
-import MOImage from "@/public/new/HD/motorized.png";
-import ORSImage from "@/public/new/HD/office.webp";
-import LPCImage from "@/public/new/HD/roller-shades.webp";
-import HeroImage from "@/public/new/HD/shades.webp";
-import EEImage from "@/public/new/HD/soft-blinds.webp";
-import LARRYHeadshot from "@/public/new/larry.jpg";
-import NORMANImage from "@/public/new/NORMAN/1844-x-1038_Photo_Shutters_06.jpg";
 
 export const metadata: Metadata = {
 	title: "Custom Blinds, Shutters & Shades Lafayette | East Bay Blinds",

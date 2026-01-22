@@ -2,10 +2,10 @@ import { CheckCircle, ChevronRight, Phone, Star } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import LARRYHeadshot from "@/assets/new/Larry-Collins.jpg";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
 import { buttonVariants } from "@/components/ui/button";
-import LARRYHeadshot from "@/public/new/Larry-Collins.jpg";
 
 export const metadata: Metadata = {
 	title: "About Larry Collins | Family-Owned Since 2006 | East Bay Blinds",
